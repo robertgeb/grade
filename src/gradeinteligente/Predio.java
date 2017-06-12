@@ -9,12 +9,12 @@ package gradeinteligente;
  *
  * @author robert
  */
-public class Professor {
+public class Predio {
     
     private int id;
     private String nome;
 
-    public Professor(int id, String nome) {
+    public Predio(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }
@@ -46,7 +46,6 @@ public class Professor {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
     
     
 }

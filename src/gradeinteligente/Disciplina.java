@@ -9,18 +9,16 @@ package gradeinteligente;
  *
  * @author robert
  */
-public class Turma {
+public class Disciplina {
     
     private int id;
     private String nome;
-    private Professor professor;
-    private Disciplina disciplina;
+    private int creditos;
 
-    public Turma(int id, String nome, Professor professor, Disciplina disciplina) {
+    public Disciplina(int id, String nome, int creditos) {
         this.id = id;
         this.nome = nome;
-        this.professor = professor;
-        this.disciplina = disciplina;
+        this.creditos = creditos;
     }
 
     /**
@@ -52,33 +50,18 @@ public class Turma {
     }
 
     /**
-     * @return the professor
+     * @return the creditos
      */
-    public Professor getProfessor() {
-        return professor;
+    public int getCreditos() {
+        return creditos;
     }
 
     /**
-     * @param professor the professor to set
+     * @param creditos the creditos to set
      */
-    public void setProfessor(Professor professor) {
-        this.professor = professor;
+    public void setCreditos(int creditos) {
+        this.creditos = creditos;
     }
-
-    /**
-     * @return the disciplina
-     */
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    /**
-     * @param disciplina the disciplina to set
-     */
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
-    }
-    
     
     
 }

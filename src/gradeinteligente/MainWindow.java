@@ -21,6 +21,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         openTab(mainGradePanel);
+        new Bd();
     }
 
     /**
