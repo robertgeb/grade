@@ -71,11 +71,17 @@ public class Bd {
                         " creditos INTEGER, " + 
                         " PRIMARY KEY ( id ))"; 
 
+            String predioTableSQL = "CREATE TABLE predio " +
+                        "(id INTEGER not NULL, " +
+                        " nome VARCHAR(255), " +
+                        " PRIMARY KEY ( id ))";
+            
             String salaTableSQL = "CREATE TABLE sala " +
                         "(id INTEGER not NULL, " +
                         " numero INTEGER, " + 
-                        " predio VARCHAR(255), " +
-                        " PRIMARY KEY ( id ))"; 
+                        " predio INTEGER, " +
+                        " PRIMARY KEY ( id )," +
+                        "FOREIGN KEY (predio) REFERENCES predio(id))";  
             
             String gradeTableSQL = "CREATE TABLE grade " +
                         "(id INTEGER not NULL, " +
@@ -87,24 +93,32 @@ public class Bd {
                         "(id INTEGER not NULL, " +
                         " nome VARCHAR(5), " + 
                         " disciplina INTEGER, " + 
-                        " horario INTEGER, " +
                         " professor INTEGER, " + 
+                        " PRIMARY KEY ( id )," +
+                        "FOREIGN KEY (disciplina) REFERENCES disciplina(id)," +
+                        "FOREIGN KEY (professor) REFERENCES professor(id))";  
+
+            
+            String horarioTableSQL = "CREATE TABLE horario " +
+                        "(id INTEGER not NULL, " +
+                        " turma INTEGER, " + 
+                        " sala INTEGER, " +
                         " dia INTEGER, " + 
                         " hora TIME, " + 
-                        " sala INTEGER, " + 
-                        " grade INTEGER, " + 
+                        " grade INTEGER, " +
                         " PRIMARY KEY ( id )," +
                         "FOREIGN KEY (sala) REFERENCES sala(id)," +
-                        "FOREIGN KEY (disciplina) REFERENCES disciplina(id)," +
-                        "FOREIGN KEY (professor) REFERENCES professor(id)," +
+                        "FOREIGN KEY (turma) REFERENCES turma(id)," +
                         "FOREIGN KEY (grade) REFERENCES grade(id))";  
 
-
+            
             stmt.addBatch(professorTableSQL);
             stmt.addBatch(disciplinaTableSQL);
+            stmt.addBatch(predioTableSQL);
             stmt.addBatch(salaTableSQL);
             stmt.addBatch(gradeTableSQL);
             stmt.addBatch(turmaTableSQL);
+            stmt.addBatch(horarioTableSQL);
             stmt.executeBatch();
         } catch(SQLException ex){
             System.out.println("SQLException: " + ex.getMessage());
