@@ -6,6 +6,7 @@
 package gradeinteligente;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 
 /**
@@ -19,6 +20,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+        openTab(mainGradePanel);
     }
 
     /**
@@ -31,14 +33,14 @@ public class MainWindow extends javax.swing.JFrame {
     private void initComponents() {
 
         lateralPanel = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        criarPanel = new javax.swing.JPanel();
+        criarLabel = new javax.swing.JLabel();
+        apagarPanel = new javax.swing.JPanel();
+        apagarLabel = new javax.swing.JLabel();
+        editarPanel = new javax.swing.JPanel();
+        editarLabel = new javax.swing.JLabel();
+        visualizarPanel = new javax.swing.JPanel();
+        visualizarLabel = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
         mainGradePanel = new javax.swing.JPanel();
         mainTurmasPanel = new javax.swing.JPanel();
@@ -59,113 +61,105 @@ public class MainWindow extends javax.swing.JFrame {
         lateralPanel.setBackground(new java.awt.Color(188, 75, 81));
         lateralPanel.setLayout(new java.awt.GridLayout(10, 1));
 
-        jPanel5.setBackground(new java.awt.Color(188, 75, 81));
-        jPanel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanel5MouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanel5MouseEntered(evt);
-            }
-        });
+        criarPanel.setBackground(new java.awt.Color(188, 75, 81));
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Criar");
+        criarLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        criarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        criarLabel.setText("Criar");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout criarPanelLayout = new javax.swing.GroupLayout(criarPanel);
+        criarPanel.setLayout(criarPanelLayout);
+        criarPanelLayout.setHorizontalGroup(
+            criarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(criarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(criarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        criarPanelLayout.setVerticalGroup(
+            criarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(criarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(criarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        lateralPanel.add(jPanel5);
+        lateralPanel.add(criarPanel);
 
-        jPanel6.setBackground(new java.awt.Color(188, 75, 81));
+        apagarPanel.setBackground(new java.awt.Color(188, 75, 81));
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Apagar");
+        apagarLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        apagarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        apagarLabel.setText("Apagar");
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout apagarPanelLayout = new javax.swing.GroupLayout(apagarPanel);
+        apagarPanel.setLayout(apagarPanelLayout);
+        apagarPanelLayout.setHorizontalGroup(
+            apagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(apagarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(apagarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        apagarPanelLayout.setVerticalGroup(
+            apagarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(apagarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        lateralPanel.add(jPanel6);
-
-        jPanel7.setBackground(new java.awt.Color(188, 75, 81));
-
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Editar");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(apagarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        lateralPanel.add(jPanel7);
+        lateralPanel.add(apagarPanel);
 
-        jPanel8.setBackground(new java.awt.Color(188, 75, 81));
+        editarPanel.setBackground(new java.awt.Color(188, 75, 81));
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Visualizar");
+        editarLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        editarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        editarLabel.setText("Editar");
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout editarPanelLayout = new javax.swing.GroupLayout(editarPanel);
+        editarPanel.setLayout(editarPanelLayout);
+        editarPanelLayout.setHorizontalGroup(
+            editarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(editarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        editarPanelLayout.setVerticalGroup(
+            editarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editarPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(editarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        lateralPanel.add(jPanel8);
+        lateralPanel.add(editarPanel);
+
+        visualizarPanel.setBackground(new java.awt.Color(188, 75, 81));
+
+        visualizarLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        visualizarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        visualizarLabel.setText("Visualizar");
+
+        javax.swing.GroupLayout visualizarPanelLayout = new javax.swing.GroupLayout(visualizarPanel);
+        visualizarPanel.setLayout(visualizarPanelLayout);
+        visualizarPanelLayout.setHorizontalGroup(
+            visualizarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(visualizarPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(visualizarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        visualizarPanelLayout.setVerticalGroup(
+            visualizarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(visualizarPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(visualizarLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        lateralPanel.add(visualizarPanel);
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
         mainPanel.setLayout(new javax.swing.OverlayLayout(mainPanel));
@@ -173,7 +167,6 @@ public class MainWindow extends javax.swing.JFrame {
         mainGradePanel.setBackground(new java.awt.Color(188, 75, 81));
         mainGradePanel.setEnabled(false);
         mainGradePanel.setFocusable(false);
-        mainGradePanel.setOpaque(false);
 
         javax.swing.GroupLayout mainGradePanelLayout = new javax.swing.GroupLayout(mainGradePanel);
         mainGradePanel.setLayout(mainGradePanelLayout);
@@ -191,7 +184,6 @@ public class MainWindow extends javax.swing.JFrame {
         mainTurmasPanel.setBackground(new java.awt.Color(140, 179, 105));
         mainTurmasPanel.setEnabled(false);
         mainTurmasPanel.setFocusable(false);
-        mainTurmasPanel.setOpaque(false);
 
         javax.swing.GroupLayout mainTurmasPanelLayout = new javax.swing.GroupLayout(mainTurmasPanel);
         mainTurmasPanel.setLayout(mainTurmasPanelLayout);
@@ -209,7 +201,6 @@ public class MainWindow extends javax.swing.JFrame {
         mainProfessoresPanel.setBackground(new java.awt.Color(244, 226, 133));
         mainProfessoresPanel.setEnabled(false);
         mainProfessoresPanel.setFocusable(false);
-        mainProfessoresPanel.setOpaque(false);
 
         javax.swing.GroupLayout mainProfessoresPanelLayout = new javax.swing.GroupLayout(mainProfessoresPanel);
         mainProfessoresPanel.setLayout(mainProfessoresPanelLayout);
@@ -384,14 +375,6 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPanel5MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseEntered
-        jPanel5.setBackground(new Color(12,98,145));
-    }//GEN-LAST:event_jPanel5MouseEntered
-
-    private void jPanel5MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel5MouseExited
-        jPanel5.setBackground(new Color(188,75,81));
-    }//GEN-LAST:event_jPanel5MouseExited
-
     private void gradeLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gradeLabelMouseClicked
         openTab(mainGradePanel);
     }//GEN-LAST:event_gradeLabelMouseClicked
@@ -409,26 +392,22 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_salasLabelMouseClicked
 
     private void openTab(javax.swing.JPanel panelToOpen) {
-        mainTurmasPanel.setEnabled(false);
-        mainTurmasPanel.setFocusable(false);
-        mainTurmasPanel.setVisible(false);
-        mainTurmasPanel.setOpaque(false);
-        mainGradePanel.setEnabled(false);
-        mainGradePanel.setFocusable(false);
-        mainGradePanel.setVisible(false);
-        mainGradePanel.setOpaque(false);
-        mainProfessoresPanel.setEnabled(false);
-        mainProfessoresPanel.setFocusable(false);
-        mainProfessoresPanel.setVisible(false);
-        mainProfessoresPanel.setOpaque(false);
-        mainSalasPanel.setEnabled(false);
-        mainSalasPanel.setFocusable(false);
-        mainSalasPanel.setVisible(false);
-        mainSalasPanel.setOpaque(false);
+        // Deabilitando e deixando todos os jPanels invisiveis
+        for(Component panel : mainPanel.getComponents() ) {   
+            panel.setEnabled(false);
+            panel.setFocusable(false);
+            panel.setVisible(false);
+        }
+        // Habilitando o jPanel selecionado
         panelToOpen.setEnabled(true);
         panelToOpen.setFocusable(true);
         panelToOpen.setVisible(true);
-        panelToOpen.setOpaque(true);
+        // Mudando cor da barra lateral
+        lateralPanel.setBackground(panelToOpen.getBackground());
+        for(Component itemLateral : lateralPanel.getComponents() ) {
+            // Mudando cor de todos os itens da barra Lateral
+            itemLateral.setBackground(panelToOpen.getBackground());
+        }
         
     }
     
@@ -469,16 +448,14 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel apagarLabel;
+    private javax.swing.JPanel apagarPanel;
+    private javax.swing.JLabel criarLabel;
+    private javax.swing.JPanel criarPanel;
+    private javax.swing.JLabel editarLabel;
+    private javax.swing.JPanel editarPanel;
     private javax.swing.JLabel gradeLabel;
     private javax.swing.JPanel gradePanel;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel lateralPanel;
     private javax.swing.JPanel mainGradePanel;
     private javax.swing.JPanel mainPanel;
@@ -492,5 +469,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel salasPanel;
     private javax.swing.JLabel turmasLabel;
     private javax.swing.JPanel turmasPanel;
+    private javax.swing.JLabel visualizarLabel;
+    private javax.swing.JPanel visualizarPanel;
     // End of variables declaration//GEN-END:variables
 }
