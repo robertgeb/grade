@@ -15,7 +15,11 @@ import java.sql.Statement;
  * @author robert
  */
 public class Bd {
+    
     private Connection connection = null;
+    private String databaseUser = "root";
+    private String databasePassword = "";
+    
     Bd() {
         connect();
         
@@ -23,7 +27,7 @@ public class Bd {
     
     private void connect(){
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/grade", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/grade", databaseUser, databasePassword);
         } catch(SQLException ex){
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
@@ -37,7 +41,7 @@ public class Bd {
     
     private void createDatabase() {
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/", databaseUser, databasePassword);
             Statement stm = connection.createStatement();
             int result = stm.executeUpdate("CREATE DATABASE grade");
             connection.close();
