@@ -8,6 +8,10 @@ package gradeinteligente;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import org.jdesktop.beansbinding.Binding;
 
 /**
  *
@@ -19,6 +23,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     public MainWindow() {
+        //new Bd();
         initComponents();
         openTab(mainProfessoresPanel);
     }
@@ -34,18 +39,14 @@ public class MainWindow extends javax.swing.JFrame {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         GradeInteligentePUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("GradeInteligentePU").createEntityManager();
-        professorEntityQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT p FROM ProfessorEntity p");
-        professorEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : professorEntityQuery.getResultList();
-        salaEntityQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT s FROM SalaEntity s");
-        salaEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : salaEntityQuery.getResultList();
-        salaEntityQuery1 = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT s FROM SalaEntity s");
-        salaEntityList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : salaEntityQuery1.getResultList();
         gradeEntityQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT g FROM GradeEntity g");
-        gradeEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : gradeEntityQuery.getResultList();
-        gradeEntityQuery1 = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT g FROM GradeEntity g");
-        gradeEntityList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : gradeEntityQuery1.getResultList();
+        gradeEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(gradeEntityQuery.getResultList());
         turmaEntityQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT t FROM TurmaEntity t");
-        turmaEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : turmaEntityQuery.getResultList();
+        turmaEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(turmaEntityQuery.getResultList());
+        professorEntityQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT p FROM ProfessorEntity p");
+        professorEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(professorEntityQuery.getResultList());
+        salaEntityQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT s FROM SalaEntity s");
+        salaEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(salaEntityQuery.getResultList());
         lateralPanel = new javax.swing.JPanel();
         criarPanel = new javax.swing.JPanel();
         criarLabel = new javax.swing.JLabel();
@@ -92,6 +93,11 @@ public class MainWindow extends javax.swing.JFrame {
         criarLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         criarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         criarLabel.setText("Criar");
+        criarLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                criarLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout criarPanelLayout = new javax.swing.GroupLayout(criarPanel);
         criarPanel.setLayout(criarPanelLayout);
@@ -193,20 +199,24 @@ public class MainWindow extends javax.swing.JFrame {
         mainGradePanel.setBackground(new java.awt.Color(188, 75, 81));
         mainGradePanel.setEnabled(false);
         mainGradePanel.setFocusable(false);
+        mainGradePanel.setName("grade"); // NOI18N
         mainGradePanel.setLayout(new javax.swing.OverlayLayout(mainGradePanel));
 
         gradeTablePanel.setLayout(new javax.swing.OverlayLayout(gradeTablePanel));
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, gradeEntityList1, gradeTable);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${criacao}"));
-        columnBinding.setColumnName("Criacao");
-        columnBinding.setColumnClass(java.util.Date.class);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, gradeEntityList, gradeTable);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Id");
+        columnBinding.setColumnClass(Integer.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
         columnBinding.setColumnName("Nome");
         columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
-        columnBinding.setColumnName("Id");
-        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${criacao}"));
+        columnBinding.setColumnName("Criacao");
+        columnBinding.setColumnClass(java.util.Date.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioEntityCollection}"));
+        columnBinding.setColumnName("Horarios");
+        columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         gradeTable.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -225,23 +235,27 @@ public class MainWindow extends javax.swing.JFrame {
         mainTurmasPanel.setBackground(new java.awt.Color(140, 179, 105));
         mainTurmasPanel.setEnabled(false);
         mainTurmasPanel.setFocusable(false);
+        mainTurmasPanel.setName("turmas"); // NOI18N
         mainTurmasPanel.setLayout(new javax.swing.OverlayLayout(mainTurmasPanel));
 
         turmasTablePanel.setLayout(new javax.swing.OverlayLayout(turmasTablePanel));
 
         jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, turmaEntityList, turmasTable);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${professor}"));
-        columnBinding.setColumnName("Professor");
-        columnBinding.setColumnClass(gradeinteligente.ProfessorEntity.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${disciplina}"));
-        columnBinding.setColumnName("Disciplina");
-        columnBinding.setColumnClass(gradeinteligente.DisciplinaEntity.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
-        columnBinding.setColumnName("Nome");
-        columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
         columnBinding.setColumnName("Id");
         columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
+        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${disciplina}"));
+        columnBinding.setColumnName("Disciplina");
+        columnBinding.setColumnClass(gradeinteligente.DisciplinaEntity.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${professor}"));
+        columnBinding.setColumnName("Professor");
+        columnBinding.setColumnClass(gradeinteligente.ProfessorEntity.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioEntityCollection}"));
+        columnBinding.setColumnName("Horarios");
+        columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         turmasTable.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -260,6 +274,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainProfessoresPanel.setBackground(new java.awt.Color(244, 226, 133));
         mainProfessoresPanel.setEnabled(false);
         mainProfessoresPanel.setFocusable(false);
+        mainProfessoresPanel.setName("professores"); // NOI18N
         mainProfessoresPanel.setLayout(new javax.swing.OverlayLayout(mainProfessoresPanel));
 
         professoresTablePanel.setLayout(new javax.swing.OverlayLayout(professoresTablePanel));
@@ -274,6 +289,9 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
         columnBinding.setColumnName("Nome");
         columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${turmaEntityCollection}"));
+        columnBinding.setColumnName("Turmas");
+        columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         professoresTable.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -294,11 +312,12 @@ public class MainWindow extends javax.swing.JFrame {
         mainPanel.add(mainProfessoresPanel);
 
         mainSalasPanel.setBackground(new java.awt.Color(244, 162, 89));
+        mainSalasPanel.setName("salas"); // NOI18N
         mainSalasPanel.setLayout(new javax.swing.OverlayLayout(mainSalasPanel));
 
         salasTablePanel.setLayout(new javax.swing.OverlayLayout(salasTablePanel));
 
-        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, salaEntityList1, salasTable);
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, salaEntityList, salasTable);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
         columnBinding.setColumnName("Id");
         columnBinding.setColumnClass(Integer.class);
@@ -308,6 +327,9 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${numero}"));
         columnBinding.setColumnName("Numero");
         columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioEntityCollection}"));
+        columnBinding.setColumnName("Horarios");
+        columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         salasTable.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -502,6 +524,31 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gradeTableFocusGained
 
+    private void criarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_criarLabelMouseClicked
+        javax.swing.JPanel activedTab = null;
+        for(Component panel : mainPanel.getComponents() ) {   
+            if(panel.isEnabled())
+                activedTab = (javax.swing.JPanel) panel;
+        }
+        if(activedTab == null || activedTab.getName() == null)
+            return;
+        switch(activedTab.getName()) {
+            case "professores":
+                professorEntityList.add(new ProfessorEntity());
+                break;
+            
+            case "salas":
+                break;
+                
+             
+            case "turmas":
+                break;
+            default:
+                openTab(mainProfessoresPanel);
+        }
+        
+    }//GEN-LAST:event_criarLabelMouseClicked
+
     private void openTab(javax.swing.JPanel panelToOpen) {
         // Deabilitando e deixando todos os jPanels invisiveis
         for(Component panel : mainPanel.getComponents() ) {   
@@ -567,9 +614,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel editarLabel;
     private javax.swing.JPanel editarPanel;
     private java.util.List<gradeinteligente.GradeEntity> gradeEntityList;
-    private java.util.List<gradeinteligente.GradeEntity> gradeEntityList1;
     private javax.persistence.Query gradeEntityQuery;
-    private javax.persistence.Query gradeEntityQuery1;
     private javax.swing.JLabel gradeLabel;
     private javax.swing.JPanel gradePanel;
     private javax.swing.JTable gradeTable;
@@ -592,9 +637,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTable professoresTable;
     private javax.swing.JPanel professoresTablePanel;
     private java.util.List<gradeinteligente.SalaEntity> salaEntityList;
-    private java.util.List<gradeinteligente.SalaEntity> salaEntityList1;
     private javax.persistence.Query salaEntityQuery;
-    private javax.persistence.Query salaEntityQuery1;
     private javax.swing.JLabel salasLabel;
     private javax.swing.JPanel salasPanel;
     private javax.swing.JTable salasTable;
