@@ -549,6 +549,63 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_criarLabelMouseClicked
 
+    private void criarGrade(String nome) {
+        // Criando entidade
+        Grade novaGrade = new Grade();
+        novaGrade.setNome(nome);
+        
+        // Persistindo no Banco
+        GradeInteligentePUEntityManager.getTransaction().begin();
+        GradeInteligentePUEntityManager.persist(novaGrade);
+        GradeInteligentePUEntityManager.getTransaction().commit();
+        
+        // Adicionando a lista para atualizar o JTable
+        gradeList.add(novaGrade);
+    }
+    
+    private void criarTurma(String nome) {
+        // Criando entidade
+        Turma novaTurma = new Turma();
+        novaTurma.setNome(nome);
+        
+        // Persistindo no Banco
+        GradeInteligentePUEntityManager.getTransaction().begin();
+        GradeInteligentePUEntityManager.persist(novaTurma);
+        GradeInteligentePUEntityManager.getTransaction().commit();
+        
+        // Adicionando a lista para atualizar o JTable
+        turmaList.add(novaTurma);
+    }
+    
+    private void criarProfessor(String nome, int matricula){
+        // Criando entidade
+        Professor novoProfessor = new Professor();
+        novoProfessor.setNome(nome);
+        novoProfessor.setMatricula(matricula);
+        
+        // Persistindo no Banco
+        GradeInteligentePUEntityManager.getTransaction().begin();
+        GradeInteligentePUEntityManager.persist(novoProfessor);
+        GradeInteligentePUEntityManager.getTransaction().commit();
+        
+        // Adicionando a lista para atualizar o JTable
+        professorList.add(novoProfessor);
+    }
+    
+    private void criarSala(int numero){
+        // Criando entidade
+        Sala novaSala = new Sala();
+        novaSala.setNumero(numero);
+        
+        // Persistindo no Banco
+        GradeInteligentePUEntityManager.getTransaction().begin();
+        GradeInteligentePUEntityManager.persist(novaSala);
+        GradeInteligentePUEntityManager.getTransaction().commit();
+        
+        // Adicionando a lista para atualizar o JTable
+        salaList.add(novaSala);
+    }
+    
     private void openTab(javax.swing.JPanel panelToOpen) {
         // Deabilitando e deixando todos os jPanels invisiveis
         for(Component panel : mainPanel.getComponents() ) {   
