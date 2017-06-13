@@ -533,16 +533,21 @@ public class MainWindow extends javax.swing.JFrame {
         if(activedTab == null || activedTab.getName() == null)
             return;
         switch(activedTab.getName()) {
+            case "grade":
+                criarGrade("grade1");
+                
             case "professores":
-                professorList.add(new Professor());
+                criarProfessor("Nome", 9999);
                 break;
             
             case "salas":
+                criarSala(100);
                 break;
-                
              
             case "turmas":
+                criarTurma("IC202");
                 break;
+                
             default:
                 openTab(mainProfessoresPanel);
         }
