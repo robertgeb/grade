@@ -5,13 +5,15 @@
  */
 package gradeinteligente;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 /**
  *
  * @author robert
  */
-public class Grade {
+public class Grade implements Model {
 
     private int id;
     private LocalDateTime criacao;
@@ -64,5 +66,50 @@ public class Grade {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    
+    @Override
+    public void save() {
+        if(this.id != -1)
+            new Bd().update(this);
+        else
+            this.id = new Bd().insert(this);
+    }
 
+    @Override
+    public String toSqlUpdate() {
+        return "UPDATE grade "
+                    + "SET nome = '" + this.nome + "', criacao = " + this.criacao + " WHERE "
+                    + "(id = " + this.id + ")";
+    }
+
+    @Override
+    public String toSqlInsert() {
+        return "INSERT INTO grade "
+                    + "(nome, criacao) VALUES "
+                    + "('" + this.nome + "', '" + this.criacao + "')";
+    }
+
+    @Override
+    public String toSqlFind() {
+        return "SELECT * FROM grade WHERE id = " + this.id;
+    }
+
+    @Override
+    public void setAttributesFromResultSet(ResultSet rs) {
+        try {
+            this.id = rs.getInt("id");
+            this.nome = rs.getString("nome");
+            this.criacao = rs.getTimestamp("criacao").toLocalDateTime();
+        } catch(SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Id: " + this.id +
+                "\nNome: " + this.nome +
+                "\nCriação: " + this.criacao;
+    }
 }
