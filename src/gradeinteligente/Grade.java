@@ -67,7 +67,6 @@ public class Grade implements Model {
         this.nome = nome;
     }
     
-    
     @Override
     public void save() {
         if(this.id != -1)
