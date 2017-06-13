@@ -99,11 +99,11 @@ public class Disciplina implements Model{
             this.id = rs.getInt("id");
             this.nome = rs.getString("nome");
             this.creditos = rs.getInt("creditos");
-            return this;
+            return new Disciplina(id, nome, creditos);
         } catch(SQLException e) {
             System.out.println(e);
         }
-        return this;
+        return null;
     }
 
     @Override

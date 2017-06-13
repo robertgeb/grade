@@ -82,11 +82,11 @@ public class Predio implements Model {
         try {
             this.id = rs.getInt("id");
             this.nome = rs.getString("nome");
-            return this;
+            return new Predio(id, nome);
         } catch(SQLException e) {
             System.out.println(e);
         }
-        return this;
+        return null;
     }
 
     @Override

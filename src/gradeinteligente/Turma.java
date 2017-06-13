@@ -119,11 +119,11 @@ public class Turma implements Model {
             this.nome = rs.getString("nome");
             this.professor = (Professor) new Bd().find(new Professor(rs.getInt("professor"), null, -1));
             this.disciplina = (Disciplina) new Bd().find(new Disciplina(rs.getInt("disciplina"), null, -1));
-            return this;
+            return new Turma(id, nome, professor, disciplina);
         } catch(SQLException e) {
             System.out.println(e);
         }
-        return this;
+        return null;
     }
 
     @Override

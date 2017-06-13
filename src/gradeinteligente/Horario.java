@@ -136,11 +136,11 @@ public class Horario implements Model {
             this.sala = (Sala) new Bd().find(new Sala(rs.getInt("sala"), null, -1));
             this.hora = rs.getTime("hora").toLocalTime();
             this.grade = (Grade) new Bd().find(new Grade(rs.getInt("grade"), null, null));
-            return this;
+            return new Horario(id, turma, sala, hora, grade);
         } catch(SQLException e) {
             System.out.println(e);
         }
-        return this;
+        return null;
     }
 
     @Override

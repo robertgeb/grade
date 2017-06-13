@@ -100,15 +100,17 @@ public class Professor implements Model{
 
     @Override
     public Model setAttributesFromResultSet(ResultSet rs) {
+        System.out.println(this);
         try {
             this.id = rs.getInt("id");
             this.nome = rs.getString("nome");
             this.matricula = rs.getInt("matricula");
-            return this;
+            System.out.println(this);
+            return new Professor(id, nome, matricula);
         } catch(SQLException e) {
             System.out.println(e);
         }
-        return this;
+        return null;
     }
 
     @Override

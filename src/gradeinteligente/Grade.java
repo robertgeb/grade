@@ -98,13 +98,13 @@ public class Grade implements Model {
     public Model setAttributesFromResultSet(ResultSet rs) {
         try {
             this.id = rs.getInt("id");
-            this.nome = rs.getString("nome");
             this.criacao = rs.getTimestamp("criacao").toLocalDateTime();
-            return this;
+            this.nome = rs.getString("nome");
+            return new Grade(id, criacao, nome);
         } catch(SQLException e) {
             System.out.println(e);
         }
-        return this;
+        return null;
     }
 
     @Override
