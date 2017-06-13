@@ -5,11 +5,14 @@
  */
 package gradeinteligente;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author robert
  */
-public class Turma {
+public class Turma implements Model {
     
     private int id;
     private String nome;
@@ -80,5 +83,53 @@ public class Turma {
     }
     
     
+    @Override
+    public void save() {
+        this.disciplina.save();
+        this.professor.save();
+        if(this.id != -1)
+            new Bd().update(this);
+        else
+            this.id = new Bd().insert(this);
+    }
+
+    @Override
+    public String toSqlUpdate() {
+        return "UPDATE turma "
+                    + "SET nome = '" + this.nome + "', professor = " + this.professor.getId() + ", disciplina = " + this.disciplina.getId() + " WHERE "
+                    + "(id = " + this.id + ")";
+    }
+
+    @Override
+    public String toSqlInsert() {
+        return "INSERT INTO turma "
+                    + "(nome, professor, disciplina) VALUES "
+                    + "('" + this.nome + "', " + this.professor.getId() + ", " + this.disciplina.getId() + ")";
+    }
+
+    @Override
+    public String toSqlFind() {
+        return "SELECT * FROM turma WHERE id = " + this.id;
+    }
+
+    @Override
+    public void setAttributesFromResultSet(ResultSet rs) {
+        try {
+            this.id = rs.getInt("id");
+            this.nome = rs.getString("nome");
+            this.professor = (Professor) new Bd().find(new Professor(rs.getInt("professor"), null, -1));
+            this.disciplina = (Disciplina) new Bd().find(new Disciplina(rs.getInt("disciplina"), null, -1));
+        } catch(SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Id: " + this.id +
+                "\nNome: " + this.nome +
+                "\nProfessor: " + this.professor +
+                "\nDisciplina: " + this.disciplina;
+    }
     
 }
