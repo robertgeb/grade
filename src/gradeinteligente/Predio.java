@@ -5,11 +5,14 @@
  */
 package gradeinteligente;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author robert
  */
-public class Predio {
+public class Predio implements Model {
     
     private int id;
     private String nome;
@@ -17,6 +20,13 @@ public class Predio {
     public Predio(int id, String nome) {
         this.id = id;
         this.nome = nome;
+    }
+    
+    public void save() {
+        if(this.id != -1)
+            new Bd().update(this);
+        else
+            this.id = new Bd().insert(this);
     }
 
     /**
@@ -46,6 +56,43 @@ public class Predio {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    @Override
+    public String toSqlUpdate() {
+        return "UPDATE predio"
+                    + "SET nome = " + this.nome + "WHERE"
+                    + "(id = " + this.id + ")";
+    }
+
+    @Override
+    public String toSqlInsert() {
+        return "INSERT INTO predio "
+                    + "(nome) VALUES "
+                    + "('" + this.nome + "')";
+    }
+
+    @Override
+    public String toSqlFind() {
+        return "SELECT * FROM predio WHERE id = " + this.id;
+    }
+
+    @Override
+    public void setAttributesFromResultSet(ResultSet rs) {
+        try {
+            this.id = rs.getInt("id");
+            this.nome = rs.getString("nome");
+        } catch(SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Id: " + this.id +
+                "\nNome: " + this.nome;
+    }
+    
+    
     
     
 }
