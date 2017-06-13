@@ -95,14 +95,16 @@ public class Grade implements Model {
     }
 
     @Override
-    public void setAttributesFromResultSet(ResultSet rs) {
+    public Model setAttributesFromResultSet(ResultSet rs) {
         try {
             this.id = rs.getInt("id");
             this.nome = rs.getString("nome");
             this.criacao = rs.getTimestamp("criacao").toLocalDateTime();
+            return this;
         } catch(SQLException e) {
             System.out.println(e);
         }
+        return this;
     }
 
     @Override
@@ -110,5 +112,10 @@ public class Grade implements Model {
         return "Id: " + this.id +
                 "\nNome: " + this.nome +
                 "\nCriação: " + this.criacao;
+    }
+    
+    @Override
+    public String toSqlFindAll() {
+        return "SELECT * FROM grade";
     }
 }

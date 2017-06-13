@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -98,6 +99,27 @@ public class Bd {
                 disconnect();
                 return model;
             }
+            
+        } catch(SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            // TODO Tratar erros do banco de dados
+        }
+        
+        return null;
+    }
+    
+    public ArrayList<Model> findAll(Model model) {
+        try {
+            Statement s = connection.createStatement();
+            ResultSet rs = s.executeQuery(model.toSqlFindAll());
+            ArrayList<Model> listaResultado = new ArrayList<Model>();
+            while (rs.next()) {
+                listaResultado.add(model.setAttributesFromResultSet(rs));
+            }
+            disconnect();
+            return listaResultado;
             
         } catch(SQLException ex){
             System.out.println("SQLException: " + ex.getMessage());

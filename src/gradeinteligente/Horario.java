@@ -129,16 +129,18 @@ public class Horario implements Model {
     }
 
     @Override
-    public void setAttributesFromResultSet(ResultSet rs) {
+    public Model setAttributesFromResultSet(ResultSet rs) {
         try {
             this.id = rs.getInt("id");
             this.turma = (Turma) new Bd().find(new Turma(rs.getInt("turma"), null, null, null));
             this.sala = (Sala) new Bd().find(new Sala(rs.getInt("sala"), null, -1));
             this.hora = rs.getTime("hora").toLocalTime();
             this.grade = (Grade) new Bd().find(new Grade(rs.getInt("grade"), null, null));
+            return this;
         } catch(SQLException e) {
             System.out.println(e);
         }
+        return this;
     }
 
     @Override
@@ -149,5 +151,11 @@ public class Horario implements Model {
                 "\nHora: " + this.hora +
                 "\nGrade: " + this.grade;
     }
+    
+    @Override
+    public String toSqlFindAll() {
+        return "SELECT * FROM horario";
+    }
+    
     
 }

@@ -94,14 +94,16 @@ public class Disciplina implements Model{
     }
 
     @Override
-    public void setAttributesFromResultSet(ResultSet rs) {
+    public Model setAttributesFromResultSet(ResultSet rs) {
         try {
             this.id = rs.getInt("id");
             this.nome = rs.getString("nome");
             this.creditos = rs.getInt("creditos");
+            return this;
         } catch(SQLException e) {
             System.out.println(e);
         }
+        return this;
     }
 
     @Override
@@ -109,6 +111,11 @@ public class Disciplina implements Model{
         return "Id: " + this.id +
                 "\nNome: " + this.nome +
                 "\nCreditos: " + this.creditos;
+    }
+    
+    @Override
+    public String toSqlFindAll() {
+        return "SELECT * FROM disciplina";
     }
     
 }

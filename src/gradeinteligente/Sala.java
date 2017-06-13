@@ -97,14 +97,16 @@ public class Sala implements Model {
     }
 
     @Override
-    public void setAttributesFromResultSet(ResultSet rs) {
+    public Model setAttributesFromResultSet(ResultSet rs) {
         try {
             this.id = rs.getInt("id");
             this.numero = rs.getInt("numero");
             this.predio = (Predio) new Bd().find(new Predio(rs.getInt("predio"), null));
+            return this;
         } catch(SQLException e) {
             System.out.println(e);
         }
+        return this;
     }
 
     @Override
@@ -113,4 +115,11 @@ public class Sala implements Model {
                 "\nNumero: " + this.numero +
                 "\nPredio: " + this.predio;
     }
+
+    @Override
+    public String toSqlFindAll() {
+        return "SELECT * FROM sala";
+    }
+    
+    
 }

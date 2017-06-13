@@ -113,15 +113,17 @@ public class Turma implements Model {
     }
 
     @Override
-    public void setAttributesFromResultSet(ResultSet rs) {
+    public Model setAttributesFromResultSet(ResultSet rs) {
         try {
             this.id = rs.getInt("id");
             this.nome = rs.getString("nome");
             this.professor = (Professor) new Bd().find(new Professor(rs.getInt("professor"), null, -1));
             this.disciplina = (Disciplina) new Bd().find(new Disciplina(rs.getInt("disciplina"), null, -1));
+            return this;
         } catch(SQLException e) {
             System.out.println(e);
         }
+        return this;
     }
 
     @Override
@@ -130,6 +132,11 @@ public class Turma implements Model {
                 "\nNome: " + this.nome +
                 "\nProfessor: " + this.professor +
                 "\nDisciplina: " + this.disciplina;
+    }
+    
+    @Override
+    public String toSqlFindAll() {
+        return "SELECT * FROM turma";
     }
     
 }

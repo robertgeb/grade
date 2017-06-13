@@ -21,8 +21,6 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         openTab(mainGradePanel);
-        new SalaTest();
-        // new Bd();
     }
 
     /**
@@ -47,6 +45,9 @@ public class MainWindow extends javax.swing.JFrame {
         mainGradePanel = new javax.swing.JPanel();
         mainTurmasPanel = new javax.swing.JPanel();
         mainProfessoresPanel = new javax.swing.JPanel();
+        professoresTablePanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         mainSalasPanel = new javax.swing.JPanel();
         menuPanel = new javax.swing.JPanel();
         gradePanel = new javax.swing.JPanel();
@@ -203,17 +204,26 @@ public class MainWindow extends javax.swing.JFrame {
         mainProfessoresPanel.setBackground(new java.awt.Color(244, 226, 133));
         mainProfessoresPanel.setEnabled(false);
         mainProfessoresPanel.setFocusable(false);
+        mainProfessoresPanel.setLayout(new javax.swing.OverlayLayout(mainProfessoresPanel));
 
-        javax.swing.GroupLayout mainProfessoresPanelLayout = new javax.swing.GroupLayout(mainProfessoresPanel);
-        mainProfessoresPanel.setLayout(mainProfessoresPanelLayout);
-        mainProfessoresPanelLayout.setHorizontalGroup(
-            mainProfessoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 886, Short.MAX_VALUE)
-        );
-        mainProfessoresPanelLayout.setVerticalGroup(
-            mainProfessoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
-        );
+        professoresTablePanel.setLayout(new javax.swing.OverlayLayout(professoresTablePanel));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        professoresTablePanel.add(jScrollPane1);
+
+        mainProfessoresPanel.add(professoresTablePanel);
 
         mainPanel.add(mainProfessoresPanel);
 
@@ -361,7 +371,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lateralPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -458,6 +468,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel editarPanel;
     private javax.swing.JLabel gradeLabel;
     private javax.swing.JPanel gradePanel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JPanel lateralPanel;
     private javax.swing.JPanel mainGradePanel;
     private javax.swing.JPanel mainPanel;
@@ -467,6 +479,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel menuPanel;
     private javax.swing.JLabel professoresLabel;
     private javax.swing.JPanel professoresPanel;
+    private javax.swing.JPanel professoresTablePanel;
     private javax.swing.JLabel salasLabel;
     private javax.swing.JPanel salasPanel;
     private javax.swing.JLabel turmasLabel;

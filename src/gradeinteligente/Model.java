@@ -21,5 +21,7 @@ public interface Model {
     
     public String toSqlFind();
     
-    public void setAttributesFromResultSet(ResultSet rs);
+    public String toSqlFindAll();
+    
+    public Model setAttributesFromResultSet(ResultSet rs);
 }

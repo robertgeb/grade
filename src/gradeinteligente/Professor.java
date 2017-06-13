@@ -99,14 +99,21 @@ public class Professor implements Model{
     }
 
     @Override
-    public void setAttributesFromResultSet(ResultSet rs) {
+    public Model setAttributesFromResultSet(ResultSet rs) {
         try {
             this.id = rs.getInt("id");
             this.nome = rs.getString("nome");
             this.matricula = rs.getInt("matricula");
+            return this;
         } catch(SQLException e) {
             System.out.println(e);
         }
+        return this;
+    }
+
+    @Override
+    public String toSqlFindAll() {
+        return "SELECT * FROM professor";
     }
     
     

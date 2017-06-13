@@ -78,19 +78,26 @@ public class Predio implements Model {
     }
 
     @Override
-    public void setAttributesFromResultSet(ResultSet rs) {
+    public Model setAttributesFromResultSet(ResultSet rs) {
         try {
             this.id = rs.getInt("id");
             this.nome = rs.getString("nome");
+            return this;
         } catch(SQLException e) {
             System.out.println(e);
         }
+        return this;
     }
 
     @Override
     public String toString() {
         return "Id: " + this.id +
                 "\nNome: " + this.nome;
+    }
+    
+    @Override
+    public String toSqlFindAll() {
+        return "SELECT * FROM predio";
     }
     
 }
