@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -27,14 +29,13 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author robert
  */
 @Entity
-@Table(name = "professor")
+@Table(name = "sala")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProfessorEntity.findAll", query = "SELECT p FROM ProfessorEntity p")
-    , @NamedQuery(name = "ProfessorEntity.findById", query = "SELECT p FROM ProfessorEntity p WHERE p.id = :id")
-    , @NamedQuery(name = "ProfessorEntity.findByNome", query = "SELECT p FROM ProfessorEntity p WHERE p.nome = :nome")
-    , @NamedQuery(name = "ProfessorEntity.findByMatricula", query = "SELECT p FROM ProfessorEntity p WHERE p.matricula = :matricula")})
-public class ProfessorEntity implements Serializable {
+    @NamedQuery(name = "SalaEntity.findAll", query = "SELECT s FROM SalaEntity s")
+    , @NamedQuery(name = "SalaEntity.findById", query = "SELECT s FROM SalaEntity s WHERE s.id = :id")
+    , @NamedQuery(name = "SalaEntity.findByNumero", query = "SELECT s FROM SalaEntity s WHERE s.numero = :numero")})
+public class Sala implements Serializable {
 
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -44,15 +45,17 @@ public class ProfessorEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     private Integer id;
-    private String nome;
-    private Integer matricula;
-    @OneToMany(mappedBy = "professor")
-    private Collection<TurmaEntity> turmaEntityCollection;
+    private Integer numero;
+    @OneToMany(mappedBy = "sala")
+    private Collection<Horario> horarioEntityCollection;
+    @JoinColumn(name = "predio", referencedColumnName = "id")
+    @ManyToOne
+    private Predio predio;
 
-    public ProfessorEntity() {
+    public Sala() {
     }
 
-    public ProfessorEntity(Integer id) {
+    public Sala(Integer id) {
         this.id = id;
     }
 
@@ -66,33 +69,33 @@ public class ProfessorEntity implements Serializable {
         changeSupport.firePropertyChange("id", oldId, id);
     }
 
-    public String getNome() {
-        return nome;
+    public Integer getNumero() {
+        return numero;
     }
 
-    public void setNome(String nome) {
-        String oldNome = this.nome;
-        this.nome = nome;
-        changeSupport.firePropertyChange("nome", oldNome, nome);
-    }
-
-    public Integer getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(Integer matricula) {
-        Integer oldMatricula = this.matricula;
-        this.matricula = matricula;
-        changeSupport.firePropertyChange("matricula", oldMatricula, matricula);
+    public void setNumero(Integer numero) {
+        Integer oldNumero = this.numero;
+        this.numero = numero;
+        changeSupport.firePropertyChange("numero", oldNumero, numero);
     }
 
     @XmlTransient
-    public Collection<TurmaEntity> getTurmaEntityCollection() {
-        return turmaEntityCollection;
+    public Collection<Horario> getHorarioEntityCollection() {
+        return horarioEntityCollection;
     }
 
-    public void setTurmaEntityCollection(Collection<TurmaEntity> turmaEntityCollection) {
-        this.turmaEntityCollection = turmaEntityCollection;
+    public void setHorarioEntityCollection(Collection<Horario> horarioEntityCollection) {
+        this.horarioEntityCollection = horarioEntityCollection;
+    }
+
+    public Predio getPredio() {
+        return predio;
+    }
+
+    public void setPredio(Predio predio) {
+        Predio oldPredio = this.predio;
+        this.predio = predio;
+        changeSupport.firePropertyChange("predio", oldPredio, predio);
     }
 
     @Override
@@ -105,10 +108,10 @@ public class ProfessorEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProfessorEntity)) {
+        if (!(object instanceof Sala)) {
             return false;
         }
-        ProfessorEntity other = (ProfessorEntity) object;
+        Sala other = (Sala) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -117,7 +120,7 @@ public class ProfessorEntity implements Serializable {
 
     @Override
     public String toString() {
-        return nome;
+        return numero.toString();
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "DisciplinaEntity.findById", query = "SELECT d FROM DisciplinaEntity d WHERE d.id = :id")
     , @NamedQuery(name = "DisciplinaEntity.findByNome", query = "SELECT d FROM DisciplinaEntity d WHERE d.nome = :nome")
     , @NamedQuery(name = "DisciplinaEntity.findByCreditos", query = "SELECT d FROM DisciplinaEntity d WHERE d.creditos = :creditos")})
-public class DisciplinaEntity implements Serializable {
+public class Disciplina implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -41,12 +41,12 @@ public class DisciplinaEntity implements Serializable {
     private String nome;
     private Integer creditos;
     @OneToMany(mappedBy = "disciplina")
-    private Collection<TurmaEntity> turmaEntityCollection;
+    private Collection<Turma> turmaEntityCollection;
 
-    public DisciplinaEntity() {
+    public Disciplina() {
     }
 
-    public DisciplinaEntity(Integer id) {
+    public Disciplina(Integer id) {
         this.id = id;
     }
 
@@ -75,11 +75,11 @@ public class DisciplinaEntity implements Serializable {
     }
 
     @XmlTransient
-    public Collection<TurmaEntity> getTurmaEntityCollection() {
+    public Collection<Turma> getTurmaEntityCollection() {
         return turmaEntityCollection;
     }
 
-    public void setTurmaEntityCollection(Collection<TurmaEntity> turmaEntityCollection) {
+    public void setTurmaEntityCollection(Collection<Turma> turmaEntityCollection) {
         this.turmaEntityCollection = turmaEntityCollection;
     }
 
@@ -93,10 +93,10 @@ public class DisciplinaEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof DisciplinaEntity)) {
+        if (!(object instanceof Disciplina)) {
             return false;
         }
-        DisciplinaEntity other = (DisciplinaEntity) object;
+        Disciplina other = (Disciplina) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

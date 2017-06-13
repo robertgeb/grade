@@ -249,10 +249,10 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${disciplina}"));
         columnBinding.setColumnName("Disciplina");
-        columnBinding.setColumnClass(gradeinteligente.DisciplinaEntity.class);
+        columnBinding.setColumnClass(gradeinteligente.Disciplina.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${professor}"));
         columnBinding.setColumnName("Professor");
-        columnBinding.setColumnClass(gradeinteligente.ProfessorEntity.class);
+        columnBinding.setColumnClass(gradeinteligente.Professor.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioEntityCollection}"));
         columnBinding.setColumnName("Horarios");
         columnBinding.setColumnClass(java.util.Collection.class);
@@ -323,7 +323,7 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding.setColumnClass(Integer.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${predio}"));
         columnBinding.setColumnName("Predio");
-        columnBinding.setColumnClass(gradeinteligente.PredioEntity.class);
+        columnBinding.setColumnClass(gradeinteligente.Predio.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${numero}"));
         columnBinding.setColumnName("Numero");
         columnBinding.setColumnClass(Integer.class);
@@ -534,7 +534,7 @@ public class MainWindow extends javax.swing.JFrame {
             return;
         switch(activedTab.getName()) {
             case "professores":
-                professorEntityList.add(new ProfessorEntity());
+                professorEntityList.add(new Professor());
                 break;
             
             case "salas":
@@ -613,7 +613,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel criarPanel;
     private javax.swing.JLabel editarLabel;
     private javax.swing.JPanel editarPanel;
-    private java.util.List<gradeinteligente.GradeEntity> gradeEntityList;
+    private java.util.List<gradeinteligente.Grade> gradeEntityList;
     private javax.persistence.Query gradeEntityQuery;
     private javax.swing.JLabel gradeLabel;
     private javax.swing.JPanel gradePanel;
@@ -630,19 +630,19 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel mainSalasPanel;
     private javax.swing.JPanel mainTurmasPanel;
     private javax.swing.JPanel menuPanel;
-    private java.util.List<gradeinteligente.ProfessorEntity> professorEntityList;
+    private java.util.List<gradeinteligente.Professor> professorEntityList;
     private javax.persistence.Query professorEntityQuery;
     private javax.swing.JLabel professoresLabel;
     private javax.swing.JPanel professoresPanel;
     private javax.swing.JTable professoresTable;
     private javax.swing.JPanel professoresTablePanel;
-    private java.util.List<gradeinteligente.SalaEntity> salaEntityList;
+    private java.util.List<gradeinteligente.Sala> salaEntityList;
     private javax.persistence.Query salaEntityQuery;
     private javax.swing.JLabel salasLabel;
     private javax.swing.JPanel salasPanel;
     private javax.swing.JTable salasTable;
     private javax.swing.JPanel salasTablePanel;
-    private java.util.List<gradeinteligente.TurmaEntity> turmaEntityList;
+    private java.util.List<gradeinteligente.Turma> turmaEntityList;
     private javax.persistence.Query turmaEntityQuery;
     private javax.swing.JLabel turmasLabel;
     private javax.swing.JPanel turmasPanel;

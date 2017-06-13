@@ -2,13 +2,13 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="GradeInteligentePU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    <class>gradeinteligente.PredioEntity</class>
-    <class>gradeinteligente.SalaEntity</class>
-    <class>gradeinteligente.TurmaEntity</class>
-    <class>gradeinteligente.HorarioEntity</class>
-    <class>gradeinteligente.DisciplinaEntity</class>
-    <class>gradeinteligente.GradeEntity</class>
-    <class>gradeinteligente.ProfessorEntity</class>
+    <class>gradeinteligente.Disciplina</class>
+    <class>gradeinteligente.Grade</class>
+    <class>gradeinteligente.Horario</class>
+    <class>gradeinteligente.Predio</class>
+    <class>gradeinteligente.Professor</class>
+    <class>gradeinteligente.Sala</class>
+    <class>gradeinteligente.Turma</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/grade?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

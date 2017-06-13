@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "TurmaEntity.findAll", query = "SELECT t FROM TurmaEntity t")
     , @NamedQuery(name = "TurmaEntity.findById", query = "SELECT t FROM TurmaEntity t WHERE t.id = :id")
     , @NamedQuery(name = "TurmaEntity.findByNome", query = "SELECT t FROM TurmaEntity t WHERE t.nome = :nome")})
-public class TurmaEntity implements Serializable {
+public class Turma implements Serializable {
 
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -47,18 +47,18 @@ public class TurmaEntity implements Serializable {
     private Integer id;
     private String nome;
     @OneToMany(mappedBy = "turma")
-    private Collection<HorarioEntity> horarioEntityCollection;
+    private Collection<Horario> horarioEntityCollection;
     @JoinColumn(name = "disciplina", referencedColumnName = "id")
     @ManyToOne
-    private DisciplinaEntity disciplina;
+    private Disciplina disciplina;
     @JoinColumn(name = "professor", referencedColumnName = "id")
     @ManyToOne
-    private ProfessorEntity professor;
+    private Professor professor;
 
-    public TurmaEntity() {
+    public Turma() {
     }
 
-    public TurmaEntity(Integer id) {
+    public Turma(Integer id) {
         this.id = id;
     }
 
@@ -83,30 +83,30 @@ public class TurmaEntity implements Serializable {
     }
 
     @XmlTransient
-    public Collection<HorarioEntity> getHorarioEntityCollection() {
+    public Collection<Horario> getHorarioEntityCollection() {
         return horarioEntityCollection;
     }
 
-    public void setHorarioEntityCollection(Collection<HorarioEntity> horarioEntityCollection) {
+    public void setHorarioEntityCollection(Collection<Horario> horarioEntityCollection) {
         this.horarioEntityCollection = horarioEntityCollection;
     }
 
-    public DisciplinaEntity getDisciplina() {
+    public Disciplina getDisciplina() {
         return disciplina;
     }
 
-    public void setDisciplina(DisciplinaEntity disciplina) {
-        DisciplinaEntity oldDisciplina = this.disciplina;
+    public void setDisciplina(Disciplina disciplina) {
+        Disciplina oldDisciplina = this.disciplina;
         this.disciplina = disciplina;
         changeSupport.firePropertyChange("disciplina", oldDisciplina, disciplina);
     }
 
-    public ProfessorEntity getProfessor() {
+    public Professor getProfessor() {
         return professor;
     }
 
-    public void setProfessor(ProfessorEntity professor) {
-        ProfessorEntity oldProfessor = this.professor;
+    public void setProfessor(Professor professor) {
+        Professor oldProfessor = this.professor;
         this.professor = professor;
         changeSupport.firePropertyChange("professor", oldProfessor, professor);
     }
@@ -121,10 +121,10 @@ public class TurmaEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TurmaEntity)) {
+        if (!(object instanceof Turma)) {
             return false;
         }
-        TurmaEntity other = (TurmaEntity) object;
+        Turma other = (Turma) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -133,7 +133,7 @@ public class TurmaEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "gradeinteligente.TurmaEntity[ id=" + id + " ]";
+        return nome;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

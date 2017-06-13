@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "HorarioEntity.findById", query = "SELECT h FROM HorarioEntity h WHERE h.id = :id")
     , @NamedQuery(name = "HorarioEntity.findByDia", query = "SELECT h FROM HorarioEntity h WHERE h.dia = :dia")
     , @NamedQuery(name = "HorarioEntity.findByHora", query = "SELECT h FROM HorarioEntity h WHERE h.hora = :hora")})
-public class HorarioEntity implements Serializable {
+public class Horario implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,18 +45,18 @@ public class HorarioEntity implements Serializable {
     private Date hora;
     @JoinColumn(name = "sala", referencedColumnName = "id")
     @ManyToOne
-    private SalaEntity sala;
+    private Sala sala;
     @JoinColumn(name = "turma", referencedColumnName = "id")
     @ManyToOne
-    private TurmaEntity turma;
+    private Turma turma;
     @JoinColumn(name = "grade", referencedColumnName = "id")
     @ManyToOne
-    private GradeEntity grade;
+    private Grade grade;
 
-    public HorarioEntity() {
+    public Horario() {
     }
 
-    public HorarioEntity(Integer id) {
+    public Horario(Integer id) {
         this.id = id;
     }
 
@@ -84,27 +84,27 @@ public class HorarioEntity implements Serializable {
         this.hora = hora;
     }
 
-    public SalaEntity getSala() {
+    public Sala getSala() {
         return sala;
     }
 
-    public void setSala(SalaEntity sala) {
+    public void setSala(Sala sala) {
         this.sala = sala;
     }
 
-    public TurmaEntity getTurma() {
+    public Turma getTurma() {
         return turma;
     }
 
-    public void setTurma(TurmaEntity turma) {
+    public void setTurma(Turma turma) {
         this.turma = turma;
     }
 
-    public GradeEntity getGrade() {
+    public Grade getGrade() {
         return grade;
     }
 
-    public void setGrade(GradeEntity grade) {
+    public void setGrade(Grade grade) {
         this.grade = grade;
     }
 
@@ -118,10 +118,10 @@ public class HorarioEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof HorarioEntity)) {
+        if (!(object instanceof Horario)) {
             return false;
         }
-        HorarioEntity other = (HorarioEntity) object;
+        Horario other = (Horario) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -130,7 +130,7 @@ public class HorarioEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "gradeinteligente.HorarioEntity[ id=" + id + " ]";
+        return grade.getNome();
     }
     
 }

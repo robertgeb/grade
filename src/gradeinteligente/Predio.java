@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "PredioEntity.findAll", query = "SELECT p FROM PredioEntity p")
     , @NamedQuery(name = "PredioEntity.findById", query = "SELECT p FROM PredioEntity p WHERE p.id = :id")
     , @NamedQuery(name = "PredioEntity.findByNome", query = "SELECT p FROM PredioEntity p WHERE p.nome = :nome")})
-public class PredioEntity implements Serializable {
+public class Predio implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,12 +39,12 @@ public class PredioEntity implements Serializable {
     private Integer id;
     private String nome;
     @OneToMany(mappedBy = "predio")
-    private Collection<SalaEntity> salaEntityCollection;
+    private Collection<Sala> salaEntityCollection;
 
-    public PredioEntity() {
+    public Predio() {
     }
 
-    public PredioEntity(Integer id) {
+    public Predio(Integer id) {
         this.id = id;
     }
 
@@ -65,11 +65,11 @@ public class PredioEntity implements Serializable {
     }
 
     @XmlTransient
-    public Collection<SalaEntity> getSalaEntityCollection() {
+    public Collection<Sala> getSalaEntityCollection() {
         return salaEntityCollection;
     }
 
-    public void setSalaEntityCollection(Collection<SalaEntity> salaEntityCollection) {
+    public void setSalaEntityCollection(Collection<Sala> salaEntityCollection) {
         this.salaEntityCollection = salaEntityCollection;
     }
 
@@ -83,10 +83,10 @@ public class PredioEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof PredioEntity)) {
+        if (!(object instanceof Predio)) {
             return false;
         }
-        PredioEntity other = (PredioEntity) object;
+        Predio other = (Predio) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

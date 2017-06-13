@@ -23,7 +23,7 @@
         <Property name="observable" type="boolean" value="true"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;gradeinteligente.GradeEntity&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;gradeinteligente.Grade&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.persistence.Query" name="turmaEntityQuery">
@@ -42,7 +42,7 @@
         <Property name="observable" type="boolean" value="true"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;gradeinteligente.TurmaEntity&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;gradeinteligente.Turma&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.persistence.Query" name="professorEntityQuery">
@@ -61,7 +61,7 @@
         <Property name="observable" type="boolean" value="true"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;gradeinteligente.ProfessorEntity&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;gradeinteligente.Professor&gt;"/>
       </AuxValues>
     </Component>
     <Component class="javax.persistence.Query" name="salaEntityQuery">
@@ -80,7 +80,7 @@
         <Property name="observable" type="boolean" value="true"/>
       </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;gradeinteligente.SalaEntity&gt;"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;gradeinteligente.Sala&gt;"/>
       </AuxValues>
     </Component>
   </NonVisualComponents>
@@ -510,11 +510,11 @@
                           </Subbinding>
                           <Subbinding sourcePath="${disciplina}">
                             <BindingParameter name="NAME" value="Disciplina"/>
-                            <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="gradeinteligente.DisciplinaEntity.class"/>
+                            <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="gradeinteligente.Disciplina.class"/>
                           </Subbinding>
                           <Subbinding sourcePath="${professor}">
                             <BindingParameter name="NAME" value="Professor"/>
-                            <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="gradeinteligente.ProfessorEntity.class"/>
+                            <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="gradeinteligente.Professor.class"/>
                           </Subbinding>
                           <Subbinding sourcePath="${horarioEntityCollection}">
                             <BindingParameter name="NAME" value="Horarios"/>
@@ -780,7 +780,7 @@
                           </Subbinding>
                           <Subbinding sourcePath="${predio}">
                             <BindingParameter name="NAME" value="Predio"/>
-                            <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="gradeinteligente.PredioEntity.class"/>
+                            <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="gradeinteligente.Predio.class"/>
                           </Subbinding>
                           <Subbinding sourcePath="${numero}">
                             <BindingParameter name="NAME" value="Numero"/>

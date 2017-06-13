@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "GradeEntity.findById", query = "SELECT g FROM GradeEntity g WHERE g.id = :id")
     , @NamedQuery(name = "GradeEntity.findByNome", query = "SELECT g FROM GradeEntity g WHERE g.nome = :nome")
     , @NamedQuery(name = "GradeEntity.findByCriacao", query = "SELECT g FROM GradeEntity g WHERE g.criacao = :criacao")})
-public class GradeEntity implements Serializable {
+public class Grade implements Serializable {
 
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -51,12 +51,12 @@ public class GradeEntity implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacao;
     @OneToMany(mappedBy = "grade")
-    private Collection<HorarioEntity> horarioEntityCollection;
+    private Collection<Horario> horarioEntityCollection;
 
-    public GradeEntity() {
+    public Grade() {
     }
 
-    public GradeEntity(Integer id) {
+    public Grade(Integer id) {
         this.id = id;
     }
 
@@ -91,11 +91,11 @@ public class GradeEntity implements Serializable {
     }
 
     @XmlTransient
-    public Collection<HorarioEntity> getHorarioEntityCollection() {
+    public Collection<Horario> getHorarioEntityCollection() {
         return horarioEntityCollection;
     }
 
-    public void setHorarioEntityCollection(Collection<HorarioEntity> horarioEntityCollection) {
+    public void setHorarioEntityCollection(Collection<Horario> horarioEntityCollection) {
         this.horarioEntityCollection = horarioEntityCollection;
     }
 
@@ -109,10 +109,10 @@ public class GradeEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof GradeEntity)) {
+        if (!(object instanceof Grade)) {
             return false;
         }
-        GradeEntity other = (GradeEntity) object;
+        Grade other = (Grade) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -121,7 +121,7 @@ public class GradeEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "gradeinteligente.GradeEntity[ id=" + id + " ]";
+        return nome;
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
