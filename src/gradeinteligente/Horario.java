@@ -29,10 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "horario")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "HorarioEntity.findAll", query = "SELECT h FROM HorarioEntity h")
-    , @NamedQuery(name = "HorarioEntity.findById", query = "SELECT h FROM HorarioEntity h WHERE h.id = :id")
-    , @NamedQuery(name = "HorarioEntity.findByDia", query = "SELECT h FROM HorarioEntity h WHERE h.dia = :dia")
-    , @NamedQuery(name = "HorarioEntity.findByHora", query = "SELECT h FROM HorarioEntity h WHERE h.hora = :hora")})
+    @NamedQuery(name = "Horario.findAll", query = "SELECT h FROM Horario h")
+    , @NamedQuery(name = "Horario.findById", query = "SELECT h FROM Horario h WHERE h.id = :id")
+    , @NamedQuery(name = "Horario.findByDia", query = "SELECT h FROM Horario h WHERE h.dia = :dia")
+    , @NamedQuery(name = "Horario.findByHora", query = "SELECT h FROM Horario h WHERE h.hora = :hora")})
 public class Horario implements Serializable {
 
     private static final long serialVersionUID = 1L;

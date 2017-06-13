@@ -33,10 +33,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "grade")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "GradeEntity.findAll", query = "SELECT g FROM GradeEntity g")
-    , @NamedQuery(name = "GradeEntity.findById", query = "SELECT g FROM GradeEntity g WHERE g.id = :id")
-    , @NamedQuery(name = "GradeEntity.findByNome", query = "SELECT g FROM GradeEntity g WHERE g.nome = :nome")
-    , @NamedQuery(name = "GradeEntity.findByCriacao", query = "SELECT g FROM GradeEntity g WHERE g.criacao = :criacao")})
+    @NamedQuery(name = "Grade.findAll", query = "SELECT g FROM Grade g")
+    , @NamedQuery(name = "Grade.findById", query = "SELECT g FROM Grade g WHERE g.id = :id")
+    , @NamedQuery(name = "Grade.findByNome", query = "SELECT g FROM Grade g WHERE g.nome = :nome")
+    , @NamedQuery(name = "Grade.findByCriacao", query = "SELECT g FROM Grade g WHERE g.criacao = :criacao")})
 public class Grade implements Serializable {
 
     @Transient
@@ -51,7 +51,7 @@ public class Grade implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacao;
     @OneToMany(mappedBy = "grade")
-    private Collection<Horario> horarioEntityCollection;
+    private Collection<Horario> horarioCollection;
 
     public Grade() {
     }
@@ -91,12 +91,12 @@ public class Grade implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Horario> getHorarioEntityCollection() {
-        return horarioEntityCollection;
+    public Collection<Horario> getHorarioCollection() {
+        return horarioCollection;
     }
 
-    public void setHorarioEntityCollection(Collection<Horario> horarioEntityCollection) {
-        this.horarioEntityCollection = horarioEntityCollection;
+    public void setHorarioCollection(Collection<Horario> horarioCollection) {
+        this.horarioCollection = horarioCollection;
     }
 
     @Override

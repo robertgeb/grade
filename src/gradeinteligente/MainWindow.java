@@ -39,14 +39,14 @@ public class MainWindow extends javax.swing.JFrame {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         GradeInteligentePUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("GradeInteligentePU").createEntityManager();
-        gradeEntityQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT g FROM GradeEntity g");
-        gradeEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(gradeEntityQuery.getResultList());
-        turmaEntityQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT t FROM TurmaEntity t");
-        turmaEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(turmaEntityQuery.getResultList());
-        professorEntityQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT p FROM ProfessorEntity p");
-        professorEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(professorEntityQuery.getResultList());
-        salaEntityQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT s FROM SalaEntity s");
-        salaEntityList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(salaEntityQuery.getResultList());
+        gradeQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT g FROM Grade g");
+        gradeList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(gradeQuery.getResultList());
+        turmaQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT t FROM Turma t");
+        turmaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(turmaQuery.getResultList());
+        professorQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT p FROM Professor p");
+        professorList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(professorQuery.getResultList());
+        salaQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT s FROM Sala s");
+        salaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(salaQuery.getResultList());
         lateralPanel = new javax.swing.JPanel();
         criarPanel = new javax.swing.JPanel();
         criarLabel = new javax.swing.JLabel();
@@ -204,7 +204,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         gradeTablePanel.setLayout(new javax.swing.OverlayLayout(gradeTablePanel));
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, gradeEntityList, gradeTable);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, gradeList, gradeTable);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
         columnBinding.setColumnName("Id");
         columnBinding.setColumnClass(Integer.class);
@@ -214,7 +214,7 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${criacao}"));
         columnBinding.setColumnName("Criacao");
         columnBinding.setColumnClass(java.util.Date.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioEntityCollection}"));
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioCollection}"));
         columnBinding.setColumnName("Horarios");
         columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
@@ -240,7 +240,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         turmasTablePanel.setLayout(new javax.swing.OverlayLayout(turmasTablePanel));
 
-        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, turmaEntityList, turmasTable);
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, turmaList, turmasTable);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
         columnBinding.setColumnName("Id");
         columnBinding.setColumnClass(Integer.class);
@@ -253,7 +253,7 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${professor}"));
         columnBinding.setColumnName("Professor");
         columnBinding.setColumnClass(gradeinteligente.Professor.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioEntityCollection}"));
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioCollection}"));
         columnBinding.setColumnName("Horarios");
         columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
@@ -279,7 +279,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         professoresTablePanel.setLayout(new javax.swing.OverlayLayout(professoresTablePanel));
 
-        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, professorEntityList, professoresTable);
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, professorList, professoresTable);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
         columnBinding.setColumnName("Id");
         columnBinding.setColumnClass(Integer.class);
@@ -289,7 +289,7 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
         columnBinding.setColumnName("Nome");
         columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${turmaEntityCollection}"));
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${turmaCollection}"));
         columnBinding.setColumnName("Turmas");
         columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
@@ -317,7 +317,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         salasTablePanel.setLayout(new javax.swing.OverlayLayout(salasTablePanel));
 
-        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, salaEntityList, salasTable);
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, salaList, salasTable);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
         columnBinding.setColumnName("Id");
         columnBinding.setColumnClass(Integer.class);
@@ -327,7 +327,7 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${numero}"));
         columnBinding.setColumnName("Numero");
         columnBinding.setColumnClass(Integer.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioEntityCollection}"));
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioCollection}"));
         columnBinding.setColumnName("Horarios");
         columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
@@ -534,7 +534,7 @@ public class MainWindow extends javax.swing.JFrame {
             return;
         switch(activedTab.getName()) {
             case "professores":
-                professorEntityList.add(new Professor());
+                professorList.add(new Professor());
                 break;
             
             case "salas":
@@ -613,8 +613,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel criarPanel;
     private javax.swing.JLabel editarLabel;
     private javax.swing.JPanel editarPanel;
-    private java.util.List<gradeinteligente.Grade> gradeEntityList;
-    private javax.persistence.Query gradeEntityQuery;
+    private java.util.List<gradeinteligente.Grade> gradeList;
+    private javax.persistence.Query gradeQuery;
     private javax.swing.JLabel gradeLabel;
     private javax.swing.JPanel gradePanel;
     private javax.swing.JTable gradeTable;
@@ -630,20 +630,20 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel mainSalasPanel;
     private javax.swing.JPanel mainTurmasPanel;
     private javax.swing.JPanel menuPanel;
-    private java.util.List<gradeinteligente.Professor> professorEntityList;
-    private javax.persistence.Query professorEntityQuery;
+    private java.util.List<gradeinteligente.Professor> professorList;
+    private javax.persistence.Query professorQuery;
     private javax.swing.JLabel professoresLabel;
     private javax.swing.JPanel professoresPanel;
     private javax.swing.JTable professoresTable;
     private javax.swing.JPanel professoresTablePanel;
-    private java.util.List<gradeinteligente.Sala> salaEntityList;
-    private javax.persistence.Query salaEntityQuery;
+    private java.util.List<gradeinteligente.Sala> salaList;
+    private javax.persistence.Query salaQuery;
     private javax.swing.JLabel salasLabel;
     private javax.swing.JPanel salasPanel;
     private javax.swing.JTable salasTable;
     private javax.swing.JPanel salasTablePanel;
-    private java.util.List<gradeinteligente.Turma> turmaEntityList;
-    private javax.persistence.Query turmaEntityQuery;
+    private java.util.List<gradeinteligente.Turma> turmaList;
+    private javax.persistence.Query turmaQuery;
     private javax.swing.JLabel turmasLabel;
     private javax.swing.JPanel turmasPanel;
     private javax.swing.JTable turmasTable;

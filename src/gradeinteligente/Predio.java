@@ -27,9 +27,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "predio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "PredioEntity.findAll", query = "SELECT p FROM PredioEntity p")
-    , @NamedQuery(name = "PredioEntity.findById", query = "SELECT p FROM PredioEntity p WHERE p.id = :id")
-    , @NamedQuery(name = "PredioEntity.findByNome", query = "SELECT p FROM PredioEntity p WHERE p.nome = :nome")})
+    @NamedQuery(name = "Predio.findAll", query = "SELECT p FROM Predio p")
+    , @NamedQuery(name = "Predio.findById", query = "SELECT p FROM Predio p WHERE p.id = :id")
+    , @NamedQuery(name = "Predio.findByNome", query = "SELECT p FROM Predio p WHERE p.nome = :nome")})
 public class Predio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,7 +39,7 @@ public class Predio implements Serializable {
     private Integer id;
     private String nome;
     @OneToMany(mappedBy = "predio")
-    private Collection<Sala> salaEntityCollection;
+    private Collection<Sala> salaCollection;
 
     public Predio() {
     }
@@ -65,12 +65,12 @@ public class Predio implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Sala> getSalaEntityCollection() {
-        return salaEntityCollection;
+    public Collection<Sala> getSalaCollection() {
+        return salaCollection;
     }
 
-    public void setSalaEntityCollection(Collection<Sala> salaEntityCollection) {
-        this.salaEntityCollection = salaEntityCollection;
+    public void setSalaCollection(Collection<Sala> salaCollection) {
+        this.salaCollection = salaCollection;
     }
 
     @Override

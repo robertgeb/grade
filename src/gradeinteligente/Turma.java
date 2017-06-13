@@ -32,9 +32,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "turma")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TurmaEntity.findAll", query = "SELECT t FROM TurmaEntity t")
-    , @NamedQuery(name = "TurmaEntity.findById", query = "SELECT t FROM TurmaEntity t WHERE t.id = :id")
-    , @NamedQuery(name = "TurmaEntity.findByNome", query = "SELECT t FROM TurmaEntity t WHERE t.nome = :nome")})
+    @NamedQuery(name = "Turma.findAll", query = "SELECT t FROM Turma t")
+    , @NamedQuery(name = "Turma.findById", query = "SELECT t FROM Turma t WHERE t.id = :id")
+    , @NamedQuery(name = "Turma.findByNome", query = "SELECT t FROM Turma t WHERE t.nome = :nome")})
 public class Turma implements Serializable {
 
     @Transient
@@ -47,7 +47,7 @@ public class Turma implements Serializable {
     private Integer id;
     private String nome;
     @OneToMany(mappedBy = "turma")
-    private Collection<Horario> horarioEntityCollection;
+    private Collection<Horario> horarioCollection;
     @JoinColumn(name = "disciplina", referencedColumnName = "id")
     @ManyToOne
     private Disciplina disciplina;
@@ -83,12 +83,12 @@ public class Turma implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Horario> getHorarioEntityCollection() {
-        return horarioEntityCollection;
+    public Collection<Horario> getHorarioCollection() {
+        return horarioCollection;
     }
 
-    public void setHorarioEntityCollection(Collection<Horario> horarioEntityCollection) {
-        this.horarioEntityCollection = horarioEntityCollection;
+    public void setHorarioCollection(Collection<Horario> horarioCollection) {
+        this.horarioCollection = horarioCollection;
     }
 
     public Disciplina getDisciplina() {

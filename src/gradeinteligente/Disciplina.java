@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "disciplina")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "DisciplinaEntity.findAll", query = "SELECT d FROM DisciplinaEntity d")
-    , @NamedQuery(name = "DisciplinaEntity.findById", query = "SELECT d FROM DisciplinaEntity d WHERE d.id = :id")
-    , @NamedQuery(name = "DisciplinaEntity.findByNome", query = "SELECT d FROM DisciplinaEntity d WHERE d.nome = :nome")
-    , @NamedQuery(name = "DisciplinaEntity.findByCreditos", query = "SELECT d FROM DisciplinaEntity d WHERE d.creditos = :creditos")})
+    @NamedQuery(name = "Disciplina.findAll", query = "SELECT d FROM Disciplina d")
+    , @NamedQuery(name = "Disciplina.findById", query = "SELECT d FROM Disciplina d WHERE d.id = :id")
+    , @NamedQuery(name = "Disciplina.findByNome", query = "SELECT d FROM Disciplina d WHERE d.nome = :nome")
+    , @NamedQuery(name = "Disciplina.findByCreditos", query = "SELECT d FROM Disciplina d WHERE d.creditos = :creditos")})
 public class Disciplina implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class Disciplina implements Serializable {
     private String nome;
     private Integer creditos;
     @OneToMany(mappedBy = "disciplina")
-    private Collection<Turma> turmaEntityCollection;
+    private Collection<Turma> turmaCollection;
 
     public Disciplina() {
     }
@@ -75,12 +75,12 @@ public class Disciplina implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Turma> getTurmaEntityCollection() {
-        return turmaEntityCollection;
+    public Collection<Turma> getTurmaCollection() {
+        return turmaCollection;
     }
 
-    public void setTurmaEntityCollection(Collection<Turma> turmaEntityCollection) {
-        this.turmaEntityCollection = turmaEntityCollection;
+    public void setTurmaCollection(Collection<Turma> turmaCollection) {
+        this.turmaCollection = turmaCollection;
     }
 
     @Override

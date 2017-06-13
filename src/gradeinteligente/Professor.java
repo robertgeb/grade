@@ -30,10 +30,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "professor")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProfessorEntity.findAll", query = "SELECT p FROM ProfessorEntity p")
-    , @NamedQuery(name = "ProfessorEntity.findById", query = "SELECT p FROM ProfessorEntity p WHERE p.id = :id")
-    , @NamedQuery(name = "ProfessorEntity.findByNome", query = "SELECT p FROM ProfessorEntity p WHERE p.nome = :nome")
-    , @NamedQuery(name = "ProfessorEntity.findByMatricula", query = "SELECT p FROM ProfessorEntity p WHERE p.matricula = :matricula")})
+    @NamedQuery(name = "Professor.findAll", query = "SELECT p FROM Professor p")
+    , @NamedQuery(name = "Professor.findById", query = "SELECT p FROM Professor p WHERE p.id = :id")
+    , @NamedQuery(name = "Professor.findByNome", query = "SELECT p FROM Professor p WHERE p.nome = :nome")
+    , @NamedQuery(name = "Professor.findByMatricula", query = "SELECT p FROM Professor p WHERE p.matricula = :matricula")})
 public class Professor implements Serializable {
 
     @Transient
@@ -47,7 +47,7 @@ public class Professor implements Serializable {
     private String nome;
     private Integer matricula;
     @OneToMany(mappedBy = "professor")
-    private Collection<Turma> turmaEntityCollection;
+    private Collection<Turma> turmaCollection;
 
     public Professor() {
     }
@@ -87,12 +87,12 @@ public class Professor implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Turma> getTurmaEntityCollection() {
-        return turmaEntityCollection;
+    public Collection<Turma> getTurmaCollection() {
+        return turmaCollection;
     }
 
-    public void setTurmaEntityCollection(Collection<Turma> turmaEntityCollection) {
-        this.turmaEntityCollection = turmaEntityCollection;
+    public void setTurmaCollection(Collection<Turma> turmaCollection) {
+        this.turmaCollection = turmaCollection;
     }
 
     @Override
