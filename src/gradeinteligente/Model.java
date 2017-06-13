@@ -13,6 +13,8 @@ import java.sql.ResultSet;
  */
 public interface Model {
     
+    public void save();
+    
     public String toSqlUpdate();
     
     public String toSqlInsert();

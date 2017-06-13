@@ -21,13 +21,6 @@ public class Predio implements Model {
         this.id = id;
         this.nome = nome;
     }
-    
-    public void save() {
-        if(this.id != -1)
-            new Bd().update(this);
-        else
-            this.id = new Bd().insert(this);
-    }
 
     /**
      * @return the id
@@ -56,11 +49,19 @@ public class Predio implements Model {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    @Override
+    public void save() {
+        if(this.id != -1)
+            new Bd().update(this);
+        else
+            this.id = new Bd().insert(this);
+    }
 
     @Override
     public String toSqlUpdate() {
-        return "UPDATE predio"
-                    + "SET nome = " + this.nome + "WHERE"
+        return "UPDATE predio "
+                    + "SET nome = '" + this.nome + "' WHERE "
                     + "(id = " + this.id + ")";
     }
 
@@ -91,8 +92,5 @@ public class Predio implements Model {
         return "Id: " + this.id +
                 "\nNome: " + this.nome;
     }
-    
-    
-    
     
 }

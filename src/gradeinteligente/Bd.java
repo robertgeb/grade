@@ -58,6 +58,7 @@ public class Bd {
                 Statement s = null;
                 s = connection.createStatement();
                 s.executeUpdate(model.toSqlUpdate());
+                disconnect();
 
             } catch(SQLException ex){
                 System.out.println("SQLException: " + ex.getMessage());
@@ -75,6 +76,7 @@ public class Bd {
                 ResultSet rs = s.getGeneratedKeys();
                 if(rs.next())
                 {
+                    disconnect();
                     return rs.getInt(1);
                 }
 
@@ -93,6 +95,7 @@ public class Bd {
             ResultSet rs = s.executeQuery(model.toSqlFind());
             if (rs.next()) {
                 model.setAttributesFromResultSet(rs);
+                disconnect();
                 return model;
             }
             
@@ -102,6 +105,7 @@ public class Bd {
             System.out.println("VendorError: " + ex.getErrorCode());
             // TODO Tratar erros do banco de dados
         }
+        
         return null;
     }
     
