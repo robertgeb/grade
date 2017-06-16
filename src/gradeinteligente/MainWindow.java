@@ -508,45 +508,17 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void criarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_criarLabelMouseClicked
 
-        Serializable newEntityToPersist = null;
-        String entityName = getOpenedTab();
+        Serializable newEntityToPersist = getSelectedEntity();
+        List<Serializable> entityList = (List<Serializable>)(List<?>) getSelectedList();
+        String entityName = getOpenedTabName();
         
-        switch(entityName) {
-            case GRADE:
-                // Criando nova entidade
-                Grade newGrade = new Grade();
-                newGrade.setNome("Nova Grade");
-                // Adicionando a lista que sincroniza com a tabela
-                gradeList.add(newGrade);
-                // Guardando para ser salva no BD
-                newEntityToPersist = (Serializable) newGrade;
-                break;
-                
-            case PROFESSOR:
-                Professor newProfessor = new Professor();
-                newProfessor.setNome("Nova Grade");
-                newProfessor.setMatricula(9999);
-                professorList.add(newProfessor);
-                newEntityToPersist = (Serializable) newProfessor;
-                break;
-            
-            case SALA:
-                Sala newSala = new Sala();
-                newSala.setNumero(22);
-                newEntityToPersist = (Serializable) newSala;
-                salaList.add(newSala);
-                break;
-             
-            case TURMA:
-                Turma newTurma = new Turma();
-                newTurma.setNome("IC999");
-                newEntityToPersist = (Serializable) newTurma;
-                turmaList.add(newTurma);
-                break;
-                
-            default:
-                JOptionPane.showMessageDialog(this, "Erro inesperado. Reinicie a aplicação.");
+        entityList.add(newEntityToPersist);
+        
+        if(newEntityToPersist == null || entityList == null){
+            JOptionPane.showMessageDialog(this, DEFAULT_ERROR_MESSAGE);
+            return;
         }
+            
         
         // Persistindo no banco
         GradeInteligentePUEntityManager.getTransaction().begin();
@@ -557,36 +529,9 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void apagarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apagarLabelMouseClicked
         
-        List<?> entityList = null;
-        javax.swing.JTable entityTable = null;
-        String entityName = getOpenedTab();
-        
-        
-        // Identificando a tabela aberta
-        switch(entityName) {
-            case GRADE:
-                entityList = gradeList;
-                entityTable = gradeTable;
-                break;
-            case PROFESSOR:
-                entityList = professorList;
-                entityTable = professoresTable;
-                break;
-            
-            case SALA:
-                entityList = salaList;
-                entityTable = salasTable;
-                break;
-             
-            case TURMA:
-                entityList = turmaList;
-                entityTable = turmasTable;
-                break;
-                
-            default:
-                JOptionPane.showMessageDialog(this, DEFAULT_ERROR_MESSAGE);
-                return;
-        }
+        List<?> entityList = getSelectedList();
+        javax.swing.JTable entityTable = getSelectedTable();
+        String entityName = getOpenedTabName();
         
         if(entityList == null || entityTable == null){
             JOptionPane.showMessageDialog(this, DEFAULT_ERROR_MESSAGE);
@@ -612,29 +557,12 @@ public class MainWindow extends javax.swing.JFrame {
     private void salvarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salvarLabelMouseClicked
         
         // Itens da tabela
-        List<Serializable> entityList = null;
-        String tabOpened = getOpenedTab();
+        List<Serializable> entityList = (List<Serializable>)(List<?>) getSelectedList();
+        String tabOpened = getOpenedTabName();
         
-        // Identificando a tabela aberta
-        switch(tabOpened) {
-            case GRADE:
-                entityList = (List<Serializable>)(List<?>) gradeList;
-                break;
-            case PROFESSOR:
-                entityList = (List<Serializable>)(List<?>) professorList;
-                break;
-            
-            case SALA:
-                entityList = (List<Serializable>)(List<?>) salaList;
-                break;
-             
-            case TURMA:
-                entityList = (List<Serializable>)(List<?>) turmaList;
-                break;
-                
-            default:
-                JOptionPane.showMessageDialog(this, DEFAULT_ERROR_MESSAGE);
-                return;
+        if(entityList == null){
+            JOptionPane.showMessageDialog(this, DEFAULT_ERROR_MESSAGE);
+            return;
         }
         
         // Percorre a lista de entidades da tabela aberta e persiste as mudanças
@@ -688,6 +616,57 @@ public class MainWindow extends javax.swing.JFrame {
         return null;
     }
     
+    private Serializable getSelectedEntity() {
+        switch(getOpenedTabName()) {
+            case GRADE:
+                return new Grade();
+                
+            case PROFESSOR:
+                return new Professor();
+            
+            case SALA:
+                return new Sala();
+             
+            case TURMA:
+                return new Turma();
+        }
+        return null;
+    }
+    
+    private JTable getSelectedTable() {
+        switch(getOpenedTabName()) {
+            case GRADE:
+                return gradeTable;
+                
+            case PROFESSOR:
+                return professoresTable;
+            
+            case SALA:
+                return salasTable;
+             
+            case TURMA:
+                return turmasTable;
+        }
+        return null;
+    }
+    
+    private List<?> getSelectedList(){
+        switch(getOpenedTabName()) {
+            case GRADE:
+                return gradeList;
+                
+            case PROFESSOR:
+                return professorList;
+            
+            case SALA:
+                return salaList;
+             
+            case TURMA:
+                return turmaList;
+        }
+        return null;
+    }
+    
     private void setTablesEvents() {
         gradeTable.putClientProperty("terminateEditOnFocusLost", true);
         professoresTable.putClientProperty("terminateEditOnFocusLost", true);
@@ -720,7 +699,7 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
     
-    private String getOpenedTab() {
+    private String getOpenedTabName() {
         javax.swing.JPanel activedTab = null;
         for(Component panel : mainPanel.getComponents() ) {   
             if(panel.isEnabled())
