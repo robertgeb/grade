@@ -9,9 +9,19 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.GridLayout;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.Vector;
+import javax.swing.CellEditor;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.event.CellEditorListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import org.jdesktop.beansbinding.Binding;
@@ -28,10 +38,10 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         //new Bd();
         initComponents();
+        setTablesEvents();
         openTab(mainProfessoresPanel);
     }
     
-
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
@@ -501,7 +511,7 @@ public class MainWindow extends javax.swing.JFrame {
         Serializable newEntityToPersist = null;
         
         switch(getOpenedTab()) {
-            case "grade":
+            case GRADE:
                 // Criando nova entidade
                 Grade newGrade = new Grade();
                 newGrade.setNome("Nova Grade");
@@ -510,7 +520,7 @@ public class MainWindow extends javax.swing.JFrame {
                 // Guardando para ser salva no BD
                 newEntityToPersist = (Serializable) newGrade;
                 
-            case "professores":
+            case PROFESSOR:
                 Professor newProfessor = new Professor();
                 newProfessor.setNome("Nova Grade");
                 newProfessor.setMatricula(9999);
@@ -518,14 +528,14 @@ public class MainWindow extends javax.swing.JFrame {
                 newEntityToPersist = (Serializable) newProfessor;
                 break;
             
-            case "salas":
+            case SALA:
                 Sala newSala = new Sala();
                 newSala.setNumero(22);
                 newEntityToPersist = (Serializable) newSala;
                 salaList.add(newSala);
                 break;
              
-            case "turmas":
+            case TURMA:
                 Turma newTurma = new Turma();
                 newTurma.setNome("IC999");
                 newEntityToPersist = (Serializable) newTurma;
@@ -550,21 +560,21 @@ public class MainWindow extends javax.swing.JFrame {
         
         // Identificando a tabela aberta
         switch(getOpenedTab()) {
-            case "grade":
+            case GRADE:
                 entityList = gradeList;
                 entityTable = gradeTable;
                 break;
-            case "professores":
+            case PROFESSOR:
                 entityList = professorList;
                 entityTable = professoresTable;
                 break;
             
-            case "salas":
+            case SALA:
                 entityList = salaList;
                 entityTable = salasTable;
                 break;
              
-            case "turmas":
+            case TURMA:
                 entityList = turmaList;
                 entityTable = turmasTable;
                 break;
@@ -598,21 +608,22 @@ public class MainWindow extends javax.swing.JFrame {
         
         // Itens da tabela
         List<Serializable> entityList = null;
+        String tabOpened = getOpenedTab();
         
         // Identificando a tabela aberta
-        switch(getOpenedTab()) {
-            case "grade":
+        switch(tabOpened) {
+            case GRADE:
                 entityList = (List<Serializable>)(List<?>) gradeList;
                 break;
-            case "professores":
+            case PROFESSOR:
                 entityList = (List<Serializable>)(List<?>) professorList;
                 break;
             
-            case "salas":
+            case SALA:
                 entityList = (List<Serializable>)(List<?>) salaList;
                 break;
              
-            case "turmas":
+            case TURMA:
                 entityList = (List<Serializable>)(List<?>) turmaList;
                 break;
                 
@@ -627,8 +638,83 @@ public class MainWindow extends javax.swing.JFrame {
             GradeInteligentePUEntityManager.persist(entity);
             GradeInteligentePUEntityManager.getTransaction().commit();
         }
+        
+        setSaved(tabOpened);
+        
     }//GEN-LAST:event_salvarLabelMouseClicked
 
+    private void setSaved(String entity){
+        toSaveList.remove(entity);
+        JLabel entityTabLabel = getTabLabel(entity);
+        entityTabLabel.setText(
+                entityTabLabel.getText()
+                        .substring(
+                                0, 
+                                entityTabLabel
+                                        .getText()
+                                        .length() - 1
+                        )
+        );
+       
+    }
+    
+    private void setToSave(String entity){
+        if(toSaveList.add(entity)){
+            JLabel entityTabLabel = getTabLabel(entity);
+            entityTabLabel.setText(entityTabLabel.getText() + "*");
+        }
+    }
+    
+    private JLabel getTabLabel(String entity){
+        switch(entity) {
+            case GRADE:
+                return gradeLabel;
+                
+            case PROFESSOR:
+                return professoresLabel;
+            
+            case SALA:
+                return salasLabel;
+             
+            case TURMA:
+                return turmasLabel;
+                
+        }
+        return null;
+    }
+    
+    private void setTablesEvents() {
+        gradeTable.putClientProperty("terminateEditOnFocusLost", true);
+        professoresTable.putClientProperty("terminateEditOnFocusLost", true);
+        salasTable.putClientProperty("terminateEditOnFocusLost", true);
+        turmasTable.putClientProperty("terminateEditOnFocusLost", true);
+        
+        gradeTable.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                setToSave(GRADE);
+            }
+        });
+        professoresTable.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                setToSave(PROFESSOR);
+            }
+        });
+        salasTable.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                setToSave(SALA);
+            }
+        });
+        turmasTable.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                setToSave(TURMA);
+            }
+        });
+    }
+    
     private String getOpenedTab() {
         javax.swing.JPanel activedTab = null;
         for(Component panel : mainPanel.getComponents() ) {   
@@ -639,8 +725,7 @@ public class MainWindow extends javax.swing.JFrame {
             return null;
         return activedTab.getName();
     }
-    
-    
+      
     private void openTab(javax.swing.JPanel panelToOpen) {
         // Deabilitando e deixando todos os jPanels invisiveis
         for(Component panel : mainPanel.getComponents() ) {   
@@ -697,8 +782,13 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
     
+    private final String GRADE = "grade";
+    private final String SALA = "salas";
+    private final String PROFESSOR = "professores";
+    private final String TURMA = "turmas";
     private final String DEFAULT_ERROR_MESSAGE = "Erro inesperado, Reinicie a aplicação";
     private final String SELECTED_ROW_ERROR_MESSAGE = "Selecione o item a ser apagado";
+    private Set<String> toSaveList = new HashSet<String>();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager GradeInteligentePUEntityManager;
