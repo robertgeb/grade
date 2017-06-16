@@ -509,8 +509,9 @@ public class MainWindow extends javax.swing.JFrame {
     private void criarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_criarLabelMouseClicked
 
         Serializable newEntityToPersist = null;
+        String entityName = getOpenedTab();
         
-        switch(getOpenedTab()) {
+        switch(entityName) {
             case GRADE:
                 // Criando nova entidade
                 Grade newGrade = new Grade();
@@ -519,6 +520,7 @@ public class MainWindow extends javax.swing.JFrame {
                 gradeList.add(newGrade);
                 // Guardando para ser salva no BD
                 newEntityToPersist = (Serializable) newGrade;
+                break;
                 
             case PROFESSOR:
                 Professor newProfessor = new Professor();
@@ -550,16 +552,18 @@ public class MainWindow extends javax.swing.JFrame {
         GradeInteligentePUEntityManager.getTransaction().begin();
         GradeInteligentePUEntityManager.persist(newEntityToPersist);
         GradeInteligentePUEntityManager.getTransaction().commit();
-        
+        setSaved(entityName);
     }//GEN-LAST:event_criarLabelMouseClicked
 
     private void apagarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_apagarLabelMouseClicked
         
         List<?> entityList = null;
         javax.swing.JTable entityTable = null;
+        String entityName = getOpenedTab();
+        
         
         // Identificando a tabela aberta
-        switch(getOpenedTab()) {
+        switch(entityName) {
             case GRADE:
                 entityList = gradeList;
                 entityTable = gradeTable;
@@ -602,6 +606,7 @@ public class MainWindow extends javax.swing.JFrame {
         GradeInteligentePUEntityManager.getTransaction().begin();
         GradeInteligentePUEntityManager.remove(entityRemoved);
         GradeInteligentePUEntityManager.getTransaction().commit();
+        setSaved(entityName);
     }//GEN-LAST:event_apagarLabelMouseClicked
 
     private void salvarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salvarLabelMouseClicked
