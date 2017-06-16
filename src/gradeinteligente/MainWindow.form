@@ -377,10 +377,6 @@
                           </Subbinding>
                         </BindingProperty>
                       </BindingProperties>
-                      <Events>
-                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="gradeTableFocusGained"/>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="gradeTableMouseClicked"/>
-                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
                       </AuxValues>
@@ -523,9 +519,6 @@
                           </Subbinding>
                         </BindingProperty>
                       </BindingProperties>
-                      <Events>
-                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="turmasTableFocusGained"/>
-                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
                       </AuxValues>
@@ -659,9 +652,6 @@
                           </Subbinding>
                         </BindingProperty>
                       </BindingProperties>
-                      <Events>
-                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="professoresTableFocusGained"/>
-                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
                       </AuxValues>
@@ -793,9 +783,6 @@
                           </Subbinding>
                         </BindingProperty>
                       </BindingProperties>
-                      <Events>
-                        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="salasTableFocusGained"/>
-                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
                       </AuxValues>

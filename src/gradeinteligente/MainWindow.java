@@ -218,16 +218,6 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        gradeTable.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                gradeTableFocusGained(evt);
-            }
-        });
-        gradeTable.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                gradeTableMouseClicked(evt);
-            }
-        });
         jScrollPane4.setViewportView(gradeTable);
 
         gradeTablePanel.add(jScrollPane4);
@@ -262,11 +252,6 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        turmasTable.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                turmasTableFocusGained(evt);
-            }
-        });
         jScrollPane3.setViewportView(turmasTable);
 
         turmasTablePanel.add(jScrollPane3);
@@ -298,11 +283,6 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        professoresTable.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                professoresTableFocusGained(evt);
-            }
-        });
         jScrollPane1.setViewportView(professoresTable);
         if (professoresTable.getColumnModel().getColumnCount() > 0) {
             professoresTable.getColumnModel().getColumn(1).setResizable(false);
@@ -336,11 +316,6 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding.setColumnClass(java.util.Collection.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
-        salasTable.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                salasTableFocusGained(evt);
-            }
-        });
         jScrollPane2.setViewportView(salasTable);
 
         salasTablePanel.add(jScrollPane2);
@@ -512,22 +487,6 @@ public class MainWindow extends javax.swing.JFrame {
         openTab(mainSalasPanel);
     }//GEN-LAST:event_salasLabelMouseClicked
 
-    private void professoresTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_professoresTableFocusGained
-        
-    }//GEN-LAST:event_professoresTableFocusGained
-
-    private void salasTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_salasTableFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_salasTableFocusGained
-
-    private void turmasTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_turmasTableFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_turmasTableFocusGained
-
-    private void gradeTableFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_gradeTableFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_gradeTableFocusGained
-
     private void criarLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_criarLabelMouseClicked
         javax.swing.JPanel activedTab = null;
         for(Component panel : mainPanel.getComponents() ) {   
@@ -557,10 +516,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_criarLabelMouseClicked
-
-    private void gradeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gradeTableMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_gradeTableMouseClicked
 
     private void criarGrade(String nome) {
         // Criando entidade
