@@ -5,6 +5,8 @@
  */
 package gradeinteligente;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -16,6 +18,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -32,6 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Disciplina.findByNome", query = "SELECT d FROM Disciplina d WHERE d.nome = :nome")
     , @NamedQuery(name = "Disciplina.findByCreditos", query = "SELECT d FROM Disciplina d WHERE d.creditos = :creditos")})
 public class Disciplina implements Serializable {
+
+    @Transient
+    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -55,7 +61,9 @@ public class Disciplina implements Serializable {
     }
 
     public void setId(Integer id) {
+        Integer oldId = this.id;
         this.id = id;
+        changeSupport.firePropertyChange("id", oldId, id);
     }
 
     public String getNome() {
@@ -63,7 +71,9 @@ public class Disciplina implements Serializable {
     }
 
     public void setNome(String nome) {
+        String oldNome = this.nome;
         this.nome = nome;
+        changeSupport.firePropertyChange("nome", oldNome, nome);
     }
 
     public Integer getCreditos() {
@@ -71,7 +81,9 @@ public class Disciplina implements Serializable {
     }
 
     public void setCreditos(Integer creditos) {
+        Integer oldCreditos = this.creditos;
         this.creditos = creditos;
+        changeSupport.firePropertyChange("creditos", oldCreditos, creditos);
     }
 
     @XmlTransient
@@ -106,6 +118,14 @@ public class Disciplina implements Serializable {
     @Override
     public String toString() {
         return nome;
+    }
+
+    public void addPropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.addPropertyChangeListener(listener);
+    }
+
+    public void removePropertyChangeListener(PropertyChangeListener listener) {
+        changeSupport.removePropertyChangeListener(listener);
     }
     
 }

@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.Vector;
 import javax.swing.CellEditor;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -22,6 +24,7 @@ import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import org.jdesktop.beansbinding.Binding;
@@ -38,7 +41,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         //new Bd();
         initComponents();
-        setTablesEvents();
+        tableSettings();
         openTab(mainProfessoresPanel);
     }
     
@@ -55,6 +58,19 @@ public class MainWindow extends javax.swing.JFrame {
         professorList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(professorQuery.getResultList());
         salaQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT s FROM Sala s");
         salaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(salaQuery.getResultList());
+        disciplinaQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT d FROM Disciplina d");
+        disciplinaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(disciplinaQuery.getResultList());
+        menuPanel = new javax.swing.JPanel();
+        gradePanel = new javax.swing.JPanel();
+        gradeLabel = new javax.swing.JLabel();
+        turmasPanel = new javax.swing.JPanel();
+        turmasLabel = new javax.swing.JLabel();
+        professoresPanel = new javax.swing.JPanel();
+        professoresLabel = new javax.swing.JLabel();
+        salasPanel = new javax.swing.JPanel();
+        salasLabel = new javax.swing.JLabel();
+        disciplinaPanel = new javax.swing.JPanel();
+        disciplinaLabel = new javax.swing.JLabel();
         lateralPanel = new javax.swing.JPanel();
         criarPanel = new javax.swing.JPanel();
         criarLabel = new javax.swing.JLabel();
@@ -81,17 +97,165 @@ public class MainWindow extends javax.swing.JFrame {
         salasTablePanel = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         salasTable = new javax.swing.JTable();
-        menuPanel = new javax.swing.JPanel();
-        gradePanel = new javax.swing.JPanel();
-        gradeLabel = new javax.swing.JLabel();
-        turmasPanel = new javax.swing.JPanel();
-        turmasLabel = new javax.swing.JLabel();
-        professoresPanel = new javax.swing.JPanel();
-        professoresLabel = new javax.swing.JLabel();
-        salasPanel = new javax.swing.JPanel();
-        salasLabel = new javax.swing.JLabel();
+        mainDisciplinaPanel = new javax.swing.JPanel();
+        disciplinaTablePanel = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        disciplinaTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        menuPanel.setLayout(new java.awt.GridLayout(1, 4));
+
+        gradePanel.setBackground(new java.awt.Color(188, 75, 81));
+
+        gradeLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        gradeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gradeLabel.setText("Grade");
+        gradeLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gradeLabelMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout gradePanelLayout = new javax.swing.GroupLayout(gradePanel);
+        gradePanel.setLayout(gradePanelLayout);
+        gradePanelLayout.setHorizontalGroup(
+            gradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gradePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(gradeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        gradePanelLayout.setVerticalGroup(
+            gradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(gradePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(gradeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        menuPanel.add(gradePanel);
+
+        turmasPanel.setBackground(new java.awt.Color(140, 179, 105));
+
+        turmasLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        turmasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        turmasLabel.setText("Turmas");
+        turmasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                turmasLabelMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout turmasPanelLayout = new javax.swing.GroupLayout(turmasPanel);
+        turmasPanel.setLayout(turmasPanelLayout);
+        turmasPanelLayout.setHorizontalGroup(
+            turmasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(turmasPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        turmasPanelLayout.setVerticalGroup(
+            turmasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(turmasPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        menuPanel.add(turmasPanel);
+
+        professoresPanel.setBackground(new java.awt.Color(244, 226, 133));
+
+        professoresLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        professoresLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        professoresLabel.setText("Professores");
+        professoresLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                professoresLabelMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout professoresPanelLayout = new javax.swing.GroupLayout(professoresPanel);
+        professoresPanel.setLayout(professoresPanelLayout);
+        professoresPanelLayout.setHorizontalGroup(
+            professoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(professoresPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(professoresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        professoresPanelLayout.setVerticalGroup(
+            professoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(professoresPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(professoresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        menuPanel.add(professoresPanel);
+
+        salasPanel.setBackground(new java.awt.Color(244, 162, 89));
+
+        salasLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        salasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salasLabel.setText("Salas");
+        salasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salasLabelMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout salasPanelLayout = new javax.swing.GroupLayout(salasPanel);
+        salasPanel.setLayout(salasPanelLayout);
+        salasPanelLayout.setHorizontalGroup(
+            salasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(salasPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(salasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        salasPanelLayout.setVerticalGroup(
+            salasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(salasPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(salasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        menuPanel.add(salasPanel);
+
+        disciplinaPanel.setBackground(new java.awt.Color(51, 101, 138));
+        disciplinaPanel.setName(""); // NOI18N
+
+        disciplinaLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        disciplinaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        disciplinaLabel.setText("Disciplinas");
+        disciplinaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                disciplinaLabelMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout disciplinaPanelLayout = new javax.swing.GroupLayout(disciplinaPanel);
+        disciplinaPanel.setLayout(disciplinaPanelLayout);
+        disciplinaPanelLayout.setHorizontalGroup(
+            disciplinaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(disciplinaPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(disciplinaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        disciplinaPanelLayout.setVerticalGroup(
+            disciplinaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(disciplinaPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(disciplinaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        menuPanel.add(disciplinaPanel);
 
         lateralPanel.setBackground(new java.awt.Color(188, 75, 81));
         lateralPanel.setLayout(new java.awt.GridLayout(10, 1));
@@ -263,9 +427,9 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${disciplina}"));
         columnBinding.setColumnName("Disciplina");
         columnBinding.setColumnClass(gradeinteligente.Disciplina.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${professor}"));
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${professor.nome}"));
         columnBinding.setColumnName("Professor");
-        columnBinding.setColumnClass(gradeinteligente.Professor.class);
+        columnBinding.setColumnClass(String.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioCollection}"));
         columnBinding.setColumnName("Horarios");
         columnBinding.setColumnClass(java.util.Collection.class);
@@ -343,127 +507,35 @@ public class MainWindow extends javax.swing.JFrame {
 
         mainPanel.add(mainSalasPanel);
 
-        menuPanel.setLayout(new java.awt.GridLayout(1, 4));
+        mainDisciplinaPanel.setBackground(new java.awt.Color(51, 101, 138));
+        mainDisciplinaPanel.setName("disciplina"); // NOI18N
+        mainDisciplinaPanel.setLayout(new javax.swing.OverlayLayout(mainDisciplinaPanel));
 
-        gradePanel.setBackground(new java.awt.Color(188, 75, 81));
+        disciplinaTablePanel.setName(""); // NOI18N
+        disciplinaTablePanel.setLayout(new javax.swing.OverlayLayout(disciplinaTablePanel));
 
-        gradeLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        gradeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gradeLabel.setText("Grade");
-        gradeLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                gradeLabelMouseClicked(evt);
-            }
-        });
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, disciplinaList, disciplinaTable);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Id");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
+        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${creditos}"));
+        columnBinding.setColumnName("Creditos");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${turmaCollection}"));
+        columnBinding.setColumnName("Turmas");
+        columnBinding.setColumnClass(java.util.Collection.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+        jScrollPane5.setViewportView(disciplinaTable);
 
-        javax.swing.GroupLayout gradePanelLayout = new javax.swing.GroupLayout(gradePanel);
-        gradePanel.setLayout(gradePanelLayout);
-        gradePanelLayout.setHorizontalGroup(
-            gradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gradePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(gradeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        gradePanelLayout.setVerticalGroup(
-            gradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(gradePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(gradeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        disciplinaTablePanel.add(jScrollPane5);
 
-        menuPanel.add(gradePanel);
+        mainDisciplinaPanel.add(disciplinaTablePanel);
 
-        turmasPanel.setBackground(new java.awt.Color(140, 179, 105));
-
-        turmasLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        turmasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        turmasLabel.setText("Turmas");
-        turmasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                turmasLabelMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout turmasPanelLayout = new javax.swing.GroupLayout(turmasPanel);
-        turmasPanel.setLayout(turmasPanelLayout);
-        turmasPanelLayout.setHorizontalGroup(
-            turmasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(turmasPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        turmasPanelLayout.setVerticalGroup(
-            turmasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(turmasPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        menuPanel.add(turmasPanel);
-
-        professoresPanel.setBackground(new java.awt.Color(244, 226, 133));
-
-        professoresLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        professoresLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        professoresLabel.setText("Professores");
-        professoresLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                professoresLabelMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout professoresPanelLayout = new javax.swing.GroupLayout(professoresPanel);
-        professoresPanel.setLayout(professoresPanelLayout);
-        professoresPanelLayout.setHorizontalGroup(
-            professoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(professoresPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(professoresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        professoresPanelLayout.setVerticalGroup(
-            professoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(professoresPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(professoresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        menuPanel.add(professoresPanel);
-
-        salasPanel.setBackground(new java.awt.Color(244, 162, 89));
-
-        salasLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        salasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        salasLabel.setText("Salas");
-        salasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                salasLabelMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout salasPanelLayout = new javax.swing.GroupLayout(salasPanel);
-        salasPanel.setLayout(salasPanelLayout);
-        salasPanelLayout.setHorizontalGroup(
-            salasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(salasPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(salasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        salasPanelLayout.setVerticalGroup(
-            salasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(salasPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(salasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        menuPanel.add(salasPanel);
+        mainPanel.add(mainDisciplinaPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -576,6 +648,10 @@ public class MainWindow extends javax.swing.JFrame {
         
     }//GEN-LAST:event_salvarLabelMouseClicked
 
+    private void disciplinaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disciplinaLabelMouseClicked
+        openTab(mainDisciplinaPanel);
+    }//GEN-LAST:event_disciplinaLabelMouseClicked
+
     private void setSaved(String entity){
         toSaveList.remove(entity);
         JLabel entityTabLabel = getTabLabel(entity);
@@ -612,6 +688,9 @@ public class MainWindow extends javax.swing.JFrame {
             case TURMA:
                 return turmasLabel;
                 
+            case DISCIPLINA:
+                return disciplinaLabel;
+                
         }
         return null;
     }
@@ -629,6 +708,9 @@ public class MainWindow extends javax.swing.JFrame {
              
             case TURMA:
                 return new Turma();
+            
+            case DISCIPLINA:
+                return new Disciplina();
         }
         return null;
     }
@@ -646,6 +728,9 @@ public class MainWindow extends javax.swing.JFrame {
              
             case TURMA:
                 return turmasTable;
+            
+            case DISCIPLINA:
+                return disciplinaTable;
         }
         return null;
     }
@@ -663,15 +748,28 @@ public class MainWindow extends javax.swing.JFrame {
              
             case TURMA:
                 return turmaList;
+            
+            case DISCIPLINA:
+                return disciplinaList;
         }
         return null;
     }
     
-    private void setTablesEvents() {
+    private void tableSettings() {
+        
+        // Configurando JComboBox
+        JComboBox disciplinaBox = new JComboBox();
+        for(Disciplina disciplina: disciplinaList) {
+            disciplinaBox.addItem(disciplina.toString());
+        }
+        turmasTable.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(disciplinaBox));
+        
+        // Configurando eventos de modificação
         gradeTable.putClientProperty("terminateEditOnFocusLost", true);
         professoresTable.putClientProperty("terminateEditOnFocusLost", true);
         salasTable.putClientProperty("terminateEditOnFocusLost", true);
         turmasTable.putClientProperty("terminateEditOnFocusLost", true);
+        disciplinaTable.putClientProperty("terminateEditOnFocusLost", true);
         
         gradeTable.getModel().addTableModelListener(new TableModelListener() {
             @Override
@@ -679,22 +777,32 @@ public class MainWindow extends javax.swing.JFrame {
                 setToSave(GRADE);
             }
         });
+        
         professoresTable.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
                 setToSave(PROFESSOR);
             }
         });
+        
         salasTable.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
                 setToSave(SALA);
             }
         });
+        
         turmasTable.getModel().addTableModelListener(new TableModelListener() {
             @Override
             public void tableChanged(TableModelEvent e) {
                 setToSave(TURMA);
+            }
+        });
+        
+        disciplinaTable.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                setToSave(DISCIPLINA);
             }
         });
     }
@@ -770,6 +878,7 @@ public class MainWindow extends javax.swing.JFrame {
     private final String SALA = "salas";
     private final String PROFESSOR = "professores";
     private final String TURMA = "turmas";
+    private final String DISCIPLINA = "disciplina";
     private final String DEFAULT_ERROR_MESSAGE = "Erro inesperado, Reinicie a aplicação";
     private final String SELECTED_ROW_ERROR_MESSAGE = "Selecione o item a ser apagado";
     private Set<String> toSaveList = new HashSet<String>();
@@ -780,6 +889,12 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel apagarPanel;
     private javax.swing.JLabel criarLabel;
     private javax.swing.JPanel criarPanel;
+    private javax.swing.JLabel disciplinaLabel;
+    private java.util.List<gradeinteligente.Disciplina> disciplinaList;
+    private javax.swing.JPanel disciplinaPanel;
+    private javax.persistence.Query disciplinaQuery;
+    private javax.swing.JTable disciplinaTable;
+    private javax.swing.JPanel disciplinaTablePanel;
     private javax.swing.JLabel gradeLabel;
     private java.util.List<gradeinteligente.Grade> gradeList;
     private javax.swing.JPanel gradePanel;
@@ -790,7 +905,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JPanel lateralPanel;
+    private javax.swing.JPanel mainDisciplinaPanel;
     private javax.swing.JPanel mainGradePanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel mainProfessoresPanel;
