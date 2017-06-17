@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,7 +47,7 @@ public class Turma implements Serializable {
     @Basic(optional = false)
     private Integer id;
     private String nome;
-    @OneToMany(mappedBy = "turma")
+    @OneToMany(mappedBy = "turma", fetch=FetchType.EAGER)
     private Collection<Horario> horarioCollection;
     @JoinColumn(name = "disciplina", referencedColumnName = "id")
     @ManyToOne

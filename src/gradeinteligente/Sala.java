@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,7 +47,7 @@ public class Sala implements Serializable {
     @Basic(optional = false)
     private Integer id;
     private Integer numero;
-    @OneToMany(mappedBy = "sala")
+    @OneToMany(mappedBy = "sala", fetch=FetchType.EAGER)
     private Collection<Horario> horarioCollection;
     @JoinColumn(name = "predio", referencedColumnName = "id")
     @ManyToOne

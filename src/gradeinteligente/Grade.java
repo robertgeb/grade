@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,7 +51,7 @@ public class Grade implements Serializable {
     private String nome;
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacao;
-    @OneToMany(mappedBy = "grade")
+    @OneToMany(mappedBy = "grade", fetch=FetchType.EAGER)
     private Collection<Horario> horarioCollection;
 
     public Grade() {

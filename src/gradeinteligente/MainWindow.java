@@ -41,7 +41,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         //new Bd();
         initComponents();
-        tableSettings();
+        initTableSettings();
         openTab(mainProfessoresPanel);
     }
     
@@ -60,6 +60,8 @@ public class MainWindow extends javax.swing.JFrame {
         salaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(salaQuery.getResultList());
         disciplinaQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT d FROM Disciplina d");
         disciplinaList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(disciplinaQuery.getResultList());
+        predioQuery = java.beans.Beans.isDesignTime() ? null : GradeInteligentePUEntityManager.createQuery("SELECT p FROM Predio p");
+        predioList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : org.jdesktop.observablecollections.ObservableCollections.observableList(predioQuery.getResultList());
         menuPanel = new javax.swing.JPanel();
         gradePanel = new javax.swing.JPanel();
         gradeLabel = new javax.swing.JLabel();
@@ -67,10 +69,12 @@ public class MainWindow extends javax.swing.JFrame {
         turmasLabel = new javax.swing.JLabel();
         professoresPanel = new javax.swing.JPanel();
         professoresLabel = new javax.swing.JLabel();
-        salasPanel = new javax.swing.JPanel();
-        salasLabel = new javax.swing.JLabel();
         disciplinaPanel = new javax.swing.JPanel();
         disciplinaLabel = new javax.swing.JLabel();
+        salasPanel = new javax.swing.JPanel();
+        salasLabel = new javax.swing.JLabel();
+        predioPanel = new javax.swing.JPanel();
+        predioLabel = new javax.swing.JLabel();
         lateralPanel = new javax.swing.JPanel();
         criarPanel = new javax.swing.JPanel();
         criarLabel = new javax.swing.JLabel();
@@ -101,6 +105,10 @@ public class MainWindow extends javax.swing.JFrame {
         disciplinaTablePanel = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         disciplinaTable = new javax.swing.JTable();
+        mainPredioPanel = new javax.swing.JPanel();
+        predioTablePanel = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        predioTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,7 +131,7 @@ public class MainWindow extends javax.swing.JFrame {
             gradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gradeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(gradeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                 .addContainerGap())
         );
         gradePanelLayout.setVerticalGroup(
@@ -153,7 +161,7 @@ public class MainWindow extends javax.swing.JFrame {
             turmasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(turmasPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                 .addContainerGap())
         );
         turmasPanelLayout.setVerticalGroup(
@@ -183,7 +191,7 @@ public class MainWindow extends javax.swing.JFrame {
             professoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(professoresPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(professoresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(professoresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                 .addContainerGap())
         );
         professoresPanelLayout.setVerticalGroup(
@@ -195,36 +203,6 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         menuPanel.add(professoresPanel);
-
-        salasPanel.setBackground(new java.awt.Color(244, 162, 89));
-
-        salasLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        salasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        salasLabel.setText("Salas");
-        salasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                salasLabelMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout salasPanelLayout = new javax.swing.GroupLayout(salasPanel);
-        salasPanel.setLayout(salasPanelLayout);
-        salasPanelLayout.setHorizontalGroup(
-            salasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(salasPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(salasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        salasPanelLayout.setVerticalGroup(
-            salasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(salasPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(salasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        menuPanel.add(salasPanel);
 
         disciplinaPanel.setBackground(new java.awt.Color(51, 101, 138));
         disciplinaPanel.setName(""); // NOI18N
@@ -244,7 +222,7 @@ public class MainWindow extends javax.swing.JFrame {
             disciplinaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(disciplinaPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(disciplinaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(disciplinaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                 .addContainerGap())
         );
         disciplinaPanelLayout.setVerticalGroup(
@@ -256,6 +234,67 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         menuPanel.add(disciplinaPanel);
+
+        salasPanel.setBackground(new java.awt.Color(244, 162, 89));
+
+        salasLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        salasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        salasLabel.setText("Salas");
+        salasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                salasLabelMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout salasPanelLayout = new javax.swing.GroupLayout(salasPanel);
+        salasPanel.setLayout(salasPanelLayout);
+        salasPanelLayout.setHorizontalGroup(
+            salasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(salasPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(salasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        salasPanelLayout.setVerticalGroup(
+            salasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(salasPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(salasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        menuPanel.add(salasPanel);
+
+        predioPanel.setBackground(new java.awt.Color(192, 183, 177));
+        predioPanel.setName(""); // NOI18N
+
+        predioLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        predioLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        predioLabel.setText("Predios");
+        predioLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                predioLabelMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout predioPanelLayout = new javax.swing.GroupLayout(predioPanel);
+        predioPanel.setLayout(predioPanelLayout);
+        predioPanelLayout.setHorizontalGroup(
+            predioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(predioPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(predioLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        predioPanelLayout.setVerticalGroup(
+            predioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(predioPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(predioLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        menuPanel.add(predioPanel);
 
         lateralPanel.setBackground(new java.awt.Color(188, 75, 81));
         lateralPanel.setLayout(new java.awt.GridLayout(10, 1));
@@ -427,9 +466,9 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${disciplina}"));
         columnBinding.setColumnName("Disciplina");
         columnBinding.setColumnClass(gradeinteligente.Disciplina.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${professor.nome}"));
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${professor}"));
         columnBinding.setColumnName("Professor");
-        columnBinding.setColumnClass(String.class);
+        columnBinding.setColumnClass(gradeinteligente.Professor.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${horarioCollection}"));
         columnBinding.setColumnName("Horarios");
         columnBinding.setColumnClass(java.util.Collection.class);
@@ -527,6 +566,7 @@ public class MainWindow extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${turmaCollection}"));
         columnBinding.setColumnName("Turmas");
         columnBinding.setColumnClass(java.util.Collection.class);
+        columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         jScrollPane5.setViewportView(disciplinaTable);
@@ -536,6 +576,33 @@ public class MainWindow extends javax.swing.JFrame {
         mainDisciplinaPanel.add(disciplinaTablePanel);
 
         mainPanel.add(mainDisciplinaPanel);
+
+        mainPredioPanel.setBackground(new java.awt.Color(192, 183, 177));
+        mainPredioPanel.setName("predio"); // NOI18N
+        mainPredioPanel.setLayout(new javax.swing.OverlayLayout(mainPredioPanel));
+
+        predioTablePanel.setName(""); // NOI18N
+        predioTablePanel.setLayout(new javax.swing.OverlayLayout(predioTablePanel));
+
+        jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, predioList, predioTable);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
+        columnBinding.setColumnName("Id");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${nome}"));
+        columnBinding.setColumnName("Nome");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${salaCollection}"));
+        columnBinding.setColumnName("Sala Collection");
+        columnBinding.setColumnClass(java.util.Collection.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();
+        jScrollPane6.setViewportView(predioTable);
+
+        predioTablePanel.add(jScrollPane6);
+
+        mainPredioPanel.add(predioTablePanel);
+
+        mainPanel.add(mainPredioPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -646,11 +713,17 @@ public class MainWindow extends javax.swing.JFrame {
         
         setSaved(tabOpened);
         
+        initTableSettings();
+        
     }//GEN-LAST:event_salvarLabelMouseClicked
 
     private void disciplinaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_disciplinaLabelMouseClicked
         openTab(mainDisciplinaPanel);
     }//GEN-LAST:event_disciplinaLabelMouseClicked
+
+    private void predioLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_predioLabelMouseClicked
+        openTab(mainPredioPanel);
+    }//GEN-LAST:event_predioLabelMouseClicked
 
     private void setSaved(String entity){
         toSaveList.remove(entity);
@@ -691,6 +764,8 @@ public class MainWindow extends javax.swing.JFrame {
             case DISCIPLINA:
                 return disciplinaLabel;
                 
+            case PREDIO:
+                return predioLabel;    
         }
         return null;
     }
@@ -711,6 +786,9 @@ public class MainWindow extends javax.swing.JFrame {
             
             case DISCIPLINA:
                 return new Disciplina();
+             
+            case PREDIO:
+                return new Predio();
         }
         return null;
     }
@@ -731,6 +809,9 @@ public class MainWindow extends javax.swing.JFrame {
             
             case DISCIPLINA:
                 return disciplinaTable;
+                
+            case PREDIO:
+                return predioTable;
         }
         return null;
     }
@@ -751,19 +832,30 @@ public class MainWindow extends javax.swing.JFrame {
             
             case DISCIPLINA:
                 return disciplinaList;
+                
+            case PREDIO:
+                return predioList;
         }
         return null;
     }
     
-    private void tableSettings() {
+    private void initTableSettings() {
         
         // Configurando JComboBox
         JComboBox disciplinaBox = new JComboBox();
+        JComboBox professorBox = new JComboBox();
+        
         for(Disciplina disciplina: disciplinaList) {
-            disciplinaBox.addItem(disciplina.toString());
+            disciplinaBox.addItem(disciplina);
+        }
+        
+        for(Professor professor: professorList) {
+            professorBox.addItem(professor);
         }
         turmasTable.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(disciplinaBox));
-        
+        turmasTable.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(professorBox));
+            
+         
         // Configurando eventos de modificação
         gradeTable.putClientProperty("terminateEditOnFocusLost", true);
         professoresTable.putClientProperty("terminateEditOnFocusLost", true);
@@ -876,6 +968,7 @@ public class MainWindow extends javax.swing.JFrame {
     
     private final String GRADE = "grade";
     private final String SALA = "salas";
+    private final String PREDIO = "predio";
     private final String PROFESSOR = "professores";
     private final String TURMA = "turmas";
     private final String DISCIPLINA = "disciplina";
@@ -906,14 +999,22 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JPanel lateralPanel;
     private javax.swing.JPanel mainDisciplinaPanel;
     private javax.swing.JPanel mainGradePanel;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JPanel mainPredioPanel;
     private javax.swing.JPanel mainProfessoresPanel;
     private javax.swing.JPanel mainSalasPanel;
     private javax.swing.JPanel mainTurmasPanel;
     private javax.swing.JPanel menuPanel;
+    private javax.swing.JLabel predioLabel;
+    private java.util.List<gradeinteligente.Predio> predioList;
+    private javax.swing.JPanel predioPanel;
+    private javax.persistence.Query predioQuery;
+    private javax.swing.JTable predioTable;
+    private javax.swing.JPanel predioTablePanel;
     private java.util.List<gradeinteligente.Professor> professorList;
     private javax.persistence.Query professorQuery;
     private javax.swing.JLabel professoresLabel;
