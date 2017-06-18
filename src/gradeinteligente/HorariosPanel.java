@@ -26,15 +26,24 @@ public class HorariosPanel extends javax.swing.JPanel {
      */
     public HorariosPanel(Grade grade) {
         setGrade(grade);
+        diaLabelList = new String[]{"Segunda", "Terça", "Quarta", "Quinta", "Sexta"};
+        diaAtual = 0;
+        
         initComponents();
         
         horarioTurmasPanel.setLayout(null);
-        diaLabelList = new String[]{"Segunda", "Terça", "Quarta", "Quinta", "Sexta"};
-        diaAtual = 1;
+        
         initGrade();
     }
 
     private void initGrade() {
+        diaLabel.setText(diaLabelList[diaAtual]);
+        horarioTurmasPanel.removeAll();
+        horarioTurmasPanel.repaint();
+        horarioSalasPanel.removeAll();
+        horarioSalasPanel.repaint();
+        
+        
         // Lista de salas únicas
         salas = new LinkedHashSet<Sala>();
         
@@ -110,6 +119,8 @@ public class HorariosPanel extends javax.swing.JPanel {
         hora21Label = new javax.swing.JLabel();
         horarioTurmasPanel = new javax.swing.JPanel();
         horarioSalasPanel = new javax.swing.JPanel();
+        proxDiaLabel = new javax.swing.JLabel();
+        anteDiaLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(247, 249, 249));
 
@@ -153,31 +164,53 @@ public class HorariosPanel extends javax.swing.JPanel {
         horarioSalasPanel.setLayout(horarioSalasPanelLayout);
         horarioSalasPanelLayout.setHorizontalGroup(
             horarioSalasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 78, Short.MAX_VALUE)
         );
         horarioSalasPanelLayout.setVerticalGroup(
             horarioSalasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 396, Short.MAX_VALUE)
         );
 
+        proxDiaLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        proxDiaLabel.setText(">");
+        proxDiaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                proxDiaLabelMouseClicked(evt);
+            }
+        });
+
+        anteDiaLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        anteDiaLabel.setText("<");
+        anteDiaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                anteDiaLabelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(horarioSalasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(horarioTurmasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(linhaHorasLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                    .addComponent(linhaHorasLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(hora8Label)
                                 .addGap(41, 41, 41)
-                                .addComponent(hora9Label)
-                                .addGap(43, 43, 43)
+                                .addComponent(hora9Label))
+                            .addComponent(diaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(anteDiaLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(proxDiaLabel)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(hora10Label)
                                 .addGap(30, 30, 30)
                                 .addComponent(hora11Label)
@@ -198,15 +231,17 @@ public class HorariosPanel extends javax.swing.JPanel {
                                 .addGap(35, 35, 35)
                                 .addComponent(hora20Label)
                                 .addGap(33, 33, 33)
-                                .addComponent(hora21Label)))
-                        .addComponent(diaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                                .addComponent(hora21Label)))))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(diaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(diaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(proxDiaLabel)
+                    .addComponent(anteDiaLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(hora8Label)
@@ -232,6 +267,18 @@ public class HorariosPanel extends javax.swing.JPanel {
         );
     }//GEN-END:initComponents
 
+    private void proxDiaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_proxDiaLabelMouseClicked
+        if(++diaAtual > 4)
+            diaAtual = 0;
+        initGrade();
+    }//GEN-LAST:event_proxDiaLabelMouseClicked
+
+    private void anteDiaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_anteDiaLabelMouseClicked
+        if(--diaAtual < 0)
+            diaAtual = 4;
+        initGrade();
+    }//GEN-LAST:event_anteDiaLabelMouseClicked
+
     private String[] diaLabelList;
     private int diaAtual;
     private Set<Sala> salas;
@@ -241,6 +288,7 @@ public class HorariosPanel extends javax.swing.JPanel {
     private int SALA_PANEL_WIDTH = 72;
     private int SALA_PANEL_HEIGTH = 40;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel anteDiaLabel;
     private javax.swing.JLabel diaLabel;
     private javax.swing.JLabel hora10Label;
     private javax.swing.JLabel hora11Label;
@@ -258,5 +306,6 @@ public class HorariosPanel extends javax.swing.JPanel {
     private javax.swing.JPanel horarioSalasPanel;
     private javax.swing.JPanel horarioTurmasPanel;
     private javax.swing.JLabel linhaHorasLabel;
+    private javax.swing.JLabel proxDiaLabel;
     // End of variables declaration//GEN-END:variables
 }
