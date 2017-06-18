@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="f9" green="f9" red="f7" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -16,13 +21,219 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="964" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="horarioSalasPanel" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Component id="horarioTurmasPanel" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="linhaHorasLabel" alignment="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="hora8Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="hora9Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                              <Component id="hora10Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="hora11Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="hora12Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="hora13Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="hora14Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="hora15Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="hora16Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="hora18Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <Component id="hora20Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="hora21Label" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="hora22Label" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Component id="diaLabel" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="49" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="477" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <Component id="diaLabel" min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="hora8Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora9Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora10Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora11Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora12Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora13Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora14Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora15Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora16Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora18Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora20Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora21Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora22Label" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <Component id="linhaHorasLabel" max="-2" attributes="0"/>
+              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="horarioSalasPanel" max="32767" attributes="0"/>
+                  <Component id="horarioTurmasPanel" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="diaLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="24" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Segunda"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="linhaHorasLabel">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/gradeinteligente/linhaHoras.png"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora8Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="8:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora9Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="9:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora11Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="11:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora10Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="10:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora12Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="12:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora13Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="13:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora20Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="20:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora21Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="21:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora14Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="14:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora15Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="15:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora16Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="16:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora18Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="18:00"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hora22Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="22:00"/>
+      </Properties>
+    </Component>
+    <Container class="javax.swing.JPanel" name="horarioTurmasPanel">
+      <Properties>
+        <Property name="opaque" type="boolean" value="false"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+        </Container>
+      </SubComponents>
+    </Container>
+    <Container class="javax.swing.JPanel" name="horarioSalasPanel">
+      <Properties>
+        <Property name="opaque" type="boolean" value="false"/>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="100" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Component id="jScrollPane2" alignment="0" pref="396" max="32767" attributes="0"/>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+          <Properties>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+        </Container>
+      </SubComponents>
+    </Container>
+  </SubComponents>
 </Form>

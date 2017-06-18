@@ -26,19 +26,182 @@ public class HorariosPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
+        diaLabel = new javax.swing.JLabel();
+        linhaHorasLabel = new javax.swing.JLabel();
+        hora8Label = new javax.swing.JLabel();
+        hora9Label = new javax.swing.JLabel();
+        hora11Label = new javax.swing.JLabel();
+        hora10Label = new javax.swing.JLabel();
+        hora12Label = new javax.swing.JLabel();
+        hora13Label = new javax.swing.JLabel();
+        hora20Label = new javax.swing.JLabel();
+        hora21Label = new javax.swing.JLabel();
+        hora14Label = new javax.swing.JLabel();
+        hora15Label = new javax.swing.JLabel();
+        hora16Label = new javax.swing.JLabel();
+        hora18Label = new javax.swing.JLabel();
+        hora22Label = new javax.swing.JLabel();
+        horarioTurmasPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        horarioSalasPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+
+        setBackground(new java.awt.Color(247, 249, 249));
+
+        diaLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        diaLabel.setText("Segunda");
+
+        linhaHorasLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gradeinteligente/linhaHoras.png"))); // NOI18N
+
+        hora8Label.setText("8:00");
+
+        hora9Label.setText("9:00");
+
+        hora11Label.setText("11:00");
+
+        hora10Label.setText("10:00");
+
+        hora12Label.setText("12:00");
+
+        hora13Label.setText("13:00");
+
+        hora20Label.setText("20:00");
+
+        hora21Label.setText("21:00");
+
+        hora14Label.setText("14:00");
+
+        hora15Label.setText("15:00");
+
+        hora16Label.setText("16:00");
+
+        hora18Label.setText("18:00");
+
+        hora22Label.setText("22:00");
+
+        horarioTurmasPanel.setOpaque(false);
+
+        jScrollPane1.setOpaque(false);
+
+        javax.swing.GroupLayout horarioTurmasPanelLayout = new javax.swing.GroupLayout(horarioTurmasPanel);
+        horarioTurmasPanel.setLayout(horarioTurmasPanelLayout);
+        horarioTurmasPanelLayout.setHorizontalGroup(
+            horarioTurmasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        horarioTurmasPanelLayout.setVerticalGroup(
+            horarioTurmasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+
+        horarioSalasPanel.setOpaque(false);
+
+        jScrollPane2.setOpaque(false);
+
+        javax.swing.GroupLayout horarioSalasPanelLayout = new javax.swing.GroupLayout(horarioSalasPanel);
+        horarioSalasPanel.setLayout(horarioSalasPanelLayout);
+        horarioSalasPanelLayout.setHorizontalGroup(
+            horarioSalasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, horarioSalasPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        horarioSalasPanelLayout.setVerticalGroup(
+            horarioSalasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 964, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(horarioSalasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(horarioTurmasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(linhaHorasLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(hora8Label)
+                                .addGap(41, 41, 41)
+                                .addComponent(hora9Label)
+                                .addGap(43, 43, 43)
+                                .addComponent(hora10Label)
+                                .addGap(30, 30, 30)
+                                .addComponent(hora11Label)
+                                .addGap(40, 40, 40)
+                                .addComponent(hora12Label)
+                                .addGap(29, 29, 29)
+                                .addComponent(hora13Label)
+                                .addGap(34, 34, 34)
+                                .addComponent(hora14Label)
+                                .addGap(34, 34, 34)
+                                .addComponent(hora15Label)
+                                .addGap(34, 34, 34)
+                                .addComponent(hora16Label)
+                                .addGap(34, 34, 34)
+                                .addComponent(hora18Label)
+                                .addGap(32, 32, 32)
+                                .addComponent(hora20Label)
+                                .addGap(35, 35, 35)
+                                .addComponent(hora21Label)
+                                .addGap(33, 33, 33)
+                                .addComponent(hora22Label)))
+                        .addComponent(diaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(diaLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(hora8Label)
+                    .addComponent(hora9Label)
+                    .addComponent(hora10Label)
+                    .addComponent(hora11Label)
+                    .addComponent(hora12Label)
+                    .addComponent(hora13Label)
+                    .addComponent(hora14Label)
+                    .addComponent(hora15Label)
+                    .addComponent(hora16Label)
+                    .addComponent(hora18Label)
+                    .addComponent(hora20Label)
+                    .addComponent(hora21Label)
+                    .addComponent(hora22Label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(linhaHorasLabel)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(horarioSalasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(horarioTurmasPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel diaLabel;
+    private javax.swing.JLabel hora10Label;
+    private javax.swing.JLabel hora11Label;
+    private javax.swing.JLabel hora12Label;
+    private javax.swing.JLabel hora13Label;
+    private javax.swing.JLabel hora14Label;
+    private javax.swing.JLabel hora15Label;
+    private javax.swing.JLabel hora16Label;
+    private javax.swing.JLabel hora18Label;
+    private javax.swing.JLabel hora20Label;
+    private javax.swing.JLabel hora21Label;
+    private javax.swing.JLabel hora22Label;
+    private javax.swing.JLabel hora8Label;
+    private javax.swing.JLabel hora9Label;
+    private javax.swing.JPanel horarioSalasPanel;
+    private javax.swing.JPanel horarioTurmasPanel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel linhaHorasLabel;
     // End of variables declaration//GEN-END:variables
 }
