@@ -42,7 +42,7 @@ public class MainWindow extends javax.swing.JFrame {
         //new Bd();
         initComponents();
         initTableSettings();
-        openTab(mainProfessoresPanel);
+        openTab(mainGradePanel);
     }
     
     @SuppressWarnings("unchecked")
@@ -841,27 +841,34 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void initTableSettings() {
         
-        // Configurando JComboBox
+        // Configurando caixas de seleção
         JComboBox disciplinaBox = new JComboBox();
         JComboBox professorBox = new JComboBox();
+        JComboBox predioBox = new JComboBox();
         
         for(Disciplina disciplina: disciplinaList) {
             disciplinaBox.addItem(disciplina);
         }
-        
         for(Professor professor: professorList) {
             professorBox.addItem(professor);
         }
+        
+        for(Predio predio: predioList) {
+            predioBox.addItem(predio);
+        }
+        
         turmasTable.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(disciplinaBox));
         turmasTable.getColumnModel().getColumn(3).setCellEditor(new DefaultCellEditor(professorBox));
-            
+        salasTable.getColumnModel().getColumn(2).setCellEditor(new DefaultCellEditor(predioBox));
          
+        
         // Configurando eventos de modificação
         gradeTable.putClientProperty("terminateEditOnFocusLost", true);
         professoresTable.putClientProperty("terminateEditOnFocusLost", true);
         salasTable.putClientProperty("terminateEditOnFocusLost", true);
         turmasTable.putClientProperty("terminateEditOnFocusLost", true);
         disciplinaTable.putClientProperty("terminateEditOnFocusLost", true);
+        predioTable.putClientProperty("terminateEditOnFocusLost", true);
         
         gradeTable.getModel().addTableModelListener(new TableModelListener() {
             @Override
@@ -895,6 +902,13 @@ public class MainWindow extends javax.swing.JFrame {
             @Override
             public void tableChanged(TableModelEvent e) {
                 setToSave(DISCIPLINA);
+            }
+        });
+        
+        predioTable.getModel().addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                setToSave(PREDIO);
             }
         });
     }
