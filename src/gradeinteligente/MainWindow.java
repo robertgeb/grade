@@ -131,7 +131,7 @@ public class MainWindow extends javax.swing.JFrame {
             gradePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gradeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(gradeLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         gradePanelLayout.setVerticalGroup(
@@ -161,7 +161,7 @@ public class MainWindow extends javax.swing.JFrame {
             turmasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(turmasPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         turmasPanelLayout.setVerticalGroup(
@@ -191,7 +191,7 @@ public class MainWindow extends javax.swing.JFrame {
             professoresPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(professoresPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(professoresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(professoresLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         professoresPanelLayout.setVerticalGroup(
@@ -222,7 +222,7 @@ public class MainWindow extends javax.swing.JFrame {
             disciplinaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(disciplinaPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(disciplinaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(disciplinaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         disciplinaPanelLayout.setVerticalGroup(
@@ -252,7 +252,7 @@ public class MainWindow extends javax.swing.JFrame {
             salasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(salasPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(salasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(salasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         salasPanelLayout.setVerticalGroup(
@@ -283,7 +283,7 @@ public class MainWindow extends javax.swing.JFrame {
             predioPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(predioPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(predioLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
+                .addComponent(predioLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         predioPanelLayout.setVerticalGroup(
@@ -390,6 +390,11 @@ public class MainWindow extends javax.swing.JFrame {
         lateralPanel.add(salvarPanel);
 
         visualizarPanel.setBackground(new java.awt.Color(188, 75, 81));
+        visualizarPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                visualizarPanelMouseClicked(evt);
+            }
+        });
 
         visualizarLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         visualizarLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -612,7 +617,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(lateralPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -724,6 +729,21 @@ public class MainWindow extends javax.swing.JFrame {
     private void predioLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_predioLabelMouseClicked
         openTab(mainPredioPanel);
     }//GEN-LAST:event_predioLabelMouseClicked
+
+    private void visualizarPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visualizarPanelMouseClicked
+        HorariosPanel horarios = null;
+        int indexRow = gradeTable.getSelectedRow();
+        if (indexRow == -1){
+            JOptionPane.showMessageDialog(this, SELECTED_ROW_ERROR_MESSAGE);
+            return;
+        }
+        
+        horarios = new HorariosPanel(gradeList.get(indexRow));
+        
+        mainPanel.add(horarios);
+        
+        openTab(horarios);
+    }//GEN-LAST:event_visualizarPanelMouseClicked
 
     private void setSaved(String entity){
         toSaveList.remove(entity);
@@ -987,7 +1007,7 @@ public class MainWindow extends javax.swing.JFrame {
     private final String TURMA = "turmas";
     private final String DISCIPLINA = "disciplina";
     private final String DEFAULT_ERROR_MESSAGE = "Erro inesperado, Reinicie a aplicação";
-    private final String SELECTED_ROW_ERROR_MESSAGE = "Selecione o item a ser apagado";
+    private final String SELECTED_ROW_ERROR_MESSAGE = "Selecione o item para esta ação";
     private Set<String> toSaveList = new HashSet<String>();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

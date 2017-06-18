@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,13 +45,13 @@ public class Horario implements Serializable {
     @Temporal(TemporalType.TIME)
     private Date hora;
     @JoinColumn(name = "sala", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Sala sala;
     @JoinColumn(name = "turma", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Turma turma;
     @JoinColumn(name = "grade", referencedColumnName = "id")
-    @ManyToOne
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Grade grade;
 
     public Horario() {

@@ -121,7 +121,7 @@ public class Sala implements Serializable {
 
     @Override
     public String toString() {
-        return numero.toString();
+        return predio + " " + numero.toString();
     }
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {

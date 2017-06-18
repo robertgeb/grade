@@ -51,11 +51,11 @@
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="hora18Label" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Component id="hora20Label" min="-2" max="-2" attributes="0"/>
+                              <Component id="hora19Label" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="hora21Label" min="-2" max="-2" attributes="0"/>
+                              <Component id="hora20Label" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="hora22Label" min="-2" max="-2" attributes="0"/>
+                              <Component id="hora21Label" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="diaLabel" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
@@ -68,8 +68,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               <Component id="diaLabel" min="-2" pref="39" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="hora8Label" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hora9Label" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -81,9 +82,9 @@
                   <Component id="hora15Label" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hora16Label" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hora18Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="hora19Label" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hora20Label" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="hora21Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="hora22Label" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="linhaHorasLabel" max="-2" attributes="0"/>
@@ -143,14 +144,14 @@
         <Property name="text" type="java.lang.String" value="13:00"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="hora19Label">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="19:00"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JLabel" name="hora20Label">
       <Properties>
         <Property name="text" type="java.lang.String" value="20:00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="hora21Label">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="21:00"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="hora14Label">
@@ -173,9 +174,9 @@
         <Property name="text" type="java.lang.String" value="18:00"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="hora22Label">
+    <Component class="javax.swing.JLabel" name="hora21Label">
       <Properties>
-        <Property name="text" type="java.lang.String" value="22:00"/>
+        <Property name="text" type="java.lang.String" value="21:00"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="horarioTurmasPanel">
@@ -183,27 +184,7 @@
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
-          <Properties>
-            <Property name="opaque" type="boolean" value="false"/>
-          </Properties>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-        </Container>
-      </SubComponents>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBoxLayout"/>
     </Container>
     <Container class="javax.swing.JPanel" name="horarioSalasPanel">
       <Properties>
@@ -213,27 +194,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="100" max="-2" attributes="0"/>
-              </Group>
+              <EmptySpace min="0" pref="100" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jScrollPane2" alignment="0" pref="396" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="396" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
-      <SubComponents>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-          <Properties>
-            <Property name="opaque" type="boolean" value="false"/>
-          </Properties>
-
-          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-        </Container>
-      </SubComponents>
     </Container>
   </SubComponents>
 </Form>

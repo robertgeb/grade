@@ -149,7 +149,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="mainPanel" pref="0" max="32767" attributes="0"/>
           </Group>
-          <Component id="menuPanel" max="32767" attributes="0"/>
+          <Component id="menuPanel" pref="1200" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -188,7 +188,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="gradeLabel" pref="149" max="32767" attributes="0"/>
+                      <Component id="gradeLabel" pref="176" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -230,7 +230,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="turmasLabel" pref="149" max="32767" attributes="0"/>
+                      <Component id="turmasLabel" pref="176" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -272,7 +272,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="professoresLabel" pref="149" max="32767" attributes="0"/>
+                      <Component id="professoresLabel" pref="176" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -315,7 +315,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="disciplinaLabel" pref="149" max="32767" attributes="0"/>
+                      <Component id="disciplinaLabel" pref="176" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -357,7 +357,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="salasLabel" pref="149" max="32767" attributes="0"/>
+                      <Component id="salasLabel" pref="176" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -400,7 +400,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="predioLabel" pref="149" max="32767" attributes="0"/>
+                      <Component id="predioLabel" pref="176" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -576,6 +576,9 @@
               <Color blue="51" green="4b" red="bc" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="visualizarPanelMouseClicked"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
