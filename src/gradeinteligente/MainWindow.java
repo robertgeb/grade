@@ -420,6 +420,7 @@ public class MainWindow extends javax.swing.JFrame {
         lateralPanel.add(visualizarPanel);
 
         mainPanel.setBackground(new java.awt.Color(255, 255, 255));
+        mainPanel.setOpaque(false);
         mainPanel.setLayout(new javax.swing.OverlayLayout(mainPanel));
 
         mainGradePanel.setBackground(new java.awt.Color(188, 75, 81));
@@ -428,7 +429,12 @@ public class MainWindow extends javax.swing.JFrame {
         mainGradePanel.setName("grade"); // NOI18N
         mainGradePanel.setLayout(new javax.swing.OverlayLayout(mainGradePanel));
 
+        gradeTablePanel.setOpaque(false);
         gradeTablePanel.setLayout(new javax.swing.OverlayLayout(gradeTablePanel));
+
+        jScrollPane4.setOpaque(false);
+
+        gradeTable.setOpaque(false);
 
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, gradeList, gradeTable);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
@@ -459,7 +465,12 @@ public class MainWindow extends javax.swing.JFrame {
         mainTurmasPanel.setName("turmas"); // NOI18N
         mainTurmasPanel.setLayout(new javax.swing.OverlayLayout(mainTurmasPanel));
 
+        turmasTablePanel.setOpaque(false);
         turmasTablePanel.setLayout(new javax.swing.OverlayLayout(turmasTablePanel));
+
+        jScrollPane3.setOpaque(false);
+
+        turmasTable.setOpaque(false);
 
         jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, turmaList, turmasTable);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
@@ -493,7 +504,12 @@ public class MainWindow extends javax.swing.JFrame {
         mainProfessoresPanel.setName("professores"); // NOI18N
         mainProfessoresPanel.setLayout(new javax.swing.OverlayLayout(mainProfessoresPanel));
 
+        professoresTablePanel.setOpaque(false);
         professoresTablePanel.setLayout(new javax.swing.OverlayLayout(professoresTablePanel));
+
+        jScrollPane1.setOpaque(false);
+
+        professoresTable.setOpaque(false);
 
         jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, professorList, professoresTable);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
@@ -526,7 +542,12 @@ public class MainWindow extends javax.swing.JFrame {
         mainSalasPanel.setName("salas"); // NOI18N
         mainSalasPanel.setLayout(new javax.swing.OverlayLayout(mainSalasPanel));
 
+        salasTablePanel.setOpaque(false);
         salasTablePanel.setLayout(new javax.swing.OverlayLayout(salasTablePanel));
+
+        jScrollPane2.setOpaque(false);
+
+        salasTable.setOpaque(false);
 
         jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, salaList, salasTable);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
@@ -556,7 +577,12 @@ public class MainWindow extends javax.swing.JFrame {
         mainDisciplinaPanel.setLayout(new javax.swing.OverlayLayout(mainDisciplinaPanel));
 
         disciplinaTablePanel.setName(""); // NOI18N
+        disciplinaTablePanel.setOpaque(false);
         disciplinaTablePanel.setLayout(new javax.swing.OverlayLayout(disciplinaTablePanel));
+
+        jScrollPane5.setOpaque(false);
+
+        disciplinaTable.setOpaque(false);
 
         jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, disciplinaList, disciplinaTable);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
@@ -587,7 +613,12 @@ public class MainWindow extends javax.swing.JFrame {
         mainPredioPanel.setLayout(new javax.swing.OverlayLayout(mainPredioPanel));
 
         predioTablePanel.setName(""); // NOI18N
+        predioTablePanel.setOpaque(false);
         predioTablePanel.setLayout(new javax.swing.OverlayLayout(predioTablePanel));
+
+        jScrollPane6.setOpaque(false);
+
+        predioTable.setOpaque(false);
 
         jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, predioList, predioTable);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${id}"));
@@ -617,7 +648,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(lateralPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

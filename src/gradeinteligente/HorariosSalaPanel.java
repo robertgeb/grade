@@ -32,6 +32,7 @@ public class HorariosSalaPanel extends javax.swing.JPanel {
 
         setOpaque(false);
 
+        numeroLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         numeroLabel.setText("Numero");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

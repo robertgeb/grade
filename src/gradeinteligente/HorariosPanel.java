@@ -45,7 +45,7 @@ public class HorariosPanel extends javax.swing.JPanel {
         
         
         // Lista de salas únicas
-        salas = new LinkedHashSet<Sala>();
+        salas = new LinkedHashSet<Sala>(); // TODO: Refatorar modo de identificação das salas da grade
         
         // Percorre os horarios dessa grade
         for(Horario horario: grade.getHorarioCollection()) {
@@ -284,7 +284,7 @@ public class HorariosPanel extends javax.swing.JPanel {
     private Set<Sala> salas;
     private Grade grade;
     private int TURMA_PANEL_HEIGTH = 40;
-    private int TURMA_PANEL_WIDTH = 72;
+    private int TURMA_PANEL_WIDTH = 100;
     private int SALA_PANEL_WIDTH = 72;
     private int SALA_PANEL_HEIGTH = 40;
     // Variables declaration - do not modify//GEN-BEGIN:variables

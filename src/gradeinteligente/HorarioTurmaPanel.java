@@ -33,6 +33,7 @@ public class HorarioTurmaPanel extends javax.swing.JPanel {
         turmaLabel = new javax.swing.JLabel();
         professorLabel = new javax.swing.JLabel();
 
+        setMaximumSize(null);
         setOpaque(false);
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
 
@@ -41,6 +42,7 @@ public class HorarioTurmaPanel extends javax.swing.JPanel {
         turmaLabel.setText("Turma");
         add(turmaLabel);
 
+        professorLabel.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         professorLabel.setText("Professor");
         add(professorLabel);
     }//GEN-END:initComponents
