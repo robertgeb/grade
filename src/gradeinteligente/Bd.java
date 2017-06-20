@@ -121,15 +121,19 @@ public class Bd {
             String horarioTableSQL = "CREATE TABLE horario " +
                         "(id INTEGER not NULL AUTO_INCREMENT, " +
                         " turma INTEGER, " + 
-                        " sala INTEGER, " +
                         " dia INTEGER, " + 
                         " hora TIME, " + 
                         " grade INTEGER, " +
                         " PRIMARY KEY ( id )," +
-                        "FOREIGN KEY (sala) REFERENCES sala(id)," +
                         "FOREIGN KEY (turma) REFERENCES turma(id)," +
                         "FOREIGN KEY (grade) REFERENCES grade(id))";  
 
+            String alocacaoTableSQL = "CREATE TABLE alocacao " +
+                        "(id INTEGER not NULL AUTO_INCREMENT, " +
+                        " horario INTEGER, " + 
+                        " sala INTEGER, " +
+                        " PRIMARY KEY ( id )," +
+                        "FOREIGN KEY (horario) REFERENCES horario(id))";  
             
             stmt.addBatch(professorTableSQL);
             stmt.addBatch(disciplinaTableSQL);
@@ -138,6 +142,7 @@ public class Bd {
             stmt.addBatch(gradeTableSQL);
             stmt.addBatch(turmaTableSQL);
             stmt.addBatch(horarioTableSQL);
+            stmt.addBatch(alocacaoTableSQL);
             stmt.executeBatch();
         } catch(SQLException ex){
             System.out.println("SQLException: " + ex.getMessage());

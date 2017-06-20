@@ -5,8 +5,11 @@
  */
 package gradeinteligente;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import org.jgap.Configuration;
+import org.jgap.impl.DefaultConfiguration;
 
 /**
  *
@@ -17,11 +20,14 @@ public class GeradorGrade {
     private Grade grade;
     private List<Turma> listaTurma;
     private EntityManager entityManager;
+    private Configuration conf;
+    private ArrayList<HorarioGene> geneList;
 
     public GeradorGrade(Grade grade, List<Turma> listaTurma, EntityManager entityManager) {
         this.grade = grade;
         this.listaTurma = listaTurma;
         this.entityManager = entityManager;
+        configAlgGen();
         gerarHorarios();
     }
     
@@ -39,8 +45,15 @@ public class GeradorGrade {
                 entityManager.getTransaction().begin();
                 entityManager.persist(novoHorario);
                 entityManager.getTransaction().commit();
+                //geneList.add(new HorarioGene());;
+                
             }
         }
+    }
+    
+    private void configAlgGen() {
+        conf = new DefaultConfiguration();
+        
     }
     
     public Grade getGradeGerada() {

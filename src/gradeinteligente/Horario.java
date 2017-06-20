@@ -221,7 +221,7 @@ public class Horario implements Serializable {
 
     @Override
     public String toString() {
-        return grade.getNome();
+        return turma.toString();
     }
     
 }
