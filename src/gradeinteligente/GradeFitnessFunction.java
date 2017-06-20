@@ -7,6 +7,7 @@ package gradeinteligente;
 
 import org.jgap.FitnessFunction;
 import org.jgap.Chromosome;
+import org.jgap.Gene;
 import org.jgap.IChromosome;
 
 
@@ -16,9 +17,25 @@ import org.jgap.IChromosome;
  */
 public class GradeFitnessFunction extends FitnessFunction{
 
+    private final double valorAlvo = 0.8;
+    private Grade grade;
+
+    public GradeFitnessFunction(Grade grade) {
+        this.grade = grade;
+    }
+    
+    
+    
     @Override
-    protected double evaluate(IChromosome a_subject) {
-        return 0;
+    protected double evaluate(IChromosome chromosome) {
+        double value = 1;
+        int sum = 0;
+        for(Gene gene: chromosome.getGenes()){
+            value += ((Horario)gene.getAllele()).getValor();
+            sum++;
+        }
+        value /= sum;
+        return value;
     }
     
 }

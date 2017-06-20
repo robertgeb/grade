@@ -24,6 +24,7 @@ import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -694,11 +695,15 @@ public class MainWindow extends javax.swing.JFrame {
             return;
         }
             
-        
         // Persistindo no banco
         GradeInteligentePUEntityManager.getTransaction().begin();
         GradeInteligentePUEntityManager.persist(newEntityToPersist);
         GradeInteligentePUEntityManager.getTransaction().commit();
+        
+        if(newEntityToPersist instanceof Grade)
+            new GeradorGrade((Grade) newEntityToPersist, turmaList, GradeInteligentePUEntityManager);
+        
+        
         setSaved(entityName);
     }//GEN-LAST:event_criarLabelMouseClicked
 
@@ -769,7 +774,12 @@ public class MainWindow extends javax.swing.JFrame {
             return;
         }
         
-        horarios = new HorariosPanel(gradeList.get(indexRow));
+        try {
+            horarios = new HorariosPanel(gradeList.get(indexRow));
+        } catch (Exception e) {
+            
+        }
+ 
         
         mainPanel.add(horarios);
         

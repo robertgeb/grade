@@ -6,6 +6,8 @@
 package gradeinteligente;
 
 
+import java.util.ArrayList;
+import java.util.Collection;
 import org.jgap.*;
 
 /**
@@ -15,11 +17,19 @@ import org.jgap.*;
 public class HorarioGene extends BaseGene implements Gene, java.io.Serializable {
 
     private Horario horario;
+    private Grade grade;
+    private double valorGene;
     
-    public HorarioGene(Configuration a_configuration) throws InvalidConfigurationException {
+    public HorarioGene(Configuration a_configuration, Horario horario) throws InvalidConfigurationException {
         super(a_configuration);
+        this.horario = horario;
+        this.grade = horario.getGrade();
+        this.valorGene = horario.getValor();
+        System.out.println(valorGene);
     }
 
+    
+    
     @Override
     protected Object getInternalValue() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -32,12 +42,12 @@ public class HorarioGene extends BaseGene implements Gene, java.io.Serializable 
 
     @Override
     public void setAllele(Object horario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.horario = (Horario) horario;
     }
     
     @Override
-    public Horario getAllele() {
-        return horario;
+    public HorarioGene getAllele() {
+        return this;
     }
 
     @Override

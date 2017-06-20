@@ -12,8 +12,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import javax.swing.BorderFactory;
+import org.jgap.Configuration;
+import org.jgap.InvalidConfigurationException;
+import org.jgap.impl.DefaultConfiguration;
 
 /**
  *
@@ -24,7 +28,7 @@ public class HorariosPanel extends javax.swing.JPanel {
     /**
      * Creates new form HorariosPanel
      */
-    public HorariosPanel(Grade grade) {
+    public HorariosPanel(Grade grade) throws InvalidConfigurationException {
         setGrade(grade);
         diaLabelList = new String[]{"Segunda", "Terça", "Quarta", "Quinta", "Sexta"};
         diaAtual = 0;
@@ -33,6 +37,10 @@ public class HorariosPanel extends javax.swing.JPanel {
         
         horarioTurmasPanel.setLayout(null);
         
+        for(Horario horario: grade.getHorarioCollection()) {    
+            new HorarioGene(new DefaultConfiguration(), horario);
+            Configuration.reset();
+        }
         initGrade();
     }
 
