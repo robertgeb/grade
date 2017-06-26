@@ -34,6 +34,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Disciplina.findByCreditos", query = "SELECT d FROM Disciplina d WHERE d.creditos = :creditos")})
 public class Disciplina implements Serializable {
 
+    @Column(name = "periodo")
+    private Integer periodo;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -110,6 +113,14 @@ public class Disciplina implements Serializable {
     @Override
     public String toString() {
         return nome;
+    }
+
+    public Integer getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(Integer periodo) {
+        this.periodo = periodo;
     }
     
 }

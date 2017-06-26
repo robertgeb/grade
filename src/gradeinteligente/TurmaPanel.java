@@ -19,7 +19,7 @@ public class TurmaPanel extends javax.swing.JPanel {
         nomeDisciplinaLabel.setText(turma.getDisciplina().toString());
         nomeProfessorLabel.setText(turma.getProfessor().toString());
         creditosLabel.setText(turma.getDisciplina().getCreditos().toString());
-        //periodoLabel.setText(turma.getDisciplina().getPeriodo().toString());
+        periodoLabel.setText(turma.getDisciplina().getPeriodo().toString());
     }
 
     /**
