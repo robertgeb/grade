@@ -9,6 +9,7 @@
     <class>gradeinteligente.Professor</class>
     <class>gradeinteligente.Sala</class>
     <class>gradeinteligente.Turma</class>
+    <class>gradeinteligente.Alocacao</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/grade?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

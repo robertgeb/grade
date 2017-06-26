@@ -6,12 +6,10 @@
 package gradeinteligente;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,109 +40,21 @@ public class Horario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @Column(name = "id")
     private Integer id;
+    @Column(name = "dia")
     private Integer dia;
+    @Column(name = "hora")
     @Temporal(TemporalType.TIME)
     private Date hora;
-    @JoinColumn(name = "sala", referencedColumnName = "id")
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
-    private Sala sala;
     @JoinColumn(name = "turma", referencedColumnName = "id")
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @ManyToOne
     private Turma turma;
     @JoinColumn(name = "grade", referencedColumnName = "id")
-    @ManyToOne(optional = true, fetch = FetchType.LAZY)
+    @ManyToOne
     private Grade grade;
 
     public Horario() {
-    }
-    
-    public double getValor() {
-        return this.isUniqueProfessorOnDiaHora() *
-                this.isUniqueSalaOnDiaHora() *
-                this.valorProfessorMudaSala() *
-                this.valorProfessorHoraVaga();
-    }
-    
-    public int isUniqueProfessorOnDiaHora(){
-        Collection<Horario> horarioList = grade.getHorarioCollection();
-        for(Horario otherHorario: horarioList){
-            if(otherHorario.equals(this))
-                return 1;
-            if( // Se for o mesmo professor
-                    otherHorario.getTurma().getProfessor().equals(this.getTurma().getProfessor())
-                    // No mesmo dia
-                    && otherHorario.getDia().equals(this.getDia())
-                    // No mesmo horario
-                    && otherHorario.getHora().equals(this.getHora())
-                    )
-                return 0;
-        }
-        return 1;
-    }
-    
-    public int isUniqueSalaOnDiaHora(){
-        Collection<Horario> horarioList = grade.getHorarioCollection();
-        for(Horario otherHorario: horarioList) {
-            if(otherHorario.equals(this))
-                return 1;
-            if(// Se for a mesma Sala
-                    otherHorario.getSala().equals(this.getSala())
-                    // No mesmo dia
-                    && otherHorario.getDia().equals(this.getSala())
-                    // Na mesma hora
-                    && otherHorario.getHora().equals(this.getHora())
-                    )
-                return 0;
-        }
-        return 1;
-    }
-    
-    public double valorProfessorMudaSala(){
-        double valor = 1;
-        Collection<Horario> horarioList = grade.getHorarioCollection();
-        for(Horario otherHorario: horarioList) {
-            if(otherHorario.equals(this))
-                continue;
-            if(// Se for no mesmo dia
-                    otherHorario.getDia().equals(this.getDia())
-                    // E o mesmo professor
-                    && otherHorario.getTurma().getProfessor().equals(this.getTurma().getProfessor())
-                    // E esta numa sala diferente
-                    && !otherHorario.getSala().equals(this.getSala())
-                    )
-                valor *= 0.5;
-        }
-        return valor;
-    }
-    
-    public double valorProfessorHoraVaga(){
-        double valor = 1;
-        Collection<Horario> horarioList = grade.getHorarioCollection();
-        ArrayList<Integer> horasAnteriores = new ArrayList<Integer>();
-        int horaHorario = Integer.parseInt(this.getHora().toString().substring(11, 13));
-        int qntTemposAnteriores = 0;
-        
-        if(horaHorario == 8)
-            return valor;
-        if((horaHorario & 1) == 0 )
-            horaHorario--;
-        qntTemposAnteriores = (horaHorario-8)/2;
-        
-        for(Horario otherHorario: horarioList) {
-            if(otherHorario.equals(this))
-                continue;
-            if(// Se for em um horario anterior
-                    otherHorario.getHora().before(this.getHora())
-                    // E for o mesmo professor
-                    && otherHorario.getTurma().getProfessor().equals(this.getTurma().getProfessor())
-                    )
-                horasAnteriores.add(Integer.parseInt(otherHorario.getHora().toString().substring(11, 13)));
-        }
-        
-        valor -= (horasAnteriores.size()-qntTemposAnteriores)*0.1;
-        
-        return valor;
     }
 
     public Horario(Integer id) {
@@ -173,14 +83,6 @@ public class Horario implements Serializable {
 
     public void setHora(Date hora) {
         this.hora = hora;
-    }
-
-    public Sala getSala() {
-        return sala;
-    }
-
-    public void setSala(Sala sala) {
-        this.sala = sala;
     }
 
     public Turma getTurma() {
@@ -221,7 +123,7 @@ public class Horario implements Serializable {
 
     @Override
     public String toString() {
-        return turma.toString();
+        return "gradeinteligente.Horario[ id=" + id + " ]";
     }
     
 }

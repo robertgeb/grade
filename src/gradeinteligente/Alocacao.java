@@ -6,33 +6,31 @@
 package gradeinteligente;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author robert
  */
 @Entity
-@Table(name = "disciplina")
+@Table(name = "alocacao")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Disciplina.findAll", query = "SELECT d FROM Disciplina d")
-    , @NamedQuery(name = "Disciplina.findById", query = "SELECT d FROM Disciplina d WHERE d.id = :id")
-    , @NamedQuery(name = "Disciplina.findByNome", query = "SELECT d FROM Disciplina d WHERE d.nome = :nome")
-    , @NamedQuery(name = "Disciplina.findByCreditos", query = "SELECT d FROM Disciplina d WHERE d.creditos = :creditos")})
-public class Disciplina implements Serializable {
+    @NamedQuery(name = "Alocacao.findAll", query = "SELECT a FROM Alocacao a")
+    , @NamedQuery(name = "Alocacao.findById", query = "SELECT a FROM Alocacao a WHERE a.id = :id")
+    , @NamedQuery(name = "Alocacao.findBySala", query = "SELECT a FROM Alocacao a WHERE a.sala = :sala")})
+public class Alocacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,17 +38,16 @@ public class Disciplina implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "nome")
-    private String nome;
-    @Column(name = "creditos")
-    private Integer creditos;
-    @OneToMany(mappedBy = "disciplina")
-    private Collection<Turma> turmaCollection;
+    @Column(name = "sala")
+    private Integer sala;
+    @JoinColumn(name = "horario", referencedColumnName = "id")
+    @ManyToOne
+    private Horario horario;
 
-    public Disciplina() {
+    public Alocacao() {
     }
 
-    public Disciplina(Integer id) {
+    public Alocacao(Integer id) {
         this.id = id;
     }
 
@@ -62,29 +59,20 @@ public class Disciplina implements Serializable {
         this.id = id;
     }
 
-    public String getNome() {
-        return nome;
+    public Integer getSala() {
+        return sala;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setSala(Integer sala) {
+        this.sala = sala;
     }
 
-    public Integer getCreditos() {
-        return creditos;
+    public Horario getHorario() {
+        return horario;
     }
 
-    public void setCreditos(Integer creditos) {
-        this.creditos = creditos;
-    }
-
-    @XmlTransient
-    public Collection<Turma> getTurmaCollection() {
-        return turmaCollection;
-    }
-
-    public void setTurmaCollection(Collection<Turma> turmaCollection) {
-        this.turmaCollection = turmaCollection;
+    public void setHorario(Horario horario) {
+        this.horario = horario;
     }
 
     @Override
@@ -97,10 +85,10 @@ public class Disciplina implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Disciplina)) {
+        if (!(object instanceof Alocacao)) {
             return false;
         }
-        Disciplina other = (Disciplina) object;
+        Alocacao other = (Alocacao) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -109,7 +97,7 @@ public class Disciplina implements Serializable {
 
     @Override
     public String toString() {
-        return nome;
+        return "gradeinteligente.Alocacao[ id=" + id + " ]";
     }
     
 }

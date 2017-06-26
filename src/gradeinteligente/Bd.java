@@ -23,6 +23,27 @@ public class Bd {
     private String databaseUser = "root";
     private String databasePassword = "";
     
+    private String insertDisciplinasSQL[] = {"INSERT INTO disciplina (nome, creditos, periodo) " +
+        "VALUES (\"LINGUAGEM DE PROGRAMAÇÃO I\", 4, 1)",
+        "INSERT INTO disciplina (nome, creditos, periodo) " +
+        "VALUES (\"INTRODUÇÃO A SISTEMAS DE INFORMAÇÃO\", 2, 1)",
+        "INSERT INTO disciplina (nome, creditos, periodo) " +
+        "VALUES (\"INTRODUÇÃO A SISTEMAS DIGITAIS\", 4, 1)"};
+    
+    private String insertProfessoresSQL[] = {"INSERT INTO professor (nome, matricula) " +
+        "VALUES (\"Gizelle Kupac. Vianna\", 1547743)",
+        "INSERT INTO professor (nome, matricula)" +
+        "VALUES (\"Luiz Maltar Castello Branco\", 361291)",
+        "INSERT INTO professor (nome, matricula) " +
+        "VALUES (\"Eduardo Kinder Almentero\", 4123410)"};
+    
+    private String insertTurmasSQL[] = {"INSERT INTO turma (nome, professor, disciplina) " +
+        "VALUES (\"T01\", 1, 1)",
+        "INSERT INTO turma (nome, professor, disciplina) " +
+        "VALUES (\"T01\", 3, 2)",
+        "INSERT INTO turma (nome, professor, disciplina) " +
+        "VALUES (\"T01\", 2, 3);"};
+    
     Bd() {
         connect();
     }
@@ -63,6 +84,33 @@ public class Bd {
             connect();
             createTables();
             disconnect();
+            connect();
+            insertSampleData();
+            disconnect();
+            System.out.println("Done");
+        } catch(SQLException ex){
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+            // TODO Tratar erros do banco de dados
+        }
+    }
+    
+    private void insertSampleData() {
+        try{
+            Statement stmt = null;
+
+            stmt = connection.createStatement();
+            for(String sql: insertDisciplinasSQL){
+                stmt.addBatch(sql);
+            }
+            for(String sql: insertProfessoresSQL){
+                stmt.addBatch(sql);
+            }
+            for(String sql: insertTurmasSQL){
+                stmt.addBatch(sql);
+            }
+            stmt.executeBatch();
         } catch(SQLException ex){
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
@@ -88,6 +136,7 @@ public class Bd {
                         "(id INTEGER not NULL AUTO_INCREMENT, " +
                         " nome VARCHAR(255), " + 
                         " creditos INTEGER, " + 
+                        " periodo INTEGER, " + 
                         " PRIMARY KEY ( id ))"; 
 
             String predioTableSQL = "CREATE TABLE predio " +

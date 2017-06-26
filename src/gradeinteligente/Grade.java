@@ -5,14 +5,12 @@
  */
 package gradeinteligente;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +20,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -40,18 +37,18 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Grade.findByCriacao", query = "SELECT g FROM Grade g WHERE g.criacao = :criacao")})
 public class Grade implements Serializable {
 
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @Column(name = "id")
     private Integer id;
+    @Column(name = "nome")
     private String nome;
+    @Column(name = "criacao")
     @Temporal(TemporalType.TIMESTAMP)
     private Date criacao;
-    @OneToMany(mappedBy = "grade", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "grade")
     private Collection<Horario> horarioCollection;
 
     public Grade() {
@@ -66,9 +63,7 @@ public class Grade implements Serializable {
     }
 
     public void setId(Integer id) {
-        Integer oldId = this.id;
         this.id = id;
-        changeSupport.firePropertyChange("id", oldId, id);
     }
 
     public String getNome() {
@@ -76,9 +71,7 @@ public class Grade implements Serializable {
     }
 
     public void setNome(String nome) {
-        String oldNome = this.nome;
         this.nome = nome;
-        changeSupport.firePropertyChange("nome", oldNome, nome);
     }
 
     public Date getCriacao() {
@@ -86,9 +79,7 @@ public class Grade implements Serializable {
     }
 
     public void setCriacao(Date criacao) {
-        Date oldCriacao = this.criacao;
         this.criacao = criacao;
-        changeSupport.firePropertyChange("criacao", oldCriacao, criacao);
     }
 
     @XmlTransient
@@ -122,15 +113,7 @@ public class Grade implements Serializable {
 
     @Override
     public String toString() {
-        return nome;
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
+        return "gradeinteligente.Grade[ id=" + id + " ]";
     }
     
 }

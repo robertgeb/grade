@@ -5,13 +5,10 @@
  */
 package gradeinteligente;
 
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,11 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,17 +32,14 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Sala.findByNumero", query = "SELECT s FROM Sala s WHERE s.numero = :numero")})
 public class Sala implements Serializable {
 
-    @Transient
-    private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @Column(name = "id")
     private Integer id;
+    @Column(name = "numero")
     private Integer numero;
-    @OneToMany(mappedBy = "sala", fetch=FetchType.EAGER)
-    private Collection<Horario> horarioCollection;
     @JoinColumn(name = "predio", referencedColumnName = "id")
     @ManyToOne
     private Predio predio;
@@ -65,9 +56,7 @@ public class Sala implements Serializable {
     }
 
     public void setId(Integer id) {
-        Integer oldId = this.id;
         this.id = id;
-        changeSupport.firePropertyChange("id", oldId, id);
     }
 
     public Integer getNumero() {
@@ -75,18 +64,7 @@ public class Sala implements Serializable {
     }
 
     public void setNumero(Integer numero) {
-        Integer oldNumero = this.numero;
         this.numero = numero;
-        changeSupport.firePropertyChange("numero", oldNumero, numero);
-    }
-
-    @XmlTransient
-    public Collection<Horario> getHorarioCollection() {
-        return horarioCollection;
-    }
-
-    public void setHorarioCollection(Collection<Horario> horarioCollection) {
-        this.horarioCollection = horarioCollection;
     }
 
     public Predio getPredio() {
@@ -94,9 +72,7 @@ public class Sala implements Serializable {
     }
 
     public void setPredio(Predio predio) {
-        Predio oldPredio = this.predio;
         this.predio = predio;
-        changeSupport.firePropertyChange("predio", oldPredio, predio);
     }
 
     @Override
@@ -121,15 +97,7 @@ public class Sala implements Serializable {
 
     @Override
     public String toString() {
-        return predio + " " + numero.toString();
-    }
-
-    public void addPropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.addPropertyChangeListener(listener);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener listener) {
-        changeSupport.removePropertyChangeListener(listener);
+        return "gradeinteligente.Sala[ id=" + id + " ]";
     }
     
 }

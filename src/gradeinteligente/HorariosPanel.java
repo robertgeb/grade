@@ -28,7 +28,7 @@ public class HorariosPanel extends javax.swing.JPanel {
     /**
      * Creates new form HorariosPanel
      */
-    public HorariosPanel(Grade grade) throws InvalidConfigurationException {
+    public HorariosPanel(Grade grade){
         setGrade(grade);
         diaLabelList = new String[]{"Segunda", "Terça", "Quarta", "Quinta", "Sexta"};
         diaAtual = 0;
@@ -37,11 +37,7 @@ public class HorariosPanel extends javax.swing.JPanel {
         
         horarioTurmasPanel.setLayout(null);
         
-        for(Horario horario: grade.getHorarioCollection()) {    
-            new HorarioGene(new DefaultConfiguration(), horario);
-            Configuration.reset();
-        }
-        initGrade();
+        //initGrade();
     }
 
     private void initGrade() {
@@ -59,9 +55,9 @@ public class HorariosPanel extends javax.swing.JPanel {
         for(Horario horario: grade.getHorarioCollection()) {
             if(horario.getDia() != diaAtual)
                 continue;
-            if(salas.add(horario.getSala())){ // Se for uma sala ainda não identificada
-                createSalaLabel(horario.getSala()); // Cria a nova label
-            }
+            //if(salas.add(horario.getSala())){ // Se for uma sala ainda não identificada
+            //    createSalaLabel(horario.getSala()); // Cria a nova label
+            //}
             
             // Cria um painel pra turma do horario
             HorarioTurmaPanel turma = new HorarioTurmaPanel();
@@ -70,7 +66,7 @@ public class HorariosPanel extends javax.swing.JPanel {
             // Configurando posição e tamanho
             turma.setBounds(
                     timeToPosition(horario.getHora()), // A hora define a posição horizontal
-                    salaToPosition(horario.getSala()), // A sala define a posição vertical
+                    0, // A sala define a posição vertical
                     TURMA_PANEL_WIDTH, 
                     TURMA_PANEL_HEIGTH
             );
