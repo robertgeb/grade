@@ -5,6 +5,11 @@
  */
 package gradeinteligente;
 
+import java.awt.Font;
+import java.awt.font.TextAttribute;
+import java.util.Map;
+import javax.swing.JLabel;
+
 /**
  *
  * @author robert
@@ -22,6 +27,20 @@ public class TurmaPanel extends javax.swing.JPanel {
         periodoLabel.setText(turma.getDisciplina().getPeriodo().toString());
     }
 
+    private void setUnderline(JLabel label){
+        Font font = label.getFont();
+        Map attributes = font.getAttributes();
+        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+        label.setFont(font.deriveFont(attributes));
+    }
+    
+    private void unsetUnderline(JLabel label){
+        Font font = label.getFont();
+        Map attributes = font.getAttributes();
+        attributes.put(TextAttribute.UNDERLINE, -1);
+        label.setFont(font.deriveFont(attributes));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,6 +55,14 @@ public class TurmaPanel extends javax.swing.JPanel {
         periodoLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+        });
 
         nomeDisciplinaLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         nomeDisciplinaLabel.setText("Disciplina");
@@ -79,6 +106,16 @@ public class TurmaPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        setUnderline(nomeDisciplinaLabel);
+        setUnderline(nomeProfessorLabel);
+    }//GEN-LAST:event_formMouseEntered
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        unsetUnderline(nomeDisciplinaLabel);
+        unsetUnderline(nomeProfessorLabel);
+    }//GEN-LAST:event_formMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
