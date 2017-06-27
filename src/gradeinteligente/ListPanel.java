@@ -41,6 +41,8 @@ public class ListPanel extends javax.swing.JPanel {
         c.gridx = 0;
         
         for(Serializable item: list){
+            if(item == null)
+                continue;
             JPanel itemPanel = createPanelByType(item);
             c.gridy = i;
             this.add(itemPanel, c);
@@ -53,6 +55,8 @@ public class ListPanel extends javax.swing.JPanel {
             return new ProfessorItemPanel((Professor) entity);
         if(entity instanceof Turma)
             return new TurmaItemPanel((Turma) entity);
+        if(entity instanceof Disciplina)
+            return new DisciplinaItemPanel((Disciplina) entity);
         return null;
     }
 
