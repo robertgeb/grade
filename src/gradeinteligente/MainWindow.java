@@ -47,6 +47,11 @@ public class MainWindow extends javax.swing.JFrame {
         initMainPanels();
     }
     
+    public Serializable openSelectWindow(){
+        new SelectWindow(this, professorList);
+        return null;
+    }
+    
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
@@ -247,7 +252,7 @@ public class MainWindow extends javax.swing.JFrame {
         mainPanelList.add(new GradesPanel());
         mainPanelList.add(new HorariosPanel(new Grade()));
         mainPanelList.add(new AlocacoesPanel());
-        mainPanelList.add(new TurmasListPanel(turmaList));
+        mainPanelList.add(new ListPanel(turmaList));
         
         mainPanel.removeAll();
         JScrollPane scroll = new JScrollPane(mainPanelList.get(3));

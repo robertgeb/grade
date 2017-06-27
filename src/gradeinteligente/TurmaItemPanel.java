@@ -5,21 +5,27 @@
  */
 package gradeinteligente;
 
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.font.TextAttribute;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author robert
  */
-public class TurmaPanel extends javax.swing.JPanel {
+public class TurmaItemPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form TurmaPanel
      */
-    public TurmaPanel(Turma turma) {
+    public TurmaItemPanel(Turma turma) {
         initComponents();
         nomeDisciplinaLabel.setText(turma.getDisciplina().toString());
         nomeProfessorLabel.setText(turma.getProfessor().toString());
@@ -41,6 +47,11 @@ public class TurmaPanel extends javax.swing.JPanel {
         label.setFont(font.deriveFont(attributes));
     }
     
+    private void openSelectWindow(){
+        MainWindow mainWindow = (MainWindow) SwingUtilities.getWindowAncestor(this);
+        Serializable item = mainWindow.openSelectWindow();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,6 +67,9 @@ public class TurmaPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 formMouseExited(evt);
             }
@@ -116,6 +130,10 @@ public class TurmaPanel extends javax.swing.JPanel {
         unsetUnderline(nomeDisciplinaLabel);
         unsetUnderline(nomeProfessorLabel);
     }//GEN-LAST:event_formMouseExited
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        openSelectWindow();
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
