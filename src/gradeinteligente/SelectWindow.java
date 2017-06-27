@@ -8,6 +8,7 @@ package gradeinteligente;
 import java.io.Serializable;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -23,7 +24,10 @@ public class SelectWindow extends javax.swing.JWindow {
         this.setBackground(new java.awt.Color(255, 255, 255));
         
         this.setVisible(true);
-        this.add(new ListPanel(entityList));
+        JScrollPane scroll = new JScrollPane(new ListPanel(entityList));
+        scroll.getVerticalScrollBar().setUnitIncrement(17);
+        scroll.setHorizontalScrollBar(null);
+        this.add(scroll);
     }
     
     public Serializable getSelected(){

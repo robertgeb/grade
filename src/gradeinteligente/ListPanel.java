@@ -6,6 +6,7 @@
 package gradeinteligente;
 
 import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
 import java.io.Serializable;
 import java.util.List;
 import javax.swing.JPanel;
@@ -28,24 +29,13 @@ public class ListPanel extends javax.swing.JPanel {
         int i = 1;
         
         this.setAutoscrolls(true);
-        
-        GridBagConstraints c = new GridBagConstraints();
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.anchor = GridBagConstraints.FIRST_LINE_START;;
-        c.weighty = 0;
-        c.weightx = 1;
-        c.ipady = 0;
-        c.ipadx = 0;
-        c.gridwidth = 1;
-        c.gridheight = 1;
-        c.gridx = 0;
+        ((GridLayout)this.getLayout()).setRows(list.size()<10? 10:list.size());
         
         for(Serializable item: list){
             if(item == null)
                 continue;
             JPanel itemPanel = createPanelByType(item);
-            c.gridy = i;
-            this.add(itemPanel, c);
+            this.add(itemPanel);
             i++;
         }
     }
@@ -69,9 +59,7 @@ public class ListPanel extends javax.swing.JPanel {
     private void initComponents() {//GEN-BEGIN:initComponents
 
         setBackground(new java.awt.Color(255, 255, 255));
-        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.rowHeights = new int[] {60};
-        setLayout(layout);
+        setLayout(new java.awt.GridLayout(100, 1));
     }//GEN-END:initComponents
 
 
