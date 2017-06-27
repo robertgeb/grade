@@ -25,20 +25,24 @@ public class ListPanel extends javax.swing.JPanel {
         
         initComponents();
         
-        int i = 0;
+        int i = 1;
         
         this.setAutoscrolls(true);
         
         GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.FIRST_LINE_START;;
+        c.weighty = 0;
+        c.weightx = 1;
         c.ipady = 0;
         c.ipadx = 0;
         c.gridwidth = 1;
+        c.gridheight = 1;
         c.gridx = 0;
         
         for(Serializable item: list){
             JPanel itemPanel = createPanelByType(item);
-            c.gridy = i;        
+            c.gridy = i;
             this.add(itemPanel, c);
             i++;
         }
@@ -61,7 +65,9 @@ public class ListPanel extends javax.swing.JPanel {
     private void initComponents() {//GEN-BEGIN:initComponents
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new java.awt.GridBagLayout());
+        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
+        layout.rowHeights = new int[] {60};
+        setLayout(layout);
     }//GEN-END:initComponents
 
 

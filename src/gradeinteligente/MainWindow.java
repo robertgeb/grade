@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JWindow;
 import javax.swing.event.CellEditorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.TableModelEvent;
@@ -47,9 +48,18 @@ public class MainWindow extends javax.swing.JFrame {
         initMainPanels();
     }
     
-    public Serializable openSelectWindow(){
-        new SelectWindow(this, professorList);
-        return null;
+    public void persist(Serializable entity) {
+        GradeInteligentePUEntityManager.getTransaction().begin();
+        GradeInteligentePUEntityManager.persist(entity);
+        GradeInteligentePUEntityManager.getTransaction().commit();
+    }
+    
+    public JWindow professorSelectWindow(){
+        return new SelectWindow(this, professorList);
+    }
+    
+    public JWindow disciplinaSelectWindow(){
+        return new SelectWindow(this, disciplinaList);
     }
     
     @SuppressWarnings("unchecked")

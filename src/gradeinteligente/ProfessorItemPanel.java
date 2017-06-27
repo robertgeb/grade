@@ -5,17 +5,24 @@
  */
 package gradeinteligente;
 
+import java.awt.event.WindowEvent;
+import javax.swing.JWindow;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author robert
  */
 public class ProfessorItemPanel extends javax.swing.JPanel {
 
+    Professor professor;
+    
     /**
      * Creates new form ProfessorPanel
      */
     public ProfessorItemPanel(Professor professor) {
         initComponents();
+        this.professor = professor;
         nomeLabel.setText(professor.getNome());
         matriculaLabel.setText(professor.getMatricula().toString());
     }
@@ -32,6 +39,17 @@ public class ProfessorItemPanel extends javax.swing.JPanel {
         matriculaLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+        });
 
         nomeLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         nomeLabel.setText("Nome");
@@ -60,6 +78,20 @@ public class ProfessorItemPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        JWindow selectWindow = (JWindow) SwingUtilities.getWindowAncestor(this);
+        ((SelectWindow)selectWindow).setSelected(professor);
+        selectWindow.dispose();
+    }//GEN-LAST:event_formMouseClicked
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+    }//GEN-LAST:event_formMouseEntered
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        setBorder(null);
+    }//GEN-LAST:event_formMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

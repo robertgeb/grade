@@ -5,14 +5,11 @@
  */
 package gradeinteligente;
 
-import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.font.TextAttribute;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
@@ -22,11 +19,18 @@ import javax.swing.SwingUtilities;
  */
 public class TurmaItemPanel extends javax.swing.JPanel {
 
+    Turma turma;
+    
     /**
      * Creates new form TurmaPanel
      */
     public TurmaItemPanel(Turma turma) {
         initComponents();
+        this.turma = turma;
+        initLabels();
+    }
+    
+    private void initLabels() {
         nomeDisciplinaLabel.setText(turma.getDisciplina().toString());
         nomeProfessorLabel.setText(turma.getProfessor().toString());
         creditosLabel.setText(turma.getDisciplina().getCreditos().toString());
@@ -47,9 +51,32 @@ public class TurmaItemPanel extends javax.swing.JPanel {
         label.setFont(font.deriveFont(attributes));
     }
     
-    private void openSelectWindow(){
+    private void setProfessor(){
         MainWindow mainWindow = (MainWindow) SwingUtilities.getWindowAncestor(this);
-        Serializable item = mainWindow.openSelectWindow();
+        mainWindow.professorSelectWindow()
+                .addWindowListener(new WindowAdapter(){
+                    @Override
+                    public void windowClosed(WindowEvent e){
+                        // Configurando o professor selecionado
+                        turma.setProfessor((Professor)((SelectWindow)e.getWindow()).getSelected());
+                        initLabels();
+                        mainWindow.persist(turma);
+                    }
+                });
+    }
+    
+    private void setDisciplina(){
+        MainWindow mainWindow = (MainWindow) SwingUtilities.getWindowAncestor(this);
+        mainWindow.disciplinaSelectWindow()
+                .addWindowListener(new WindowAdapter(){
+                    @Override
+                    public void windowClosed(WindowEvent e){
+                        // Configurando o professor selecionado
+                        turma.setDisciplina((Disciplina)((SelectWindow)e.getWindow()).getSelected());
+                        initLabels();
+                        mainWindow.persist(turma);
+                    }
+                });
     }
     
     /**
@@ -80,9 +107,31 @@ public class TurmaItemPanel extends javax.swing.JPanel {
 
         nomeDisciplinaLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         nomeDisciplinaLabel.setText("Disciplina");
+        nomeDisciplinaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nomeDisciplinaLabelMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nomeDisciplinaLabelMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nomeDisciplinaLabelMouseEntered(evt);
+            }
+        });
 
         nomeProfessorLabel.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         nomeProfessorLabel.setText("Professor");
+        nomeProfessorLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nomeProfessorLabelMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                nomeProfessorLabelMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                nomeProfessorLabelMouseEntered(evt);
+            }
+        });
 
         creditosLabel.setText("Creditos");
 
@@ -93,7 +142,7 @@ public class TurmaItemPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -102,9 +151,9 @@ public class TurmaItemPanel extends javax.swing.JPanel {
                         .addComponent(periodoLabel))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(nomeDisciplinaLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(creditosLabel)))
-                .addContainerGap())
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,23 +166,49 @@ public class TurmaItemPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomeProfessorLabel)
                     .addComponent(periodoLabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        setUnderline(nomeDisciplinaLabel);
-        setUnderline(nomeProfessorLabel);
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
     }//GEN-LAST:event_formMouseEntered
 
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
-        unsetUnderline(nomeDisciplinaLabel);
-        unsetUnderline(nomeProfessorLabel);
+        setBorder(null);
     }//GEN-LAST:event_formMouseExited
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        openSelectWindow();
+        
     }//GEN-LAST:event_formMouseClicked
+
+    private void nomeDisciplinaLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeDisciplinaLabelMouseEntered
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setUnderline(nomeDisciplinaLabel);
+    }//GEN-LAST:event_nomeDisciplinaLabelMouseEntered
+
+    private void nomeDisciplinaLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeDisciplinaLabelMouseExited
+        unsetUnderline(nomeDisciplinaLabel);
+        setBorder(null);
+    }//GEN-LAST:event_nomeDisciplinaLabelMouseExited
+
+    private void nomeDisciplinaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeDisciplinaLabelMouseClicked
+        setDisciplina();
+    }//GEN-LAST:event_nomeDisciplinaLabelMouseClicked
+
+    private void nomeProfessorLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeProfessorLabelMouseClicked
+        setProfessor();
+    }//GEN-LAST:event_nomeProfessorLabelMouseClicked
+
+    private void nomeProfessorLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeProfessorLabelMouseEntered
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        setUnderline(nomeProfessorLabel);
+    }//GEN-LAST:event_nomeProfessorLabelMouseEntered
+
+    private void nomeProfessorLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeProfessorLabelMouseExited
+        unsetUnderline(nomeProfessorLabel);
+        setBorder(null);
+    }//GEN-LAST:event_nomeProfessorLabelMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

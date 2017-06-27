@@ -15,14 +15,23 @@ import javax.swing.JFrame;
  */
 public class SelectWindow extends javax.swing.JWindow {
 
+    Serializable entity;
+    
     public SelectWindow(JFrame mainWindow, List<? extends Serializable> entityList) {
         super(mainWindow);
-        this.setBounds(200,200,200,200);
+        this.setSize(400,400);
         this.setBackground(new java.awt.Color(255, 255, 255));
         
         this.setVisible(true);
         this.add(new ListPanel(entityList));
-        
+    }
+    
+    public Serializable getSelected(){
+        return entity;
+    }
+    
+    public void setSelected(Serializable entity){
+        this.entity = entity;
     }
     
 }
