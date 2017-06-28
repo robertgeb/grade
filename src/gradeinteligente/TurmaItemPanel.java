@@ -61,6 +61,7 @@ public class TurmaItemPanel extends javax.swing.JPanel {
                         turma.setProfessor((Professor)((SelectWindow)e.getWindow()).getSelected());
                         initLabels();
                         mainWindow.persist(turma);
+                        mainWindow.setEnabled(true);
                     }
                 });
     }
@@ -75,6 +76,7 @@ public class TurmaItemPanel extends javax.swing.JPanel {
                         turma.setDisciplina((Disciplina)((SelectWindow)e.getWindow()).getSelected());
                         initLabels();
                         mainWindow.persist(turma);
+                        mainWindow.setEnabled(true);
                     }
                 });
     }

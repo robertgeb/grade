@@ -38,10 +38,12 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     public JWindow professorSelectWindow(){
+        this.setEnabled(false);
         return new SelectWindow(this, professorList);
     }
     
     public JWindow disciplinaSelectWindow(){
+        this.setEnabled(false);
         return new SelectWindow(this, disciplinaList);
     }
     
