@@ -26,17 +26,14 @@ public class ListPanel extends javax.swing.JPanel {
         
         initComponents();
         
-        int i = 1;
-        
         this.setAutoscrolls(true);
-        ((GridLayout)this.getLayout()).setRows(list.size()<10? 10:list.size());
+        ((GridLayout)this.getLayout()).setRows(list.size()<15? 15:list.size());
         
         for(Serializable item: list){
             if(item == null)
                 continue;
             JPanel itemPanel = createPanelByType(item);
             this.add(itemPanel);
-            i++;
         }
     }
     
