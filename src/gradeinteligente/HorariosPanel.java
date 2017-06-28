@@ -131,7 +131,7 @@ public class HorariosPanel extends javax.swing.JPanel {
         diaLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         diaLabel.setText("Segunda");
 
-        linhaHorasLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gradeinteligente/linhaHoras.png"))); // NOI18N
+        linhaHorasLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gradeinteligente/images/linhaHoras.png"))); // NOI18N
 
         hora8Label.setText("8:00");
 
@@ -172,7 +172,7 @@ public class HorariosPanel extends javax.swing.JPanel {
         );
         horarioSalasPanelLayout.setVerticalGroup(
             horarioSalasPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGap(0, 387, Short.MAX_VALUE)
         );
 
         proxDiaLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N

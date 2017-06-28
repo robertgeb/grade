@@ -72,6 +72,10 @@ public class MainWindow extends javax.swing.JFrame {
         alocacoesMenuLabel = new javax.swing.JLabel();
         turmasMenuPanel = new javax.swing.JPanel();
         turmasLabel = new javax.swing.JLabel();
+        opcoesPanel = new javax.swing.JPanel();
+        criarButton = new javax.swing.JButton();
+        apagarButton = new javax.swing.JButton();
+        editarButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -79,7 +83,6 @@ public class MainWindow extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 600));
 
         menuPanel.setForeground(java.awt.Color.white);
         menuPanel.setOpaque(false);
@@ -102,14 +105,14 @@ public class MainWindow extends javax.swing.JFrame {
             gradesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradesMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gradesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addComponent(gradesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         gradesMenuPanelLayout.setVerticalGroup(
             gradesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradesMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gradesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addComponent(gradesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -132,14 +135,14 @@ public class MainWindow extends javax.swing.JFrame {
             horariosMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(horariosMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(horariosMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addComponent(horariosMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         horariosMenuPanelLayout.setVerticalGroup(
             horariosMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(horariosMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(horariosMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addComponent(horariosMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -162,14 +165,14 @@ public class MainWindow extends javax.swing.JFrame {
             alocacoesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(alocacoesMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(alocacoesMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                .addComponent(alocacoesMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addContainerGap())
         );
         alocacoesMenuPanelLayout.setVerticalGroup(
             alocacoesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(alocacoesMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(alocacoesMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
+                .addComponent(alocacoesMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -180,27 +183,47 @@ public class MainWindow extends javax.swing.JFrame {
         turmasLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         turmasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         turmasLabel.setText("Turmas");
+        turmasLabel.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         turmasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 turmasLabelMouseClicked(evt);
             }
         });
 
+        opcoesPanel.setBackground(new java.awt.Color(155, 197, 61));
+        opcoesPanel.setLayout(new java.awt.GridLayout());
+
+        criarButton.setText("Criar");
+        opcoesPanel.add(criarButton);
+
+        apagarButton.setText("Apagar");
+        apagarButton.setMaximumSize(null);
+        apagarButton.setMinimumSize(null);
+        apagarButton.setPreferredSize(new java.awt.Dimension(50, 25));
+        opcoesPanel.add(apagarButton);
+
+        editarButton.setText("Editar");
+        editarButton.setToolTipText("Editar");
+        opcoesPanel.add(editarButton);
+
         javax.swing.GroupLayout turmasMenuPanelLayout = new javax.swing.GroupLayout(turmasMenuPanel);
         turmasMenuPanel.setLayout(turmasMenuPanelLayout);
         turmasMenuPanelLayout.setHorizontalGroup(
             turmasMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(turmasMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+            .addGroup(turmasMenuPanelLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(opcoesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         turmasMenuPanelLayout.setVerticalGroup(
             turmasMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(turmasMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(turmasLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(opcoesPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         menuPanel.add(turmasMenuPanel);
@@ -214,15 +237,15 @@ public class MainWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE))
+                .addComponent(menuPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE))
         );
 
         pack();
@@ -402,8 +425,11 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.persistence.EntityManager GradeInteligentePUEntityManager;
     private javax.swing.JLabel alocacoesMenuLabel;
     private javax.swing.JPanel alocacoesMenuPanel;
+    private javax.swing.JButton apagarButton;
+    private javax.swing.JButton criarButton;
     private java.util.List<gradeinteligente.Disciplina> disciplinaList;
     private javax.persistence.Query disciplinaQuery;
+    private javax.swing.JButton editarButton;
     private java.util.List<gradeinteligente.Grade> gradeList;
     private javax.persistence.Query gradeQuery;
     private javax.swing.JLabel gradesLabel;
@@ -412,6 +438,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JPanel horariosMenuPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel menuPanel;
+    private javax.swing.JPanel opcoesPanel;
     private java.util.List<gradeinteligente.Predio> predioList;
     private javax.persistence.Query predioQuery;
     private java.util.List<gradeinteligente.Professor> professorList;
