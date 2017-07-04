@@ -9,6 +9,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.io.Serializable;
 import java.util.List;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -20,7 +21,7 @@ public class ListPanel extends javax.swing.JPanel {
     /**
      * Creates new form ListPanel
      */
-    public ListPanel(List<? extends Serializable> list) {
+    public ListPanel(List<?> list) {
         if(list.isEmpty())
             return;
         
@@ -29,7 +30,8 @@ public class ListPanel extends javax.swing.JPanel {
         this.setAutoscrolls(true);
         ((GridLayout)this.getLayout()).setRows(list.size()<15? 15:list.size());
         
-        for(Serializable item: list){
+        
+        for(Object item: list){
             if(item == null)
                 continue;
             JPanel itemPanel = createPanelByType(item);
@@ -37,13 +39,19 @@ public class ListPanel extends javax.swing.JPanel {
         }
     }
     
-    private JPanel createPanelByType(Serializable entity){
+    private JPanel createPanelByType(Object entity){
         if(entity instanceof Professor)
             return new ProfessorItemPanel((Professor) entity);
         if(entity instanceof Turma)
             return new TurmaItemPanel((Turma) entity);
         if(entity instanceof Disciplina)
             return new DisciplinaItemPanel((Disciplina) entity);
+        if(entity instanceof JLabel){
+            JPanel panel = new JPanel();
+            panel.add((JLabel) entity);
+            return panel;
+        }
+        
         return null;
     }
 

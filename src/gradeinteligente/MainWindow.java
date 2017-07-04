@@ -6,6 +6,9 @@
 package gradeinteligente;
 
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -47,6 +50,60 @@ public class MainWindow extends javax.swing.JFrame {
         return new SelectWindow(this, disciplinaList);
     }
     
+    public JWindow entidadeSelectWindow(){
+        List<JLabel> opcoesEntidades = new ArrayList<>();
+        opcoesEntidades.add(new JLabel());
+        opcoesEntidades.add(new JLabel());
+        opcoesEntidades.add(new JLabel());
+        opcoesEntidades.get(0).setText("Turma");
+        opcoesEntidades.get(0).addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                
+            }
+        });
+        opcoesEntidades.get(1).setText("Professor");
+        opcoesEntidades.get(2).setText("Disciplina");
+        this.setEnabled(false);
+        return new SelectWindow(this, opcoesEntidades);
+    }
+    
+    private void criarProfessor() {
+        
+        // TODO: Abrir janela de inserção dos dados
+        // Persistir no banco
+    }
+    
+    private void criarDisciplina() {
+        // TODO: Abrir janela de inserção dos dados
+        // Persistir no banco
+    }
+    
+    private void criarTurma() {
+        // TODO: Abrir janela de inserção dos dados
+        // Persistir no banco
+    }
+    
+    private void criarEntidade() {
+        entidadeSelectWindow().addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e){
+                String nomeEntidadeSelecionada = (String) ((SelectWindow)e.getWindow()).getSelected();
+                switch (nomeEntidadeSelecionada){
+                    case "Professor":
+                        criarProfessor();
+                        break;
+                    case "Disciplina":
+                        criarDisciplina();
+                        break;
+                    case "Turma":
+                        criarTurma();
+                        break;
+                }
+            }
+        });
+    }
+    
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
@@ -83,6 +140,7 @@ public class MainWindow extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(600, 600));
 
         menuPanel.setForeground(java.awt.Color.white);
         menuPanel.setOpaque(false);
@@ -194,16 +252,31 @@ public class MainWindow extends javax.swing.JFrame {
         opcoesPanel.setLayout(new java.awt.GridLayout());
 
         criarButton.setText("Criar");
+        criarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criarButtonActionPerformed(evt);
+            }
+        });
         opcoesPanel.add(criarButton);
 
         apagarButton.setText("Apagar");
         apagarButton.setMaximumSize(null);
         apagarButton.setMinimumSize(null);
         apagarButton.setPreferredSize(new java.awt.Dimension(50, 25));
+        apagarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                apagarButtonActionPerformed(evt);
+            }
+        });
         opcoesPanel.add(apagarButton);
 
         editarButton.setText("Editar");
         editarButton.setToolTipText("Editar");
+        editarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarButtonActionPerformed(evt);
+            }
+        });
         opcoesPanel.add(editarButton);
 
         javax.swing.GroupLayout turmasMenuPanelLayout = new javax.swing.GroupLayout(turmasMenuPanel);
@@ -266,6 +339,18 @@ public class MainWindow extends javax.swing.JFrame {
     private void alocacoesMenuLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alocacoesMenuLabelMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_alocacoesMenuLabelMouseClicked
+
+    private void criarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarButtonActionPerformed
+        criarEntidade();
+    }//GEN-LAST:event_criarButtonActionPerformed
+
+    private void apagarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apagarButtonActionPerformed
+        
+    }//GEN-LAST:event_apagarButtonActionPerformed
+
+    private void editarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarButtonActionPerformed
+        
+    }//GEN-LAST:event_editarButtonActionPerformed
 
     private void initMainPanels(){
         mainPanelList = new ArrayList<JPanel>();

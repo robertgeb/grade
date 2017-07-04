@@ -16,9 +16,9 @@ import javax.swing.JScrollPane;
  */
 public class SelectWindow extends javax.swing.JWindow {
 
-    Serializable entity;
+    Object entity;
     
-    public SelectWindow(JFrame mainWindow, List<? extends Serializable> entityList) {
+    public SelectWindow(JFrame mainWindow, List<?> entityList) {
         super(mainWindow);
         this.setSize(400,400);
         this.setBackground(new java.awt.Color(255, 255, 255));
@@ -30,11 +30,11 @@ public class SelectWindow extends javax.swing.JWindow {
         this.add(scroll);
     }
     
-    public Serializable getSelected(){
+    public Object getSelected(){
         return entity;
     }
     
-    public void setSelected(Serializable entity){
+    public void setSelected(Object entity){
         this.entity = entity;
     }
     
