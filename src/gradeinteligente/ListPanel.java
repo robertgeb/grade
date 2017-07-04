@@ -5,12 +5,15 @@
  */
 package gradeinteligente;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.io.Serializable;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -19,7 +22,7 @@ import javax.swing.JPanel;
 public class ListPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ListPanel
+     * Cria uma lista de paineis de acordo com o tipo
      */
     public ListPanel(List<?> list) {
         if(list.isEmpty())
@@ -28,15 +31,34 @@ public class ListPanel extends javax.swing.JPanel {
         initComponents();
         
         this.setAutoscrolls(true);
-        ((GridLayout)this.getLayout()).setRows(list.size()<15? 15:list.size());
         
+        // Configurando as linhas do layout
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weightx = 1;
+        c.weighty = 0;
+        c.gridheight = 1;
+        c.gridwidth = 1;
+        c.anchor = GridBagConstraints.SOUTHWEST;
+        c.fill = GridBagConstraints.HORIZONTAL;
         
+        // Percorre a lista
         for(Object item: list){
             if(item == null)
                 continue;
-            JPanel itemPanel = createPanelByType(item);
-            this.add(itemPanel);
+            JPanel itemPanel = createPanelByType(item); // Cria um painel de acordo com o tipo
+            if(itemPanel == null)
+                continue;
+            this.add(itemPanel, c);    // Adiciona o item(painel)            
+            c.gridy++; // Muda a linha(y) do proximo item
         }
+        
+        // Adicionando uma linha vazia para dar peso e empurrar a lista para o topo
+        c.weighty = 1;
+        JPanel lastPanel = new JPanel();
+        lastPanel.setBackground(Color.white);
+        this.add(lastPanel, c);
     }
     
     private JPanel createPanelByType(Object entity){
@@ -64,7 +86,12 @@ public class ListPanel extends javax.swing.JPanel {
     private void initComponents() {//GEN-BEGIN:initComponents
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setLayout(new java.awt.GridLayout(100, 1));
+        java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
+        layout.columnWidths = new int[] {1};
+        layout.rowHeights = new int[] {1};
+        layout.columnWeights = new double[] {0.0};
+        layout.rowWeights = new double[] {0.0};
+        setLayout(layout);
     }//GEN-END:initComponents
 
 

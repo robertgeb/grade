@@ -31,10 +31,8 @@ public class TurmaItemPanel extends javax.swing.JPanel {
     }
     
     private void initLabels() {
-        nomeDisciplinaLabel.setText(turma.getDisciplina().toString());
+        nomeTurmaLabel.setText(turma.getNome().toString());
         nomeProfessorLabel.setText(turma.getProfessor().toString());
-        creditosLabel.setText(turma.getDisciplina().getCreditos().toString());
-        periodoLabel.setText(turma.getDisciplina().getPeriodo().toString());
     }
 
     private void setUnderline(JLabel label){
@@ -89,10 +87,9 @@ public class TurmaItemPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
-        nomeDisciplinaLabel = new javax.swing.JLabel();
+        nomeTurmaLabel = new javax.swing.JLabel();
         nomeProfessorLabel = new javax.swing.JLabel();
-        creditosLabel = new javax.swing.JLabel();
-        periodoLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -107,17 +104,17 @@ public class TurmaItemPanel extends javax.swing.JPanel {
             }
         });
 
-        nomeDisciplinaLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        nomeDisciplinaLabel.setText("Disciplina");
-        nomeDisciplinaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+        nomeTurmaLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        nomeTurmaLabel.setText("Nome");
+        nomeTurmaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nomeDisciplinaLabelMouseClicked(evt);
+                nomeTurmaLabelMouseClicked(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                nomeDisciplinaLabelMouseExited(evt);
+                nomeTurmaLabelMouseExited(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                nomeDisciplinaLabelMouseEntered(evt);
+                nomeTurmaLabelMouseEntered(evt);
             }
         });
 
@@ -135,9 +132,7 @@ public class TurmaItemPanel extends javax.swing.JPanel {
             }
         });
 
-        creditosLabel.setText("Creditos");
-
-        periodoLabel.setText("Periodo");
+        jLabel1.setText("-");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,78 +140,70 @@ public class TurmaItemPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(nomeProfessorLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(periodoLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(nomeDisciplinaLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(creditosLabel)))
-                .addGap(30, 30, 30))
+                .addComponent(nomeTurmaLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nomeProfessorLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nomeDisciplinaLabel)
-                    .addComponent(creditosLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomeTurmaLabel)
                     .addComponent(nomeProfessorLabel)
-                    .addComponent(periodoLabel))
-                .addContainerGap())
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        //setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        
     }//GEN-LAST:event_formMouseEntered
 
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
-        setBorder(null);
+        //setBorder(null);
     }//GEN-LAST:event_formMouseExited
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         
     }//GEN-LAST:event_formMouseClicked
 
-    private void nomeDisciplinaLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeDisciplinaLabelMouseEntered
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        setUnderline(nomeDisciplinaLabel);
-    }//GEN-LAST:event_nomeDisciplinaLabelMouseEntered
+    private void nomeTurmaLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeTurmaLabelMouseEntered
+        //setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        //setUnderline(nomeTurmaLabel);
+    }//GEN-LAST:event_nomeTurmaLabelMouseEntered
 
-    private void nomeDisciplinaLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeDisciplinaLabelMouseExited
-        unsetUnderline(nomeDisciplinaLabel);
-        setBorder(null);
-    }//GEN-LAST:event_nomeDisciplinaLabelMouseExited
+    private void nomeTurmaLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeTurmaLabelMouseExited
+        //unsetUnderline(nomeTurmaLabel);
+        //setBorder(null);
+    }//GEN-LAST:event_nomeTurmaLabelMouseExited
 
-    private void nomeDisciplinaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeDisciplinaLabelMouseClicked
-        setDisciplina();
-    }//GEN-LAST:event_nomeDisciplinaLabelMouseClicked
+    private void nomeTurmaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeTurmaLabelMouseClicked
+        //setDisciplina();
+    }//GEN-LAST:event_nomeTurmaLabelMouseClicked
 
     private void nomeProfessorLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeProfessorLabelMouseClicked
-        setProfessor();
+        //setProfessor();
     }//GEN-LAST:event_nomeProfessorLabelMouseClicked
 
     private void nomeProfessorLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeProfessorLabelMouseEntered
-        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        setUnderline(nomeProfessorLabel);
+        //setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        //setUnderline(nomeProfessorLabel);
     }//GEN-LAST:event_nomeProfessorLabelMouseEntered
 
     private void nomeProfessorLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeProfessorLabelMouseExited
-        unsetUnderline(nomeProfessorLabel);
-        setBorder(null);
+        //unsetUnderline(nomeProfessorLabel);
+        //setBorder(null);
     }//GEN-LAST:event_nomeProfessorLabelMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel creditosLabel;
-    private javax.swing.JLabel nomeDisciplinaLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel nomeProfessorLabel;
-    private javax.swing.JLabel periodoLabel;
+    private javax.swing.JLabel nomeTurmaLabel;
     // End of variables declaration//GEN-END:variables
 }

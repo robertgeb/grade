@@ -6,6 +6,7 @@
 package gradeinteligente;
 
 import java.awt.event.WindowEvent;
+import java.util.List;
 import javax.swing.JWindow;
 import javax.swing.SwingUtilities;
 
@@ -26,6 +27,7 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
         nomeLabel.setText(disciplina.getNome());
         creditosLabel.setText(disciplina.getCreditos().toString());
         periodoLabel.setText(disciplina.getPeriodo().toString() + "º");
+        turmasListPanel.add(new ListPanel((List<Turma>)disciplina.getTurmaCollection()));
     }
 
     /**
@@ -39,6 +41,7 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
         nomeLabel = new javax.swing.JLabel();
         creditosLabel = new javax.swing.JLabel();
         periodoLabel = new javax.swing.JLabel();
+        turmasListPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -62,6 +65,8 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
         periodoLabel.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         periodoLabel.setText("Periodo");
 
+        turmasListPanel.setLayout(new java.awt.GridLayout(1, 1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -70,21 +75,26 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(creditosLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(periodoLabel))
-                    .addComponent(nomeLabel))
-                .addContainerGap(266, Short.MAX_VALUE))
+                        .addComponent(nomeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 269, Short.MAX_VALUE)
+                        .addComponent(creditosLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(turmasListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(periodoLabel)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(nomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(creditosLabel)
-                    .addComponent(periodoLabel))
+                    .addComponent(nomeLabel)
+                    .addComponent(creditosLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(periodoLabel)
+                    .addComponent(turmasListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }//GEN-END:initComponents
@@ -108,5 +118,6 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
     private javax.swing.JLabel creditosLabel;
     private javax.swing.JLabel nomeLabel;
     private javax.swing.JLabel periodoLabel;
+    private javax.swing.JPanel turmasListPanel;
     // End of variables declaration//GEN-END:variables
 }
