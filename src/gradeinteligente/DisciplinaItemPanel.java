@@ -25,8 +25,8 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
         initComponents();
         this.disciplina = disciplina;
         nomeLabel.setText(disciplina.getNome());
-        creditosLabel.setText(disciplina.getCreditos().toString());
-        periodoLabel.setText(disciplina.getPeriodo().toString() + "º");
+        creditosLabel.setText(disciplina.getCreditos().toString() + " Creditos");
+        periodoLabel.setText(disciplina.getPeriodo().toString() + "º Periodo");
         turmasListPanel.add(new ListPanel((List<Turma>)disciplina.getTurmaCollection()));
     }
 
@@ -45,9 +45,6 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 formMouseExited(evt);
             }
@@ -98,12 +95,6 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }//GEN-END:initComponents
-
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        JWindow selectWindow = (JWindow) SwingUtilities.getWindowAncestor(this);
-        ((SelectWindow)selectWindow).setSelected(disciplina);
-        selectWindow.dispose();
-    }//GEN-LAST:event_formMouseClicked
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

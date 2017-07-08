@@ -92,45 +92,12 @@ public class TurmaItemPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                formMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                formMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                formMouseEntered(evt);
-            }
-        });
 
         nomeTurmaLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         nomeTurmaLabel.setText("Nome");
-        nomeTurmaLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nomeTurmaLabelMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                nomeTurmaLabelMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                nomeTurmaLabelMouseEntered(evt);
-            }
-        });
 
         nomeProfessorLabel.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         nomeProfessorLabel.setText("Professor");
-        nomeProfessorLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nomeProfessorLabelMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                nomeProfessorLabelMouseExited(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                nomeProfessorLabelMouseEntered(evt);
-            }
-        });
 
         jLabel1.setText("-");
 
@@ -158,47 +125,6 @@ public class TurmaItemPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
-
-    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
-        //setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        
-    }//GEN-LAST:event_formMouseEntered
-
-    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
-        //setBorder(null);
-    }//GEN-LAST:event_formMouseExited
-
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        
-    }//GEN-LAST:event_formMouseClicked
-
-    private void nomeTurmaLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeTurmaLabelMouseEntered
-        //setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        //setUnderline(nomeTurmaLabel);
-    }//GEN-LAST:event_nomeTurmaLabelMouseEntered
-
-    private void nomeTurmaLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeTurmaLabelMouseExited
-        //unsetUnderline(nomeTurmaLabel);
-        //setBorder(null);
-    }//GEN-LAST:event_nomeTurmaLabelMouseExited
-
-    private void nomeTurmaLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeTurmaLabelMouseClicked
-        //setDisciplina();
-    }//GEN-LAST:event_nomeTurmaLabelMouseClicked
-
-    private void nomeProfessorLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeProfessorLabelMouseClicked
-        //setProfessor();
-    }//GEN-LAST:event_nomeProfessorLabelMouseClicked
-
-    private void nomeProfessorLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeProfessorLabelMouseEntered
-        //setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        //setUnderline(nomeProfessorLabel);
-    }//GEN-LAST:event_nomeProfessorLabelMouseEntered
-
-    private void nomeProfessorLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nomeProfessorLabelMouseExited
-        //unsetUnderline(nomeProfessorLabel);
-        //setBorder(null);
-    }//GEN-LAST:event_nomeProfessorLabelMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
