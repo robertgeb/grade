@@ -199,10 +199,6 @@ public class MainWindow extends javax.swing.JFrame {
         menuPanel = new javax.swing.JPanel();
         gradesMenuPanel = new javax.swing.JPanel();
         gradesLabel = new javax.swing.JLabel();
-        horariosMenuPanel = new javax.swing.JPanel();
-        horariosMenuLabel = new javax.swing.JLabel();
-        alocacoesMenuPanel = new javax.swing.JPanel();
-        alocacoesMenuLabel = new javax.swing.JLabel();
         turmasMenuPanel = new javax.swing.JPanel();
         turmasLabel = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
@@ -217,9 +213,10 @@ public class MainWindow extends javax.swing.JFrame {
         menuPanel.setOpaque(false);
         menuPanel.setLayout(new java.awt.GridLayout(1, 4));
 
-        gradesMenuPanel.setBackground(new java.awt.Color(188, 75, 81));
+        gradesMenuPanel.setBackground(new java.awt.Color(60, 145, 230));
 
-        gradesLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        gradesLabel.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        gradesLabel.setForeground(new java.awt.Color(250, 255, 253));
         gradesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gradesLabel.setText("Grades");
         gradesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -234,7 +231,7 @@ public class MainWindow extends javax.swing.JFrame {
             gradesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradesMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gradesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                .addComponent(gradesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                 .addContainerGap())
         );
         gradesMenuPanelLayout.setVerticalGroup(
@@ -247,69 +244,10 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuPanel.add(gradesMenuPanel);
 
-        horariosMenuPanel.setBackground(new java.awt.Color(253, 231, 76));
-
-        horariosMenuLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        horariosMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        horariosMenuLabel.setText("Horarios");
-        horariosMenuLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                horariosMenuLabelMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout horariosMenuPanelLayout = new javax.swing.GroupLayout(horariosMenuPanel);
-        horariosMenuPanel.setLayout(horariosMenuPanelLayout);
-        horariosMenuPanelLayout.setHorizontalGroup(
-            horariosMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(horariosMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(horariosMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        horariosMenuPanelLayout.setVerticalGroup(
-            horariosMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(horariosMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(horariosMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        menuPanel.add(horariosMenuPanel);
-
-        alocacoesMenuPanel.setBackground(new java.awt.Color(91, 192, 235));
-
-        alocacoesMenuLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        alocacoesMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        alocacoesMenuLabel.setText("Alocações");
-        alocacoesMenuLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                alocacoesMenuLabelMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout alocacoesMenuPanelLayout = new javax.swing.GroupLayout(alocacoesMenuPanel);
-        alocacoesMenuPanel.setLayout(alocacoesMenuPanelLayout);
-        alocacoesMenuPanelLayout.setHorizontalGroup(
-            alocacoesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(alocacoesMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(alocacoesMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        alocacoesMenuPanelLayout.setVerticalGroup(
-            alocacoesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(alocacoesMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(alocacoesMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        menuPanel.add(alocacoesMenuPanel);
-
         turmasMenuPanel.setBackground(new java.awt.Color(155, 197, 61));
 
-        turmasLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        turmasLabel.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        turmasLabel.setForeground(new java.awt.Color(250, 255, 253));
         turmasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         turmasLabel.setText("Turmas");
         turmasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -322,7 +260,7 @@ public class MainWindow extends javax.swing.JFrame {
         turmasMenuPanel.setLayout(turmasMenuPanelLayout);
         turmasMenuPanelLayout.setHorizontalGroup(
             turmasMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         turmasMenuPanelLayout.setVerticalGroup(
             turmasMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -361,14 +299,6 @@ public class MainWindow extends javax.swing.JFrame {
     private void turmasLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_turmasLabelMouseClicked
     
     }//GEN-LAST:event_turmasLabelMouseClicked
-
-    private void horariosMenuLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_horariosMenuLabelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_horariosMenuLabelMouseClicked
-
-    private void alocacoesMenuLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alocacoesMenuLabelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alocacoesMenuLabelMouseClicked
 
     private void initMainPanels(){
         disciplinasPanel = new ListPanel(disciplinaList);
@@ -522,16 +452,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager GradeInteligentePUEntityManager;
-    private javax.swing.JLabel alocacoesMenuLabel;
-    private javax.swing.JPanel alocacoesMenuPanel;
     private java.util.List<gradeinteligente.Disciplina> disciplinaList;
     private javax.persistence.Query disciplinaQuery;
     private java.util.List<gradeinteligente.Grade> gradeList;
     private javax.persistence.Query gradeQuery;
     private javax.swing.JLabel gradesLabel;
     private javax.swing.JPanel gradesMenuPanel;
-    private javax.swing.JLabel horariosMenuLabel;
-    private javax.swing.JPanel horariosMenuPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel menuPanel;
     private java.util.List<gradeinteligente.Predio> predioList;
