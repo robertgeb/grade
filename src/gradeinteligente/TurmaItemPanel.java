@@ -5,7 +5,9 @@
  */
 package gradeinteligente;
 
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.font.TextAttribute;
@@ -92,6 +94,11 @@ public class TurmaItemPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+        });
 
         nomeTurmaLabel.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         nomeTurmaLabel.setText("Nome");
@@ -125,6 +132,17 @@ public class TurmaItemPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        Component turmaItemPanel = evt.getComponent();
+        Component listaTurma = turmaItemPanel.getParent();
+        Component listaWrapper = listaTurma.getParent();
+        Component disciplinaItemPanel = listaWrapper.getParent();
+        // Convertendo evento
+        MouseEvent convertMouseEvent = SwingUtilities.convertMouseEvent(turmaItemPanel, evt, disciplinaItemPanel.getParent());
+        // Acionando evento do item pai
+        disciplinaItemPanel.dispatchEvent(convertMouseEvent);
+    }//GEN-LAST:event_formMouseEntered
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
