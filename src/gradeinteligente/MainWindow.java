@@ -14,10 +14,17 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 import javax.swing.JWindow;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -25,6 +32,8 @@ import javax.swing.JWindow;
  */
 public class MainWindow extends javax.swing.JFrame {
 
+    ListPanel disciplinasPanel;
+    
     /**
      * Creates new form MainWindow
      */
@@ -79,9 +88,76 @@ public class MainWindow extends javax.swing.JFrame {
         // Persistir no banco
     }
     
-    private void criarTurma() {
-        // TODO: Abrir janela de inserção dos dados
-        // Persistir no banco
+    public void criarTurma(Disciplina disciplina) {
+        JComboBox professoresComboBox = new JComboBox(professorList.toArray());
+        JTextField nomeTurma = new JTextField();
+        
+        JComponent[] inputs = new JComponent[] {
+            new JLabel("Nome"),
+            nomeTurma,
+            new JLabel("Professor"),
+            professoresComboBox
+        };
+        
+        int result = JOptionPane.showConfirmDialog(this
+                , inputs
+                , "Criar turma para "+disciplina.getNome()
+                , JOptionPane.OK_CANCEL_OPTION);
+        
+        if(result == JOptionPane.CANCEL_OPTION){
+            return;
+        }
+        else {
+            Turma novaTurma = new Turma();
+            novaTurma.setNome(nomeTurma.getText());
+            novaTurma.setDisciplina(disciplina);
+            novaTurma.setProfessor((Professor) professoresComboBox.getSelectedItem());
+            persist(novaTurma);
+            disciplina.getTurmaCollection().add(novaTurma);
+            disciplinasPanel.reload();
+        }
+    }
+    
+    public void apagarTurma(Turma turma) {
+        GradeInteligentePUEntityManager.getTransaction().begin();
+        GradeInteligentePUEntityManager.remove(turma);
+        GradeInteligentePUEntityManager.getTransaction().commit();
+        turma.getDisciplina().getTurmaCollection().remove(turma);
+        disciplinasPanel.reload();
+    }
+    
+    public void atualizarDisciplina(Disciplina disciplina){
+        JTextField nomeDisciplina = new JTextField();
+        JSpinner creditosDisciplina = new JSpinner();
+        JSpinner periodoDisciplina = new JSpinner();
+        nomeDisciplina.setText(disciplina.getNome());
+        creditosDisciplina.setValue(disciplina.getCreditos());
+        periodoDisciplina.setValue(disciplina.getPeriodo());
+        
+        JComponent[] inputs = new JComponent[] {
+            new JLabel("Nome"),
+            nomeDisciplina,
+            new JLabel("Creditos"),
+            creditosDisciplina,
+            new JLabel("Periodo"),
+            periodoDisciplina
+        };
+        
+        int result = JOptionPane.showConfirmDialog(this
+                , inputs
+                , "Editar disciplina "+disciplina.getNome()
+                , JOptionPane.OK_CANCEL_OPTION);
+        
+        if(result == JOptionPane.CANCEL_OPTION){
+            return;
+        }
+        else {
+            disciplina.setNome(nomeDisciplina.getText());
+            disciplina.setCreditos((int)creditosDisciplina.getValue());
+            disciplina.setPeriodo((int)periodoDisciplina.getValue());
+            persist(disciplina);
+            disciplinasPanel.reload();
+        }
     }
     
     private void criarEntidade() {
@@ -97,7 +173,7 @@ public class MainWindow extends javax.swing.JFrame {
                         criarDisciplina();
                         break;
                     case "Turma":
-                        criarTurma();
+                        //criarTurma();
                         break;
                 }
             }
@@ -295,14 +371,10 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_alocacoesMenuLabelMouseClicked
 
     private void initMainPanels(){
-        mainPanelList = new ArrayList<JPanel>();
-        mainPanelList.add(new GradesPanel());
-        mainPanelList.add(new HorariosPanel(new Grade()));
-        mainPanelList.add(new AlocacoesPanel());
-        mainPanelList.add(new ListPanel(disciplinaList));
+        disciplinasPanel = new ListPanel(disciplinaList);
         
         mainPanel.removeAll();
-        JScrollPane scroll = new JScrollPane(mainPanelList.get(3));
+        JScrollPane scroll = new JScrollPane(disciplinasPanel);
         scroll.getVerticalScrollBar().setUnitIncrement(17);
         mainPanel.add(scroll);
     }

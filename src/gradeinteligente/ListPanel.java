@@ -17,17 +17,23 @@ import javax.swing.JPanel;
  */
 public class ListPanel extends javax.swing.JPanel {
 
+    private List<?> list;
+    
     /**
      * Cria uma lista de paineis de acordo com o tipo
      */
     public ListPanel(List<?> list) {
-        if(list.isEmpty())
-            return;
+        if(list.isEmpty()){
+            return;   
+        }
+        this.list = list;
+        
         
         initComponents();
-        
-        this.setAutoscrolls(true);
-        
+        createList();
+    }
+    
+    private void createList(){
         // Configurando as linhas do layout
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
@@ -73,6 +79,13 @@ public class ListPanel extends javax.swing.JPanel {
         return null;
     }
 
+    public void reload() {
+        this.removeAll();
+        createList();
+        this.revalidate();
+        this.repaint();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

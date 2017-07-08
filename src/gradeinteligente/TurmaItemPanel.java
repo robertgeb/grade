@@ -5,6 +5,7 @@
  */
 package gradeinteligente;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
@@ -35,6 +36,16 @@ public class TurmaItemPanel extends javax.swing.JPanel {
     private void initLabels() {
         nomeTurmaLabel.setText(turma.getNome().toString());
         nomeProfessorLabel.setText(turma.getProfessor().toString());
+    }
+    
+    private void openMenu(MouseEvent evt) {
+        Component turmaItemPanel = evt.getComponent();
+        Component listaTurma = turmaItemPanel.getParent();
+        Component listaWrapper = listaTurma.getParent();
+        DisciplinaItemPanel disciplinaItemPanel = (DisciplinaItemPanel) listaWrapper.getParent();
+        MouseEvent convertedMouseEvent = SwingUtilities.convertMouseEvent(turmaItemPanel, evt, disciplinaItemPanel.getParent());
+        
+        disciplinaItemPanel.openMenu(convertedMouseEvent, turma);
     }
 
     private void setUnderline(JLabel label){
@@ -80,6 +91,10 @@ public class TurmaItemPanel extends javax.swing.JPanel {
                     }
                 });
     }
+
+    public Turma getTurma() {
+        return turma;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,6 +110,12 @@ public class TurmaItemPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 formMouseEntered(evt);
             }
@@ -142,7 +163,17 @@ public class TurmaItemPanel extends javax.swing.JPanel {
         MouseEvent convertMouseEvent = SwingUtilities.convertMouseEvent(turmaItemPanel, evt, disciplinaItemPanel.getParent());
         // Acionando evento do item pai
         disciplinaItemPanel.dispatchEvent(convertMouseEvent);
+        
+        setBackground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_formMouseEntered
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        openMenu(evt);
+    }//GEN-LAST:event_formMouseClicked
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        setBackground(Color.white);
+    }//GEN-LAST:event_formMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -5,6 +5,7 @@
  */
 package gradeinteligente;
 
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.util.List;
@@ -31,6 +32,13 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
         turmasListPanel.add(new ListPanel((List<Turma>)disciplina.getTurmaCollection()));
     }
 
+    public void openMenu(MouseEvent evt, Turma turma){
+        ActionsPopupMenu menu = new ActionsPopupMenu(this.disciplina, turma);
+        menu.setLocation(evt.getXOnScreen(), evt.getYOnScreen());
+        menu.setInvoker(evt.getComponent());
+        menu.setVisible(true);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,6 +54,9 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 formMouseExited(evt);
             }
@@ -104,6 +115,10 @@ public class DisciplinaItemPanel extends javax.swing.JPanel {
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
         setBorder(null);
     }//GEN-LAST:event_formMouseExited
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        openMenu(evt, null);
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
