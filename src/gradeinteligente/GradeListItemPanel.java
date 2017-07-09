@@ -5,6 +5,11 @@
  */
 package gradeinteligente;
 
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author robert
@@ -22,12 +27,38 @@ public class GradeListItemPanel extends javax.swing.JPanel {
         this.grade = grade;
         
         initLabels();
+        initMouseEvents();
     }
 
     private void initLabels(){
         nomeLabel.setText(grade.getNome());
         dataCriacaoLabel.setText(grade.getCriacao().toString());
         quantidadeTurmasLabel.setText(Integer.toString(grade.getHorarioCollection().size()));
+    }
+    
+    private void initMouseEvents(){
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent me) {
+                me.getComponent().setBackground(Color.LIGHT_GRAY);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent me) {
+                me.getComponent().setBackground(Color.WHITE);
+            }
+
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                showGrade();
+            }
+            
+        });
+    }
+    
+    private void showGrade(){
+        MainWindow mainWindow = (MainWindow) SwingUtilities.getWindowAncestor(this);
+        mainWindow.showGrade(grade);
     }
     
     /**

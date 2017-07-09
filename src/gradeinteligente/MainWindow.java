@@ -246,6 +246,10 @@ public class MainWindow extends javax.swing.JFrame {
         mainPanel.repaint();
     }
     
+    public void showGrade(Grade grade){
+        
+    }
+    
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
