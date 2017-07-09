@@ -247,7 +247,13 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     public void showGrade(Grade grade){
-        
+        mainPanel.removeAll();
+        gradeHorariosPanel = new GradeHorariosPanel(grade);
+        JScrollPane scroll = new JScrollPane(gradeHorariosPanel);
+        scroll.getVerticalScrollBar().setUnitIncrement(17);
+        mainPanel.add(scroll);
+        mainPanel.revalidate();
+        mainPanel.repaint();
     }
     
     @SuppressWarnings("unchecked")
@@ -296,7 +302,7 @@ public class MainWindow extends javax.swing.JFrame {
             gradesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradesMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gradesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addComponent(gradesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                 .addContainerGap())
         );
         gradesMenuPanelLayout.setVerticalGroup(
@@ -322,7 +328,7 @@ public class MainWindow extends javax.swing.JFrame {
             turmasMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(turmasMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                 .addContainerGap())
         );
         turmasMenuPanelLayout.setVerticalGroup(
@@ -344,7 +350,7 @@ public class MainWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
             .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
