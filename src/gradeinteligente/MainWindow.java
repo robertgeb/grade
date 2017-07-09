@@ -33,6 +33,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     ListPanel disciplinasTurmasListPanel;
     ListPanel gradeListPanel;
+    GradeHorariosPanel gradeHorariosPanel;
     
     /**
      * Creates new form MainWindow

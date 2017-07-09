@@ -28,8 +28,8 @@ public class ListPanel extends javax.swing.JPanel {
         }
         this.list = list;
         
-        
         initComponents();
+        
         createList();
     }
     
@@ -64,8 +64,8 @@ public class ListPanel extends javax.swing.JPanel {
     }
     
     private JPanel createPanelByType(Object entity){
-        if(entity instanceof Professor)
-            return new ProfessorItemPanel((Professor) entity);
+        if(entity instanceof Grade)
+            return new GradeListItemPanel((Grade) entity);
         if(entity instanceof Turma)
             return new TurmaListItemPanel((Turma) entity);
         if(entity instanceof Disciplina)

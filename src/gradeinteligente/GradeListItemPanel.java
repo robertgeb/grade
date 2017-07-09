@@ -10,14 +10,26 @@ package gradeinteligente;
  * @author robert
  */
 public class GradeListItemPanel extends javax.swing.JPanel {
+    
+    Grade grade;
 
     /**
      * Creates new form GradeListPanel
      */
-    public GradeListItemPanel() {
+    public GradeListItemPanel(Grade grade) {
         initComponents();
+        
+        this.grade = grade;
+        
+        initLabels();
     }
 
+    private void initLabels(){
+        nomeLabel.setText(grade.getNome());
+        dataCriacaoLabel.setText(grade.getCriacao().toString());
+        quantidadeTurmasLabel.setText(Integer.toString(grade.getHorarioCollection().size()));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,19 +38,47 @@ public class GradeListItemPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
+        nomeLabel = new javax.swing.JLabel();
+        dataCriacaoLabel = new javax.swing.JLabel();
+        quantidadeTurmasLabel = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        nomeLabel.setText("Nome");
+
+        dataCriacaoLabel.setText("Data de criação");
+
+        quantidadeTurmasLabel.setText("Turmas");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nomeLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addComponent(dataCriacaoLabel)
+                .addGap(18, 18, 18)
+                .addComponent(quantidadeTurmasLabel)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomeLabel)
+                    .addComponent(quantidadeTurmasLabel)
+                    .addComponent(dataCriacaoLabel))
+                .addContainerGap())
         );
     }//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel dataCriacaoLabel;
+    private javax.swing.JLabel nomeLabel;
+    private javax.swing.JLabel quantidadeTurmasLabel;
     // End of variables declaration//GEN-END:variables
 }
