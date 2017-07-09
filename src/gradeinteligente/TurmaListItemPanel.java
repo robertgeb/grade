@@ -20,14 +20,14 @@ import javax.swing.SwingUtilities;
  *
  * @author robert
  */
-public class TurmaItemPanel extends javax.swing.JPanel {
+public class TurmaListItemPanel extends javax.swing.JPanel {
 
     Turma turma;
     
     /**
      * Creates new form TurmaPanel
      */
-    public TurmaItemPanel(Turma turma) {
+    public TurmaListItemPanel(Turma turma) {
         initComponents();
         this.turma = turma;
         initLabels();
@@ -42,7 +42,7 @@ public class TurmaItemPanel extends javax.swing.JPanel {
         Component turmaItemPanel = evt.getComponent();
         Component listaTurma = turmaItemPanel.getParent();
         Component listaWrapper = listaTurma.getParent();
-        DisciplinaItemPanel disciplinaItemPanel = (DisciplinaItemPanel) listaWrapper.getParent();
+        DisciplinaListItemPanel disciplinaItemPanel = (DisciplinaListItemPanel) listaWrapper.getParent();
         MouseEvent convertedMouseEvent = SwingUtilities.convertMouseEvent(turmaItemPanel, evt, disciplinaItemPanel.getParent());
         
         disciplinaItemPanel.openMenu(convertedMouseEvent, turma);

@@ -16,14 +16,14 @@ import javax.swing.SwingUtilities;
  *
  * @author robert
  */
-public class DisciplinaItemPanel extends javax.swing.JPanel {
+public class DisciplinaListItemPanel extends javax.swing.JPanel {
 
     Disciplina disciplina;
     
     /**
      * Creates new form ProfessorPanel
      */
-    public DisciplinaItemPanel(Disciplina disciplina) {
+    public DisciplinaListItemPanel(Disciplina disciplina) {
         initComponents();
         this.disciplina = disciplina;
         nomeLabel.setText(disciplina.getNome());

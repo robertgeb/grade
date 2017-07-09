@@ -7,6 +7,7 @@ package gradeinteligente;
 
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.Serializable;
@@ -16,7 +17,6 @@ import java.util.List;
 import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,7 +24,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -32,7 +31,8 @@ import javax.swing.SwingUtilities;
  */
 public class MainWindow extends javax.swing.JFrame {
 
-    ListPanel disciplinasPanel;
+    ListPanel disciplinasTurmasListPanel;
+    ListPanel gradeListPanel;
     
     /**
      * Creates new form MainWindow
@@ -40,6 +40,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         //new Bd();
         initComponents();
+        initTabEvents();
         initMainPanels();
     }
     
@@ -114,7 +115,7 @@ public class MainWindow extends javax.swing.JFrame {
             novaTurma.setProfessor((Professor) professoresComboBox.getSelectedItem());
             persist(novaTurma);
             disciplina.getTurmaCollection().add(novaTurma);
-            disciplinasPanel.reload();
+            disciplinasTurmasListPanel.reload();
         }
     }
     
@@ -123,7 +124,7 @@ public class MainWindow extends javax.swing.JFrame {
         GradeInteligentePUEntityManager.remove(turma);
         GradeInteligentePUEntityManager.getTransaction().commit();
         turma.getDisciplina().getTurmaCollection().remove(turma);
-        disciplinasPanel.reload();
+        disciplinasTurmasListPanel.reload();
     }
     
     public void atualizarDisciplina(Disciplina disciplina){
@@ -156,7 +157,7 @@ public class MainWindow extends javax.swing.JFrame {
             disciplina.setCreditos((int)creditosDisciplina.getValue());
             disciplina.setPeriodo((int)periodoDisciplina.getValue());
             persist(disciplina);
-            disciplinasPanel.reload();
+            disciplinasTurmasListPanel.reload();
         }
     }
     
@@ -178,6 +179,70 @@ public class MainWindow extends javax.swing.JFrame {
                 }
             }
         });
+    }
+    
+    private void initTabEvents(){
+        gradesMenuPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                showGradesList();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent me) {
+                gradesLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent me) {
+                gradesLabel.setBorder(null);
+            }
+        });
+        
+        turmasMenuPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                showTurmasList();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent me) {
+                turmasLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent me) {
+                turmasLabel.setBorder(null);
+            }
+        });
+    }
+    
+    private void initMainPanels(){
+        disciplinasTurmasListPanel = new ListPanel(disciplinaList);
+        gradeListPanel = new ListPanel(gradeList);
+        
+        mainPanel.removeAll();
+        JScrollPane scroll = new JScrollPane(disciplinasTurmasListPanel);
+        scroll.getVerticalScrollBar().setUnitIncrement(17);
+        mainPanel.add(scroll);
+    }
+    
+    private void showTurmasList(){
+        mainPanel.removeAll();
+        JScrollPane scroll = new JScrollPane(disciplinasTurmasListPanel);
+        scroll.getVerticalScrollBar().setUnitIncrement(17);
+        mainPanel.add(scroll);
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+    
+    private void showGradesList(){
+        mainPanel.removeAll();
+        JScrollPane scroll = new JScrollPane(gradeListPanel);
+        scroll.getVerticalScrollBar().setUnitIncrement(17);
+        mainPanel.add(scroll);
+        mainPanel.revalidate();
+        mainPanel.repaint();
     }
     
     @SuppressWarnings("unchecked")
@@ -219,11 +284,6 @@ public class MainWindow extends javax.swing.JFrame {
         gradesLabel.setForeground(new java.awt.Color(250, 255, 253));
         gradesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gradesLabel.setText("Grades");
-        gradesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                gradesLabelMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout gradesMenuPanelLayout = new javax.swing.GroupLayout(gradesMenuPanel);
         gradesMenuPanel.setLayout(gradesMenuPanelLayout);
@@ -250,21 +310,22 @@ public class MainWindow extends javax.swing.JFrame {
         turmasLabel.setForeground(new java.awt.Color(250, 255, 253));
         turmasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         turmasLabel.setText("Turmas");
-        turmasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                turmasLabelMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout turmasMenuPanelLayout = new javax.swing.GroupLayout(turmasMenuPanel);
         turmasMenuPanel.setLayout(turmasMenuPanelLayout);
         turmasMenuPanelLayout.setHorizontalGroup(
             turmasMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(turmasMenuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addContainerGap())
         );
         turmasMenuPanelLayout.setVerticalGroup(
             turmasMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, turmasMenuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         menuPanel.add(turmasMenuPanel);
@@ -292,23 +353,6 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }//GEN-END:initComponents
 
-    private void gradesLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gradesLabelMouseClicked
-       
-    }//GEN-LAST:event_gradesLabelMouseClicked
-
-    private void turmasLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_turmasLabelMouseClicked
-    
-    }//GEN-LAST:event_turmasLabelMouseClicked
-
-    private void initMainPanels(){
-        disciplinasPanel = new ListPanel(disciplinaList);
-        
-        mainPanel.removeAll();
-        JScrollPane scroll = new JScrollPane(disciplinasPanel);
-        scroll.getVerticalScrollBar().setUnitIncrement(17);
-        mainPanel.add(scroll);
-    }
-    
     private void setSaved(String entity){
         toSaveList.remove(entity);
         JLabel entityTabLabel = getTabLabel(entity);
