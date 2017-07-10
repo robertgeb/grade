@@ -85,7 +85,7 @@ public class DisciplinaTurmaPopupMenu extends JPopupMenu {
     
     private void editarDisciplina(){
         setMainWindow();
-        mainWindow.atualizarDisciplina(this.disciplina);
+        mainWindow.modificarDisciplina(this.disciplina);
     }
     
 }

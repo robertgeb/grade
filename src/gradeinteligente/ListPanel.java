@@ -67,7 +67,7 @@ public class ListPanel extends javax.swing.JPanel {
         if(entity instanceof Grade)
             return new GradePanel((Grade) entity);
         if(entity instanceof Turma)
-            return new TurmaListItemPanel((Turma) entity);
+            return new TurmaPanel((Turma) entity);
         if(entity instanceof Disciplina)
             return new DisciplinaPanel((Disciplina) entity);
         if(entity instanceof JLabel){

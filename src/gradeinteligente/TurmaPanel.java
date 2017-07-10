@@ -20,14 +20,14 @@ import javax.swing.SwingUtilities;
  *
  * @author robert
  */
-public class TurmaListItemPanel extends javax.swing.JPanel {
+public class TurmaPanel extends javax.swing.JPanel {
 
     Turma turma;
     
     /**
      * Creates new form TurmaPanel
      */
-    public TurmaListItemPanel(Turma turma) {
+    public TurmaPanel(Turma turma) {
         initComponents();
         this.turma = turma;
         initLabels();

@@ -91,6 +91,7 @@ public class QuadroHorariosPanel extends javax.swing.JPanel {
         horariosPanel.add(horarioPanel);
         
     }
+    
     private int posYByDia(int dia){
         // Quantidade de linhas no dia * Altura padrão + a linha referente ao dia * Altura padrão
         return linhasPorDia[dia]*TURMA_HEIGHT+dia*TURMA_HEIGHT;

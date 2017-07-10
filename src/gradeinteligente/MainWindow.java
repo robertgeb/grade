@@ -42,19 +42,26 @@ public class MainWindow extends javax.swing.JFrame {
         //new Bd();
         initComponents();
         initTabEvents();
-        initMainPanels();
+        initMainPanel();
     }
     
-    public void persist(Serializable entity) {
+    /**
+     * Salva nova entidade no banco ou atualiza uma ja existente
+     */
+    public void save(Serializable entity) {
         GradeInteligentePUEntityManager.getTransaction().begin();
         GradeInteligentePUEntityManager.persist(entity);
         GradeInteligentePUEntityManager.getTransaction().commit();
     }
     
+    /**
+     *  Abre uma janela para inserção dos dados, cria uma nova turma, e recarrega a lista de turmas
+     */
     public void criarTurma(Disciplina disciplina) {
         JComboBox professoresComboBox = new JComboBox(professorList.toArray());
         JTextField nomeTurma = new JTextField();
         
+        // Configurando campos da janela
         JComponent[] inputs = new JComponent[] {
             new JLabel("Nome"),
             nomeTurma,
@@ -75,12 +82,15 @@ public class MainWindow extends javax.swing.JFrame {
             novaTurma.setNome(nomeTurma.getText());
             novaTurma.setDisciplina(disciplina);
             novaTurma.setProfessor((Professor) professoresComboBox.getSelectedItem());
-            persist(novaTurma);
+            save(novaTurma);
             disciplina.getTurmaCollection().add(novaTurma);
             disciplinasTurmasListPanel.reload();
         }
     }
     
+    /**
+     *  Apaga turma e recarrega lista de turmas
+     */
     public void apagarTurma(Turma turma) {
         GradeInteligentePUEntityManager.getTransaction().begin();
         GradeInteligentePUEntityManager.remove(turma);
@@ -89,7 +99,10 @@ public class MainWindow extends javax.swing.JFrame {
         disciplinasTurmasListPanel.reload();
     }
     
-    public void atualizarDisciplina(Disciplina disciplina){
+    /**
+     *  Abre uma janela para atualizar os dados de uma disciplina
+     */
+    public void modificarDisciplina(Disciplina disciplina){
         JTextField nomeDisciplina = new JTextField();
         JSpinner creditosDisciplina = new JSpinner();
         JSpinner periodoDisciplina = new JSpinner();
@@ -118,18 +131,24 @@ public class MainWindow extends javax.swing.JFrame {
             disciplina.setNome(nomeDisciplina.getText());
             disciplina.setCreditos((int)creditosDisciplina.getValue());
             disciplina.setPeriodo((int)periodoDisciplina.getValue());
-            persist(disciplina);
+            save(disciplina);
             disciplinasTurmasListPanel.reload();
         }
     }
     
+    /**
+     *  Salva o horario e atualiza a lista de horarios
+     */
     public void atualizarHorario(Horario horario){
-        persist(horario);
+        save(horario);
         if(gradeHorariosPanel != null){
             gradeHorariosPanel.atualizar();
         }
     }
     
+    /**
+     *  Configuração inicial dos eventos do mouse com as abas do topo
+     */
     private void initTabEvents(){
         gradesMenuPanel.addMouseListener(new MouseAdapter() {
             @Override
@@ -166,7 +185,10 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
     
-    private void initMainPanels(){
+    /**
+     *  Configuração inicial do painel principal
+     */
+    private void initMainPanel(){
         disciplinasTurmasListPanel = new ListPanel(disciplinaList);
         
         mainPanel.removeAll();
@@ -175,18 +197,26 @@ public class MainWindow extends javax.swing.JFrame {
         mainPanel.add(scroll);
     }
     
+    /**
+     *  Abre no painel principal a lista de disciplinas/Turmas
+     */
     private void showTurmasList(){
         mainPanel.removeAll();
         gradeHorariosPanel = null;
         gradeListPanel = null;
+        
         disciplinasTurmasListPanel = new ListPanel(disciplinaList);
         JScrollPane scroll = new JScrollPane(disciplinasTurmasListPanel);
         scroll.getVerticalScrollBar().setUnitIncrement(17);
+        
         mainPanel.add(scroll);
         mainPanel.revalidate();
         mainPanel.repaint();
     }
     
+    /**
+     *  Abre a lista de grades salvas
+     */
     private void showGradesList(){
         mainPanel.removeAll();
         gradeHorariosPanel = null;
@@ -199,13 +229,18 @@ public class MainWindow extends javax.swing.JFrame {
         mainPanel.repaint();
     }
     
+    /**
+     *  Abre o quadro de horarios de uma grade
+     */
     public void showGrade(Grade grade){
         mainPanel.removeAll();
         gradeListPanel = null;
         disciplinasTurmasListPanel = null;
+        
         gradeHorariosPanel = new QuadroHorariosPanel(grade);
         JScrollPane scroll = new JScrollPane(gradeHorariosPanel);
         scroll.getVerticalScrollBar().setUnitIncrement(17);
+        
         mainPanel.add(scroll);
         mainPanel.revalidate();
         mainPanel.repaint();
