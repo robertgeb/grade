@@ -6,6 +6,8 @@
 package gradeinteligente;
 
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -100,7 +102,63 @@ public class Horario implements Serializable {
     public void setGrade(Grade grade) {
         this.grade = grade;
     }
+    
+    public int getHoraNormalizada(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(getHora());
+        return calendar.get(Calendar.HOUR_OF_DAY);
+    }
+    
+    public void setHoraNormalizada(int hora){
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, hora);
+        this.hora = calendar.getTime();
+    }
+    
+    public void generateDiaHora(){
+        if(grade == null)
+            return;
+        Collection<Horario> outrosHorarios = grade.getHorarioCollection();
+        
+        horaLoop: for (int i = 0; i < 4; i+=2) {
+            diaLoop: for (int j = 0; j < 3; j++) {
+                for (Horario outroHorario : outrosHorarios) {
+                    if(outroHorario.getDia() == j && outroHorario.getHoraNormalizada()-8 == i && mesmoPeriodo(outroHorario))
+                        continue diaLoop;
+                }
+                this.dia = j;
+                this.setHoraNormalizada(i+8);
+                return;
+            }
+        }
+        horaLoop: for (int i = 5; i < 13; i+=2) {
+            diaLoop: for (int j = 0; j < 3; j++) {
+                for (Horario outroHorario : outrosHorarios) {
+                    if(outroHorario.getDia() == j && outroHorario.getHoraNormalizada()-8 == i && mesmoPeriodo(outroHorario))
+                        continue diaLoop;
+                }
+                this.dia = j;
+                this.setHoraNormalizada(i+8);
+                return;
+            }
+        }
+        horaLoop: for (int i = 0; i < 13; i+=2) {
+            diaLoop: for (int j = 0; j < 6; j++) {
+                for (Horario outroHorario : outrosHorarios) {
+                    if(outroHorario.getDia() == j && outroHorario.getHoraNormalizada()-8 == i && mesmoPeriodo(outroHorario))
+                        continue diaLoop;
+                }
+                this.dia = j;
+                this.setHoraNormalizada(i+8);
+                return;
+            }
+        }
+    }
 
+    private boolean mesmoPeriodo(Horario outroHorario){
+        return outroHorario.getTurma().getDisciplina().getPeriodo() == turma.getDisciplina().getPeriodo();
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

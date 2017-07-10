@@ -13,6 +13,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -105,9 +106,26 @@ public class MainWindow extends javax.swing.JFrame {
                 , JOptionPane.OK_CANCEL_OPTION);
         
         if(result != JOptionPane.CANCEL_OPTION){
-            return;
+            Grade novaGrade = new Grade();
+            novaGrade.setCriacao(Calendar.getInstance().getTime());
+            novaGrade.setNome("Teste");
+            save(novaGrade);
+            for (Turma turma : turmaList) {
+                // Se a tuma estava selecionada cria horario
+                if(inputs[turmaList.indexOf(turma)+1] instanceof JCheckBox && ((JCheckBox)inputs[turmaList.indexOf(turma)+1]).isSelected()){
+                    Horario novoHorario = new Horario();
+                    novoHorario.setGrade(novaGrade);
+                    novoHorario.setTurma(turma);
+                    novoHorario.generateDiaHora();
+                    novaGrade.getHorarioCollection().add(novoHorario);
+                    save(novoHorario);
+                }
+            }
+            showGrade(novaGrade);
         }
     }
+    
+    
     
     /**
      *  Apaga turma e recarrega lista de turmas
