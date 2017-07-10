@@ -130,6 +130,7 @@ public class QuadroHorariosPanel extends javax.swing.JPanel {
         for (int i = dia+1; i < 6; i++) {
             diaLabelList[i].setLocation(0, diaLabelList[i].getLocation().y+TURMA_HEIGHT);
         }
+        diaLabelList[dia].setLocation(0, diaLabelList[dia].getLocation().y+(TURMA_HEIGHT)/2);
     }
     
     /**

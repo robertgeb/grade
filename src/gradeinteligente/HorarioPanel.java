@@ -21,7 +21,7 @@ public class HorarioPanel extends javax.swing.JPanel {
     public HorarioPanel(Horario horario) {
         initComponents();
         this.horario = horario;
-        disciplinaLabel.setText(horario.getTurma().getDisciplina().getNome());
+        disciplinaLabel.setText(horario.getTurma().getDisciplina().getAbreviatura() + " - " + horario.getTurma().getNome());
         professorLabel.setText(horario.getTurma().getProfessor().getNome());
         
     }
