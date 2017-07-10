@@ -65,6 +65,7 @@ public class QuadroHorariosPanel extends javax.swing.JPanel {
             divDiaLabelList[i].setBounds(0, (i+1)*TURMA_HEIGHT, TURMA_WIDTH*13, 1);
             diaLabelList[i].setBounds(0, i*TURMA_HEIGHT, TURMA_WIDTH, TURMA_HEIGHT);
         }
+        divDiaLabelList[5].setBorder(null);
     }
     
     private void initHorariosPanels(){
