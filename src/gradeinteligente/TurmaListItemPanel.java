@@ -42,54 +42,10 @@ public class TurmaListItemPanel extends javax.swing.JPanel {
         Component turmaItemPanel = evt.getComponent();
         Component listaTurma = turmaItemPanel.getParent();
         Component listaWrapper = listaTurma.getParent();
-        DisciplinaListItemPanel disciplinaItemPanel = (DisciplinaListItemPanel) listaWrapper.getParent();
+        DisciplinaPanel disciplinaItemPanel = (DisciplinaPanel) listaWrapper.getParent();
         MouseEvent convertedMouseEvent = SwingUtilities.convertMouseEvent(turmaItemPanel, evt, disciplinaItemPanel.getParent());
         
         disciplinaItemPanel.openMenu(convertedMouseEvent, turma);
-    }
-
-    private void setUnderline(JLabel label){
-        Font font = label.getFont();
-        Map attributes = font.getAttributes();
-        attributes.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
-        label.setFont(font.deriveFont(attributes));
-    }
-    
-    private void unsetUnderline(JLabel label){
-        Font font = label.getFont();
-        Map attributes = font.getAttributes();
-        attributes.put(TextAttribute.UNDERLINE, -1);
-        label.setFont(font.deriveFont(attributes));
-    }
-    
-    private void setProfessor(){
-        MainWindow mainWindow = (MainWindow) SwingUtilities.getWindowAncestor(this);
-        mainWindow.professorSelectWindow()
-                .addWindowListener(new WindowAdapter(){
-                    @Override
-                    public void windowClosed(WindowEvent e){
-                        // Configurando o professor selecionado
-                        turma.setProfessor((Professor)((SelectWindow)e.getWindow()).getSelected());
-                        initLabels();
-                        mainWindow.persist(turma);
-                        mainWindow.setEnabled(true);
-                    }
-                });
-    }
-    
-    private void setDisciplina(){
-        MainWindow mainWindow = (MainWindow) SwingUtilities.getWindowAncestor(this);
-        mainWindow.disciplinaSelectWindow()
-                .addWindowListener(new WindowAdapter(){
-                    @Override
-                    public void windowClosed(WindowEvent e){
-                        // Configurando o professor selecionado
-                        turma.setDisciplina((Disciplina)((SelectWindow)e.getWindow()).getSelected());
-                        initLabels();
-                        mainWindow.persist(turma);
-                        mainWindow.setEnabled(true);
-                    }
-                });
     }
 
     public Turma getTurma() {

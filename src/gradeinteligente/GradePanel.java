@@ -14,14 +14,14 @@ import javax.swing.SwingUtilities;
  *
  * @author robert
  */
-public class GradeListItemPanel extends javax.swing.JPanel {
+public class GradePanel extends javax.swing.JPanel {
     
     Grade grade;
 
     /**
      * Creates new form GradeListPanel
      */
-    public GradeListItemPanel(Grade grade) {
+    public GradePanel(Grade grade) {
         initComponents();
         
         this.grade = grade;

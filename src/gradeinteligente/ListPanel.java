@@ -65,11 +65,11 @@ public class ListPanel extends javax.swing.JPanel {
     
     private JPanel createPanelByType(Object entity){
         if(entity instanceof Grade)
-            return new GradeListItemPanel((Grade) entity);
+            return new GradePanel((Grade) entity);
         if(entity instanceof Turma)
             return new TurmaListItemPanel((Turma) entity);
         if(entity instanceof Disciplina)
-            return new DisciplinaListItemPanel((Disciplina) entity);
+            return new DisciplinaPanel((Disciplina) entity);
         if(entity instanceof JLabel){
             JPanel panel = new JPanel();
             panel.add((JLabel) entity);
