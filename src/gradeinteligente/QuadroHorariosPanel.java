@@ -84,9 +84,9 @@ public class QuadroHorariosPanel extends javax.swing.JPanel {
         // Ajusta a altura do quadro caso haja outra turma na mesmoa hora
         ajustDiaHeight(horario.getDia(), horarioPanel.getHoraNormalizada());
         // Configura a posição do horario no quadro
-        int posY = posYByDia(horario.getDia());
+        int posY = posYByDia(horario.getDia())+1;
         int posX = posXByHora(horarioPanel.getHoraNormalizada());
-        horarioPanel.setBounds(posX, posY, TURMA_WIDTH*2, TURMA_HEIGHT);
+        horarioPanel.setBounds(posX, posY, TURMA_WIDTH*2, TURMA_HEIGHT-1);
         // Adiciona ao quadro
         horariosPanel.add(horarioPanel);
         

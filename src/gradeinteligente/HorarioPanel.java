@@ -5,6 +5,7 @@
  */
 package gradeinteligente;
 
+import java.awt.Color;
 import java.util.Calendar;
 
 /**
@@ -48,6 +49,14 @@ public class HorarioPanel extends javax.swing.JPanel {
         disciplinaLabel = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+        });
 
         professorLabel.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         professorLabel.setText("Professor");
@@ -76,6 +85,14 @@ public class HorarioPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }//GEN-END:initComponents
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        this.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_formMouseEntered
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        this.setBackground(Color.WHITE);
+    }//GEN-LAST:event_formMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
