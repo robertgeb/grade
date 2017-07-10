@@ -21,7 +21,7 @@ import javax.swing.SwingUtilities;
  *
  * @author robert
  */
-public class ActionsPopupMenu extends JPopupMenu {
+public class DisciplinaTurmaPopupMenu extends JPopupMenu {
     
     JMenuItem editarDisciplinaItem;
     JMenuItem novaTurmaItem;
@@ -31,7 +31,7 @@ public class ActionsPopupMenu extends JPopupMenu {
     Turma turma;
     MainWindow mainWindow;
 
-    public ActionsPopupMenu(Disciplina disciplina, Turma turma) {
+    public DisciplinaTurmaPopupMenu(Disciplina disciplina, Turma turma) {
         
         this.disciplina = disciplina;
         this.turma = turma;

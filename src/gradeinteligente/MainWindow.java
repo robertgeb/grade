@@ -162,6 +162,13 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
+    public void atualizarHorario(Horario horario){
+        persist(horario);
+        if(gradeHorariosPanel != null){
+            gradeHorariosPanel.atualizar();
+        }
+    }
+    
     private void criarEntidade() {
         entidadeSelectWindow().addWindowListener(new WindowAdapter() {
             @Override

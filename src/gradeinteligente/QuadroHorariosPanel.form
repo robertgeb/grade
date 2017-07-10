@@ -103,38 +103,23 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="h0Label2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="h0Label3" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="h0Label" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="h0Label1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="h0Label5" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="h0Label6" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="h0Label7" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="h0Label4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Component id="h0Label3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="h0Label2" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="h0Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h0Label1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="h0Label8" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="h0Label9" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="h0Label10" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="h0Label11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="h0Label12" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="h0Label5" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="h0Label6" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="h0Label7" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="h0Label4" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="h0Label8" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="h0Label9" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="h0Label10" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="h0Label11" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="h0Label12" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="linhaHorasLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
