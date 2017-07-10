@@ -144,6 +144,15 @@ public class QuadroHorariosPanel extends javax.swing.JPanel {
         diaLabelList[dia].setLocation(0, diaLabelList[dia].getLocation().y+(TURMA_HEIGHT)/2);
     }
     
+    public void atualizar() {
+        horariosPanel.removeAll();
+        for (int i = 0; i < 6; i++) {
+            linhasPorDia[i] = 0;
+        }
+        initLabels();
+        initHorariosPanels();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -259,29 +268,21 @@ public class QuadroHorariosPanel extends javax.swing.JPanel {
             quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(quadroPanelLayout.createSequentialGroup()
                 .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(h0Label2)
-                            .addComponent(h0Label3))
-                        .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(h0Label)
-                            .addComponent(h0Label1))
-                        .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(h0Label5)
-                            .addComponent(h0Label6))
-                        .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(h0Label7)
-                            .addComponent(h0Label4)))
-                    .addGroup(quadroPanelLayout.createSequentialGroup()
-                        .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(h0Label8)
-                            .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(h0Label9)
-                                .addComponent(h0Label10))
-                            .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(h0Label11)
-                                .addComponent(h0Label12)))
-                        .addGap(0, 0, 0)))
+                    .addComponent(h0Label3)
+                    .addComponent(h0Label2)
+                    .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(h0Label)
+                        .addComponent(h0Label1))
+                    .addComponent(h0Label5)
+                    .addComponent(h0Label6)
+                    .addComponent(h0Label7)
+                    .addComponent(h0Label4)
+                    .addComponent(h0Label8)
+                    .addGroup(quadroPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(h0Label9)
+                        .addComponent(h0Label10))
+                    .addComponent(h0Label11)
+                    .addComponent(h0Label12))
                 .addComponent(linhaHorasLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(horariosPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

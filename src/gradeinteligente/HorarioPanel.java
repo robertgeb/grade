@@ -38,7 +38,6 @@ public class HorarioPanel extends javax.swing.JPanel {
         return horario.getDia();
     }
     
-    
     public void openMenu(MouseEvent evt){
         QuadroHorariosPopupMenu menu = new QuadroHorariosPopupMenu(this.horario);
         menu.setLocation(evt.getXOnScreen(), evt.getYOnScreen());

@@ -7,6 +7,8 @@ package gradeinteligente;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
@@ -20,25 +22,8 @@ public class QuadroHorariosPopupMenu extends JPopupMenu {
     
     JMenu mudarDiaMenu;
     JMenu mudarHoraMenu;
-    JMenuItem hora8Item;
-    JMenuItem hora9Item;
-    JMenuItem hora10Item;
-    JMenuItem hora11Item;
-    JMenuItem hora13Item;
-    JMenuItem hora14Item;
-    JMenuItem hora15Item;
-    JMenuItem hora16Item;
-    JMenuItem hora17Item;
-    JMenuItem hora18Item;
-    JMenuItem hora19Item;
-    JMenuItem hora20Item;
-    JMenuItem hora21Item;
-    JMenuItem dia0Item;
-    JMenuItem dia1Item;
-    JMenuItem dia2Item;
-    JMenuItem dia3Item;
-    JMenuItem dia4Item;
-    JMenuItem dia5Item;
+    ArrayList<JMenuItem> horaListItem;
+    ArrayList<JMenuItem> diaListItem;
     
     Horario horario;
     MainWindow mainWindow;
@@ -50,54 +35,66 @@ public class QuadroHorariosPopupMenu extends JPopupMenu {
         mudarDiaMenu = new JMenu("Mudar dia");
         mudarHoraMenu = new JMenu("Mudar hora");
         
-        hora8Item = new JMenuItem("8 horas");
-        hora9Item = new JMenuItem("9 horas");
-        hora10Item = new JMenuItem("10 horas");
-        hora11Item = new JMenuItem("11 horas");
-        hora13Item = new JMenuItem("13 horas");
-        hora14Item = new JMenuItem("14 horas");
-        hora15Item = new JMenuItem("15 horas");
-        hora16Item = new JMenuItem("16 horas");
-        hora17Item = new JMenuItem("17 horas");
-        hora18Item = new JMenuItem("18 horas");
-        hora19Item = new JMenuItem("19 horas");
-        hora20Item = new JMenuItem("20 horas");
-        hora21Item = new JMenuItem("21 horas");
+        diaListItem = new ArrayList<JMenuItem>();
+        diaListItem.add(new JMenuItem("Segunda"));
+        diaListItem.add(new JMenuItem("Terça"));
+        diaListItem.add(new JMenuItem("Quarta"));
+        diaListItem.add(new JMenuItem("Quinta"));
+        diaListItem.add(new JMenuItem("Sexta"));
+        diaListItem.add(new JMenuItem("Sábado"));
         
-        mudarHoraMenu.add(hora8Item);
-        mudarHoraMenu.add(hora9Item);
-        mudarHoraMenu.add(hora10Item);
-        mudarHoraMenu.add(hora11Item);
-        mudarHoraMenu.add(hora13Item);
-        mudarHoraMenu.add(hora14Item);
-        mudarHoraMenu.add(hora15Item);
-        mudarHoraMenu.add(hora16Item);
-        mudarHoraMenu.add(hora17Item);
-        mudarHoraMenu.add(hora18Item);
-        mudarHoraMenu.add(hora19Item);
-        mudarHoraMenu.add(hora20Item);
-        mudarHoraMenu.add(hora21Item);
+        for (JMenuItem diaItem : diaListItem) {
+            diaItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    mudarDia(diaListItem.indexOf(diaItem));
+                }
+            });
+            mudarDiaMenu.add(diaItem);
+        }
         
-        dia0Item = new JMenuItem("Segunda");
-        dia1Item = new JMenuItem("Terça");
-        dia2Item = new JMenuItem("Quarta");
-        dia3Item = new JMenuItem("Quinta");
-        dia4Item = new JMenuItem("Sexta");
-        dia5Item = new JMenuItem("Sábado");
+        horaListItem = new ArrayList<JMenuItem>();
+        for (int i = 0; i < 13; i++) {
+            if(i>3)
+                horaListItem.add(new JMenuItem((i+9) + "Horas"));
+            else
+                horaListItem.add(new JMenuItem((i+8) + "Horas"));
+        }
         
-        mudarDiaMenu.add(dia0Item);
-        mudarDiaMenu.add(dia1Item);
-        mudarDiaMenu.add(dia2Item);
-        mudarDiaMenu.add(dia3Item);
-        mudarDiaMenu.add(dia4Item);
-        mudarDiaMenu.add(dia5Item);
+        for (JMenuItem horaItem : horaListItem) {
+            horaItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    mudarHora(horaListItem.indexOf(horaItem));
+                }
+            });
+            mudarHoraMenu.add(horaItem);
+        }
         
         add(mudarDiaMenu);
         add(mudarHoraMenu);
+        
     }
     
-    private void setMainWindow(){
-        this.mainWindow = (MainWindow) SwingUtilities.getWindowAncestor(this.getInvoker());
+    private void mudarDia(int dia){
+        horario.setDia(dia);
+        getMainWindow().atualizarHorario(horario);
+    }
+    
+    private void mudarHora(int hora){
+        if(hora<4)
+            hora += 8;
+        else
+            hora += 9;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(horario.getHora());
+        calendar.set(Calendar.HOUR_OF_DAY, hora);
+        horario.setHora(calendar.getTime());
+        getMainWindow().atualizarHorario(horario);
+    }
+    
+    private MainWindow getMainWindow(){
+        return (MainWindow) SwingUtilities.getWindowAncestor(this.getInvoker());
     }
     
 }
