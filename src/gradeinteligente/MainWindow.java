@@ -33,7 +33,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     ListPanel disciplinasTurmasListPanel;
     ListPanel gradeListPanel;
-    GradeHorariosPanel gradeHorariosPanel;
+    QuadroHorariosPanel gradeHorariosPanel;
     
     /**
      * Creates new form MainWindow
@@ -220,7 +220,6 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void initMainPanels(){
         disciplinasTurmasListPanel = new ListPanel(disciplinaList);
-        gradeListPanel = new ListPanel(gradeList);
         
         mainPanel.removeAll();
         JScrollPane scroll = new JScrollPane(disciplinasTurmasListPanel);
@@ -230,6 +229,9 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void showTurmasList(){
         mainPanel.removeAll();
+        gradeHorariosPanel = null;
+        gradeListPanel = null;
+        disciplinasTurmasListPanel = new ListPanel(disciplinaList);
         JScrollPane scroll = new JScrollPane(disciplinasTurmasListPanel);
         scroll.getVerticalScrollBar().setUnitIncrement(17);
         mainPanel.add(scroll);
@@ -239,6 +241,9 @@ public class MainWindow extends javax.swing.JFrame {
     
     private void showGradesList(){
         mainPanel.removeAll();
+        gradeHorariosPanel = null;
+        disciplinasTurmasListPanel = null;
+        gradeListPanel = new ListPanel(gradeList);
         JScrollPane scroll = new JScrollPane(gradeListPanel);
         scroll.getVerticalScrollBar().setUnitIncrement(17);
         mainPanel.add(scroll);
@@ -248,7 +253,9 @@ public class MainWindow extends javax.swing.JFrame {
     
     public void showGrade(Grade grade){
         mainPanel.removeAll();
-        gradeHorariosPanel = new GradeHorariosPanel(grade);
+        gradeListPanel = null;
+        disciplinasTurmasListPanel = null;
+        gradeHorariosPanel = new QuadroHorariosPanel(grade);
         JScrollPane scroll = new JScrollPane(gradeHorariosPanel);
         scroll.getVerticalScrollBar().setUnitIncrement(17);
         mainPanel.add(scroll);
