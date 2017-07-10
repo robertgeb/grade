@@ -33,7 +33,7 @@ public class DisciplinaListItemPanel extends javax.swing.JPanel {
     }
 
     public void openMenu(MouseEvent evt, Turma turma){
-        ActionsPopupMenu menu = new ActionsPopupMenu(this.disciplina, turma);
+        DisciplinaTurmaPopupMenu menu = new DisciplinaTurmaPopupMenu(this.disciplina, turma);
         menu.setLocation(evt.getXOnScreen(), evt.getYOnScreen());
         menu.setInvoker(evt.getComponent());
         menu.setVisible(true);
