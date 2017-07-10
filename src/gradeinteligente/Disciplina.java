@@ -34,6 +34,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Disciplina.findByCreditos", query = "SELECT d FROM Disciplina d WHERE d.creditos = :creditos")})
 public class Disciplina implements Serializable {
 
+    @Column(name = "abreviatura")
+    private String abreviatura;
+
     @Column(name = "periodo")
     private Integer periodo;
 
@@ -121,6 +124,14 @@ public class Disciplina implements Serializable {
 
     public void setPeriodo(Integer periodo) {
         this.periodo = periodo;
+    }
+
+    public String getAbreviatura() {
+        return abreviatura;
+    }
+
+    public void setAbreviatura(String abreviatura) {
+        this.abreviatura = abreviatura;
     }
     
 }

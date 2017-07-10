@@ -135,6 +135,7 @@ public class Bd {
             String disciplinaTableSQL = "CREATE TABLE disciplina " +
                         "(id INTEGER not NULL AUTO_INCREMENT, " +
                         " nome VARCHAR(255), " + 
+                        " abreviatura VARCHAR(5), " + 
                         " creditos INTEGER, " + 
                         " periodo INTEGER, " + 
                         " PRIMARY KEY ( id ))"; 

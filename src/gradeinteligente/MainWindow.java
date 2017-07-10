@@ -7,6 +7,7 @@ package gradeinteligente;
 
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.Serializable;
@@ -16,7 +17,6 @@ import java.util.List;
 import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,7 +24,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.JWindow;
-import javax.swing.SwingUtilities;
 
 /**
  *
@@ -32,7 +31,9 @@ import javax.swing.SwingUtilities;
  */
 public class MainWindow extends javax.swing.JFrame {
 
-    ListPanel disciplinasPanel;
+    ListPanel disciplinasTurmasListPanel;
+    ListPanel gradeListPanel;
+    QuadroHorariosPanel gradeHorariosPanel;
     
     /**
      * Creates new form MainWindow
@@ -40,6 +41,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         //new Bd();
         initComponents();
+        initTabEvents();
         initMainPanels();
     }
     
@@ -114,7 +116,7 @@ public class MainWindow extends javax.swing.JFrame {
             novaTurma.setProfessor((Professor) professoresComboBox.getSelectedItem());
             persist(novaTurma);
             disciplina.getTurmaCollection().add(novaTurma);
-            disciplinasPanel.reload();
+            disciplinasTurmasListPanel.reload();
         }
     }
     
@@ -123,7 +125,7 @@ public class MainWindow extends javax.swing.JFrame {
         GradeInteligentePUEntityManager.remove(turma);
         GradeInteligentePUEntityManager.getTransaction().commit();
         turma.getDisciplina().getTurmaCollection().remove(turma);
-        disciplinasPanel.reload();
+        disciplinasTurmasListPanel.reload();
     }
     
     public void atualizarDisciplina(Disciplina disciplina){
@@ -156,7 +158,7 @@ public class MainWindow extends javax.swing.JFrame {
             disciplina.setCreditos((int)creditosDisciplina.getValue());
             disciplina.setPeriodo((int)periodoDisciplina.getValue());
             persist(disciplina);
-            disciplinasPanel.reload();
+            disciplinasTurmasListPanel.reload();
         }
     }
     
@@ -180,6 +182,87 @@ public class MainWindow extends javax.swing.JFrame {
         });
     }
     
+    private void initTabEvents(){
+        gradesMenuPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                showGradesList();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent me) {
+                gradesLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent me) {
+                gradesLabel.setBorder(null);
+            }
+        });
+        
+        turmasMenuPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                showTurmasList();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent me) {
+                turmasLabel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent me) {
+                turmasLabel.setBorder(null);
+            }
+        });
+    }
+    
+    private void initMainPanels(){
+        disciplinasTurmasListPanel = new ListPanel(disciplinaList);
+        
+        mainPanel.removeAll();
+        JScrollPane scroll = new JScrollPane(disciplinasTurmasListPanel);
+        scroll.getVerticalScrollBar().setUnitIncrement(17);
+        mainPanel.add(scroll);
+    }
+    
+    private void showTurmasList(){
+        mainPanel.removeAll();
+        gradeHorariosPanel = null;
+        gradeListPanel = null;
+        disciplinasTurmasListPanel = new ListPanel(disciplinaList);
+        JScrollPane scroll = new JScrollPane(disciplinasTurmasListPanel);
+        scroll.getVerticalScrollBar().setUnitIncrement(17);
+        mainPanel.add(scroll);
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+    
+    private void showGradesList(){
+        mainPanel.removeAll();
+        gradeHorariosPanel = null;
+        disciplinasTurmasListPanel = null;
+        gradeListPanel = new ListPanel(gradeList);
+        JScrollPane scroll = new JScrollPane(gradeListPanel);
+        scroll.getVerticalScrollBar().setUnitIncrement(17);
+        mainPanel.add(scroll);
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+    
+    public void showGrade(Grade grade){
+        mainPanel.removeAll();
+        gradeListPanel = null;
+        disciplinasTurmasListPanel = null;
+        gradeHorariosPanel = new QuadroHorariosPanel(grade);
+        JScrollPane scroll = new JScrollPane(gradeHorariosPanel);
+        scroll.getVerticalScrollBar().setUnitIncrement(17);
+        mainPanel.add(scroll);
+        mainPanel.revalidate();
+        mainPanel.repaint();
+    }
+    
     @SuppressWarnings("unchecked")
     private void initComponents() {//GEN-BEGIN:initComponents
 
@@ -199,10 +282,6 @@ public class MainWindow extends javax.swing.JFrame {
         menuPanel = new javax.swing.JPanel();
         gradesMenuPanel = new javax.swing.JPanel();
         gradesLabel = new javax.swing.JLabel();
-        horariosMenuPanel = new javax.swing.JPanel();
-        horariosMenuLabel = new javax.swing.JLabel();
-        alocacoesMenuPanel = new javax.swing.JPanel();
-        alocacoesMenuLabel = new javax.swing.JLabel();
         turmasMenuPanel = new javax.swing.JPanel();
         turmasLabel = new javax.swing.JLabel();
         mainPanel = new javax.swing.JPanel();
@@ -217,16 +296,12 @@ public class MainWindow extends javax.swing.JFrame {
         menuPanel.setOpaque(false);
         menuPanel.setLayout(new java.awt.GridLayout(1, 4));
 
-        gradesMenuPanel.setBackground(new java.awt.Color(188, 75, 81));
+        gradesMenuPanel.setBackground(new java.awt.Color(60, 145, 230));
 
-        gradesLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        gradesLabel.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        gradesLabel.setForeground(new java.awt.Color(250, 255, 253));
         gradesLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gradesLabel.setText("Grades");
-        gradesLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                gradesLabelMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout gradesMenuPanelLayout = new javax.swing.GroupLayout(gradesMenuPanel);
         gradesMenuPanel.setLayout(gradesMenuPanelLayout);
@@ -234,7 +309,7 @@ public class MainWindow extends javax.swing.JFrame {
             gradesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(gradesMenuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(gradesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                .addComponent(gradesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
                 .addContainerGap())
         );
         gradesMenuPanelLayout.setVerticalGroup(
@@ -247,86 +322,28 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuPanel.add(gradesMenuPanel);
 
-        horariosMenuPanel.setBackground(new java.awt.Color(253, 231, 76));
-
-        horariosMenuLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        horariosMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        horariosMenuLabel.setText("Horarios");
-        horariosMenuLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                horariosMenuLabelMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout horariosMenuPanelLayout = new javax.swing.GroupLayout(horariosMenuPanel);
-        horariosMenuPanel.setLayout(horariosMenuPanelLayout);
-        horariosMenuPanelLayout.setHorizontalGroup(
-            horariosMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(horariosMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(horariosMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        horariosMenuPanelLayout.setVerticalGroup(
-            horariosMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(horariosMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(horariosMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        menuPanel.add(horariosMenuPanel);
-
-        alocacoesMenuPanel.setBackground(new java.awt.Color(91, 192, 235));
-
-        alocacoesMenuLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        alocacoesMenuLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        alocacoesMenuLabel.setText("Alocações");
-        alocacoesMenuLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                alocacoesMenuLabelMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout alocacoesMenuPanelLayout = new javax.swing.GroupLayout(alocacoesMenuPanel);
-        alocacoesMenuPanel.setLayout(alocacoesMenuPanelLayout);
-        alocacoesMenuPanelLayout.setHorizontalGroup(
-            alocacoesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(alocacoesMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(alocacoesMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        alocacoesMenuPanelLayout.setVerticalGroup(
-            alocacoesMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(alocacoesMenuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(alocacoesMenuLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        menuPanel.add(alocacoesMenuPanel);
-
         turmasMenuPanel.setBackground(new java.awt.Color(155, 197, 61));
 
-        turmasLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        turmasLabel.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        turmasLabel.setForeground(new java.awt.Color(250, 255, 253));
         turmasLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         turmasLabel.setText("Turmas");
-        turmasLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                turmasLabelMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout turmasMenuPanelLayout = new javax.swing.GroupLayout(turmasMenuPanel);
         turmasMenuPanel.setLayout(turmasMenuPanelLayout);
         turmasMenuPanelLayout.setHorizontalGroup(
             turmasMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+            .addGroup(turmasMenuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                .addContainerGap())
         );
         turmasMenuPanelLayout.setVerticalGroup(
             turmasMenuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, turmasMenuPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(turmasLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         menuPanel.add(turmasMenuPanel);
@@ -340,7 +357,7 @@ public class MainWindow extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menuPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 1088, Short.MAX_VALUE)
             .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -354,31 +371,6 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }//GEN-END:initComponents
 
-    private void gradesLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gradesLabelMouseClicked
-       
-    }//GEN-LAST:event_gradesLabelMouseClicked
-
-    private void turmasLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_turmasLabelMouseClicked
-    
-    }//GEN-LAST:event_turmasLabelMouseClicked
-
-    private void horariosMenuLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_horariosMenuLabelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_horariosMenuLabelMouseClicked
-
-    private void alocacoesMenuLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alocacoesMenuLabelMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alocacoesMenuLabelMouseClicked
-
-    private void initMainPanels(){
-        disciplinasPanel = new ListPanel(disciplinaList);
-        
-        mainPanel.removeAll();
-        JScrollPane scroll = new JScrollPane(disciplinasPanel);
-        scroll.getVerticalScrollBar().setUnitIncrement(17);
-        mainPanel.add(scroll);
-    }
-    
     private void setSaved(String entity){
         toSaveList.remove(entity);
         JLabel entityTabLabel = getTabLabel(entity);
@@ -522,16 +514,12 @@ public class MainWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager GradeInteligentePUEntityManager;
-    private javax.swing.JLabel alocacoesMenuLabel;
-    private javax.swing.JPanel alocacoesMenuPanel;
     private java.util.List<gradeinteligente.Disciplina> disciplinaList;
     private javax.persistence.Query disciplinaQuery;
     private java.util.List<gradeinteligente.Grade> gradeList;
     private javax.persistence.Query gradeQuery;
     private javax.swing.JLabel gradesLabel;
     private javax.swing.JPanel gradesMenuPanel;
-    private javax.swing.JLabel horariosMenuLabel;
-    private javax.swing.JPanel horariosMenuPanel;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel menuPanel;
     private java.util.List<gradeinteligente.Predio> predioList;
