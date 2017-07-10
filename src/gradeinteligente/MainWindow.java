@@ -51,45 +51,6 @@ public class MainWindow extends javax.swing.JFrame {
         GradeInteligentePUEntityManager.getTransaction().commit();
     }
     
-    public JWindow professorSelectWindow(){
-        this.setEnabled(false);
-        return new SelectWindow(this, professorList);
-    }
-    
-    public JWindow disciplinaSelectWindow(){
-        this.setEnabled(false);
-        return new SelectWindow(this, disciplinaList);
-    }
-    
-    public JWindow entidadeSelectWindow(){
-        List<JLabel> opcoesEntidades = new ArrayList<>();
-        opcoesEntidades.add(new JLabel());
-        opcoesEntidades.add(new JLabel());
-        opcoesEntidades.add(new JLabel());
-        opcoesEntidades.get(0).setText("Turma");
-        opcoesEntidades.get(0).addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                
-            }
-        });
-        opcoesEntidades.get(1).setText("Professor");
-        opcoesEntidades.get(2).setText("Disciplina");
-        this.setEnabled(false);
-        return new SelectWindow(this, opcoesEntidades);
-    }
-    
-    private void criarProfessor() {
-        
-        // TODO: Abrir janela de inserção dos dados
-        // Persistir no banco
-    }
-    
-    private void criarDisciplina() {
-        // TODO: Abrir janela de inserção dos dados
-        // Persistir no banco
-    }
-    
     public void criarTurma(Disciplina disciplina) {
         JComboBox professoresComboBox = new JComboBox(professorList.toArray());
         JTextField nomeTurma = new JTextField();
@@ -167,26 +128,6 @@ public class MainWindow extends javax.swing.JFrame {
         if(gradeHorariosPanel != null){
             gradeHorariosPanel.atualizar();
         }
-    }
-    
-    private void criarEntidade() {
-        entidadeSelectWindow().addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e){
-                String nomeEntidadeSelecionada = (String) ((SelectWindow)e.getWindow()).getSelected();
-                switch (nomeEntidadeSelecionada){
-                    case "Professor":
-                        criarProfessor();
-                        break;
-                    case "Disciplina":
-                        criarDisciplina();
-                        break;
-                    case "Turma":
-                        //criarTurma();
-                        break;
-                }
-            }
-        });
     }
     
     private void initTabEvents(){
@@ -378,97 +319,6 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }//GEN-END:initComponents
 
-    private void setSaved(String entity){
-        toSaveList.remove(entity);
-        JLabel entityTabLabel = getTabLabel(entity);
-        entityTabLabel.setText(
-                entityTabLabel.getText()
-                        .substring(
-                                0, 
-                                entityTabLabel
-                                        .getText()
-                                        .length() - 1
-                        )
-        );
-       
-    }
-    
-    private void setToSave(String entity){
-        if(toSaveList.add(entity)){
-            JLabel entityTabLabel = getTabLabel(entity);
-            entityTabLabel.setText(entityTabLabel.getText() + "*");
-        }
-    }
-    
-    private JLabel getTabLabel(String entity){
-        switch(entity) {
-            case GRADE:
-                return gradesLabel;
-                
-            case TURMA:
-                return turmasLabel;
-                
-        }
-        return null;
-    }
-    
-    private Serializable getSelectedEntity() {
-        switch(getOpenedTabName()) {
-            case GRADE:
-                return new Grade();
-                
-            case PROFESSOR:
-                return new Professor();
-            
-            case SALA:
-                return new Sala();
-             
-            case TURMA:
-                return new Turma();
-            
-            case DISCIPLINA:
-                return new Disciplina();
-             
-            case PREDIO:
-                return new Predio();
-        }
-        return null;
-    }
-    
-    private List<?> getSelectedList(){
-        switch(getOpenedTabName()) {
-            case GRADE:
-                return gradeList;
-                
-            case PROFESSOR:
-                return professorList;
-            
-            case SALA:
-                return salaList;
-             
-            case TURMA:
-                return turmaList;
-            
-            case DISCIPLINA:
-                return disciplinaList;
-                
-            case PREDIO:
-                return predioList;
-        }
-        return null;
-    }
-    
-    private String getOpenedTabName() {
-        javax.swing.JPanel activedTab = null;
-        for(Component panel : mainPanel.getComponents() ) {   
-            if(panel.isEnabled())
-                activedTab = (javax.swing.JPanel) panel;
-        }
-        if(activedTab == null || activedTab.getName() == null)
-            return null;
-        return activedTab.getName();
-    }
-    
     /**
      * @param args the command line arguments
      */
@@ -507,17 +357,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
     }
-    
-    private final String GRADE = "grade";
-    private final String SALA = "salas";
-    private final String PREDIO = "predio";
-    private final String PROFESSOR = "professores";
-    private final String TURMA = "turmas";
-    private final String DISCIPLINA = "disciplina";
-    private final String DEFAULT_ERROR_MESSAGE = "Erro inesperado, Reinicie a aplicação";
-    private final String SELECTED_ROW_ERROR_MESSAGE = "Selecione o item para esta ação";
-    private Set<String> toSaveList = new HashSet<String>();
-    private ArrayList<JPanel> mainPanelList;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager GradeInteligentePUEntityManager;
