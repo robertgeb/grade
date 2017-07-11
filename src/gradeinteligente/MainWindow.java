@@ -5,25 +5,18 @@
  */
 package gradeinteligente;
 
-import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.Calendar;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.JWindow;
 
 /**
  *
@@ -74,10 +67,7 @@ public class MainWindow extends javax.swing.JFrame {
                 , "Criar turma para "+disciplina.getNome()
                 , JOptionPane.OK_CANCEL_OPTION);
         
-        if(result == JOptionPane.CANCEL_OPTION){
-            return;
-        }
-        else {
+        if(result != JOptionPane.CANCEL_OPTION){
             Turma novaTurma = new Turma();
             novaTurma.setNome(nomeTurma.getText());
             novaTurma.setDisciplina(disciplina);
@@ -87,6 +77,45 @@ public class MainWindow extends javax.swing.JFrame {
             disciplinasTurmasListPanel.reload();
         }
     }
+    
+    public void criarGrade(){
+        
+        JComponent[] inputs = new JComponent[turmaList.size()+1];
+        int i = 0;
+        inputs[i] =  new JLabel("Selecione as turmas");
+        i++;
+        for (Turma turma : turmaList) {
+            inputs[i] = new JCheckBox(turma.getDisciplina().getAbreviatura() + " - " + turma.getNome() + " P: "+ turma.getDisciplina().getPeriodo());
+            ((JCheckBox)inputs[i]).setSelected(true);
+            i++;
+        }
+        
+        int result = JOptionPane.showConfirmDialog(this
+                , inputs
+                , "Criar nova grade"
+                , JOptionPane.OK_CANCEL_OPTION);
+        
+        if(result != JOptionPane.CANCEL_OPTION){
+            Grade novaGrade = new Grade();
+            novaGrade.setCriacao(Calendar.getInstance().getTime());
+            novaGrade.setNome("Teste");
+            save(novaGrade);
+            for (Turma turma : turmaList) {
+                // Se a tuma estava selecionada cria horario
+                if(inputs[turmaList.indexOf(turma)+1] instanceof JCheckBox && ((JCheckBox)inputs[turmaList.indexOf(turma)+1]).isSelected()){
+                    Horario novoHorario = new Horario();
+                    novoHorario.setGrade(novaGrade);
+                    novoHorario.setTurma(turma);
+                    novoHorario.generateDiaHora();
+                    novaGrade.getHorarioCollection().add(novoHorario);
+                    save(novoHorario);
+                }
+            }
+            showGrade(novaGrade);
+        }
+    }
+    
+    
     
     /**
      *  Apaga turma e recarrega lista de turmas
@@ -222,11 +251,24 @@ public class MainWindow extends javax.swing.JFrame {
         gradeHorariosPanel = null;
         disciplinasTurmasListPanel = null;
         gradeListPanel = new ListPanel(gradeList);
+        gradeListPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent me) {
+                openGradePopup(me);
+            }
+        });
         JScrollPane scroll = new JScrollPane(gradeListPanel);
         scroll.getVerticalScrollBar().setUnitIncrement(17);
         mainPanel.add(scroll);
         mainPanel.revalidate();
         mainPanel.repaint();
+    }
+    
+    private void openGradePopup(MouseEvent evt) {
+        GradePopupMenu menu = new GradePopupMenu(null);
+        menu.setLocation(evt.getXOnScreen(), evt.getYOnScreen());
+        menu.setInvoker(evt.getComponent());
+        menu.setVisible(true);
     }
     
     /**
