@@ -53,6 +53,7 @@ public class Bd {
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/grade", databaseUser, databasePassword);
         } catch(SQLException ex){
+            System.out.println("Erro no banco de dados:");
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
@@ -60,6 +61,8 @@ public class Bd {
                 createDatabase();
                 connect();
             }
+        } finally {
+            disconnect();
         }
     }
     
@@ -87,7 +90,7 @@ public class Bd {
             connect();
             insertSampleData();
             disconnect();
-            System.out.println("Done");
+            System.out.println("Novo banco criado e populado com sucesso");
         } catch(SQLException ex){
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());

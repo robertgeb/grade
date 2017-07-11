@@ -32,7 +32,7 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     public MainWindow() {
-        //new Bd();
+        new Bd();
         initComponents();
         initTabEvents();
         initMainPanel();
@@ -78,6 +78,9 @@ public class MainWindow extends javax.swing.JFrame {
         }
     }
     
+    /**
+     *  Abre uma janela para selecionar turmas e gera uma grade com horarios para essas turmas
+     */
     public void criarGrade(){
         
         JComponent[] inputs = new JComponent[turmaList.size()+1];
